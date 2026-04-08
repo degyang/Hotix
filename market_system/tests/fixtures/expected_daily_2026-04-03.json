@@ -1,0 +1,2708 @@
+{
+  "date": "2026-04-03",
+  "indices": {
+    "000001": {
+      "id": "000001",
+      "date": "2026-04-03",
+      "raw": {
+        "date": "2026-04-03",
+        "open": 3927.59,
+        "high": 3929.53,
+        "low": 3871.3,
+        "close": 3880.1,
+        "volume": 4926990.0,
+        "amount": 713830301696.0,
+        "adv": 352,
+        "decl": 1975
+      },
+      "features": {
+        "ret_1d": -0.009999260070063687,
+        "ret_5d": -0.00859029261163291,
+        "ret_20d": -0.059184955106335924,
+        "ma_20": 3986.5644999999995,
+        "ma_60": 4071.337833333333,
+        "ma_slope_20": -0.013088587884196756,
+        "distance_to_ma20": -0.026705826533096277,
+        "price_percentile_120d": 0.21666666666666667,
+        "amount_ma_20": 949476360192.0,
+        "amount_ratio_1_20": 0.7518147176951847,
+        "amount_ratio_5_20": 0.8751714081710966,
+        "amount_percentile_120d": 0.13333333333333333,
+        "breadth_ratio": 0.15126772668665608,
+        "breadth_diff": -1623.0,
+        "breadth_ratio_ma_5": 0.38047294437458484,
+        "true_range": 58.23000000000002,
+        "atr_14": 66.87999999999991,
+        "atr_pct_14": 0.017236669158011367,
+        "volatility_percentile_250d": 1.0,
+        "breakout_20d": false,
+        "breakdown_20d": false
+      },
+      "states": {
+        "trend_state": "down",
+        "position_state": "low_mid",
+        "volume_state": "contraction",
+        "breadth_state": "weak",
+        "volatility_state": "extreme"
+      },
+      "pattern_tags": [],
+      "transition_tags": [],
+      "salience": {
+        "total_score": 2.2,
+        "positive_score": 0.0,
+        "negative_score": 2.2,
+        "warning_score": 0.0,
+        "transition_score": 0.0,
+        "matched_rules": [
+          {
+            "rule_id": "s_extreme_breadth_weak",
+            "score": 2.2,
+            "bucket": "negative",
+            "polarity": "negative",
+            "reason": "广度极弱"
+          }
+        ]
+      },
+      "trace": {
+        "features": {
+          "ret_1d": {
+            "rule_id": "ret_1d",
+            "inputs": [
+              "close"
+            ],
+            "output": -0.009999260070063687
+          },
+          "ret_5d": {
+            "rule_id": "ret_5d",
+            "inputs": [
+              "close"
+            ],
+            "output": -0.00859029261163291
+          },
+          "ret_20d": {
+            "rule_id": "ret_20d",
+            "inputs": [
+              "close"
+            ],
+            "output": -0.059184955106335924
+          },
+          "ma_20": {
+            "rule_id": "ma_20",
+            "inputs": [
+              "close"
+            ],
+            "output": 3986.5644999999995
+          },
+          "ma_60": {
+            "rule_id": "ma_60",
+            "inputs": [
+              "close"
+            ],
+            "output": 4071.337833333333
+          },
+          "ma_slope_20": {
+            "rule_id": "ma_slope_20",
+            "inputs": [
+              "ma_20"
+            ],
+            "output": -0.013088587884196756
+          },
+          "distance_to_ma20": {
+            "rule_id": "distance_to_ma20",
+            "inputs": [
+              "close",
+              "ma_20"
+            ],
+            "output": -0.026705826533096277
+          },
+          "price_percentile_120d": {
+            "rule_id": "price_percentile_120d",
+            "inputs": [
+              "close"
+            ],
+            "output": 0.21666666666666667
+          },
+          "amount_ma_20": {
+            "rule_id": "amount_ma_20",
+            "inputs": [
+              "amount"
+            ],
+            "output": 949476360192.0
+          },
+          "amount_ratio_1_20": {
+            "rule_id": "amount_ratio_1_20",
+            "inputs": [
+              "amount",
+              "amount_ma_20"
+            ],
+            "output": 0.7518147176951847
+          },
+          "amount_ratio_5_20": {
+            "rule_id": "amount_ratio_5_20",
+            "inputs": [
+              "amount"
+            ],
+            "output": 0.8751714081710966
+          },
+          "amount_percentile_120d": {
+            "rule_id": "amount_percentile_120d",
+            "inputs": [
+              "amount"
+            ],
+            "output": 0.13333333333333333
+          },
+          "breadth_ratio": {
+            "rule_id": "breadth_ratio",
+            "inputs": [
+              "adv",
+              "decl"
+            ],
+            "output": 0.15126772668665608
+          },
+          "breadth_diff": {
+            "rule_id": "breadth_diff",
+            "inputs": [
+              "adv",
+              "decl"
+            ],
+            "output": -1623.0
+          },
+          "breadth_ratio_ma_5": {
+            "rule_id": "breadth_ratio_ma_5",
+            "inputs": [
+              "breadth_ratio"
+            ],
+            "output": 0.38047294437458484
+          },
+          "true_range": {
+            "rule_id": "true_range",
+            "inputs": [
+              "high",
+              "low",
+              "close"
+            ],
+            "output": 58.23000000000002
+          },
+          "atr_14": {
+            "rule_id": "atr_14",
+            "inputs": [
+              "true_range"
+            ],
+            "output": 66.87999999999991
+          },
+          "atr_pct_14": {
+            "rule_id": "atr_pct_14",
+            "inputs": [
+              "atr_14",
+              "close"
+            ],
+            "output": 0.017236669158011367
+          },
+          "volatility_percentile_250d": {
+            "rule_id": "volatility_percentile_250d",
+            "inputs": [
+              "atr_pct_14"
+            ],
+            "output": 1.0
+          },
+          "breakout_20d": {
+            "rule_id": "breakout_20d",
+            "inputs": [
+              "close",
+              "high"
+            ],
+            "output": false
+          },
+          "breakdown_20d": {
+            "rule_id": "breakdown_20d",
+            "inputs": [
+              "close",
+              "low"
+            ],
+            "output": false
+          }
+        },
+        "states": {
+          "trend_state": {
+            "rule_id": "trend_state",
+            "matched_case": 1,
+            "value": "down"
+          },
+          "position_state": {
+            "rule_id": "position_state",
+            "matched_case": 1,
+            "value": "low_mid"
+          },
+          "volume_state": {
+            "rule_id": "volume_state",
+            "matched_case": 1,
+            "value": "contraction"
+          },
+          "breadth_state": {
+            "rule_id": "breadth_state",
+            "matched_case": 0,
+            "value": "weak"
+          },
+          "volatility_state": {
+            "rule_id": "volatility_state",
+            "matched_case": null,
+            "value": "extreme"
+          }
+        },
+        "patterns": [],
+        "transitions": [],
+        "salience": [
+          {
+            "rule_id": "s_extreme_breadth_weak",
+            "score": 2.2,
+            "bucket": "negative",
+            "polarity": "negative",
+            "reason": "广度极弱"
+          }
+        ]
+      }
+    },
+    "399001": {
+      "id": "399001",
+      "date": "2026-04-03",
+      "raw": {
+        "date": "2026-04-03",
+        "open": 13553.654,
+        "high": 13558.914,
+        "low": 13345.614,
+        "close": 13352.904,
+        "volume": 5865722.0,
+        "amount": 942677098496.0,
+        "adv": 359,
+        "decl": 2546
+      },
+      "features": {
+        "ret_1d": -0.009938500523172578,
+        "ret_5d": -0.029611911012599523,
+        "ret_20d": -0.05783913043140809,
+        "ma_20": 13882.3063,
+        "ma_60": 14088.900016666668,
+        "ma_slope_20": -0.010396259368989802,
+        "distance_to_ma20": -0.038135039564715534,
+        "price_percentile_120d": 0.39166666666666666,
+        "amount_ma_20": 1214763922227.2,
+        "amount_ratio_1_20": 0.7760167068245291,
+        "amount_ratio_5_20": 0.866965087494116,
+        "amount_percentile_120d": 0.041666666666666664,
+        "breadth_ratio": 0.12358003442336538,
+        "breadth_diff": -2187.0,
+        "breadth_ratio_ma_5": 0.3704098338497307,
+        "true_range": 213.3000000000011,
+        "atr_14": 321.35157142857145,
+        "atr_pct_14": 0.02406604371817332,
+        "volatility_percentile_250d": 0.92,
+        "breakout_20d": false,
+        "breakdown_20d": false
+      },
+      "states": {
+        "trend_state": "down",
+        "position_state": "low_mid",
+        "volume_state": "contraction",
+        "breadth_state": "weak",
+        "volatility_state": "extreme"
+      },
+      "pattern_tags": [],
+      "transition_tags": [],
+      "salience": {
+        "total_score": 2.2,
+        "positive_score": 0.0,
+        "negative_score": 2.2,
+        "warning_score": 0.0,
+        "transition_score": 0.0,
+        "matched_rules": [
+          {
+            "rule_id": "s_extreme_breadth_weak",
+            "score": 2.2,
+            "bucket": "negative",
+            "polarity": "negative",
+            "reason": "广度极弱"
+          }
+        ]
+      },
+      "trace": {
+        "features": {
+          "ret_1d": {
+            "rule_id": "ret_1d",
+            "inputs": [
+              "close"
+            ],
+            "output": -0.009938500523172578
+          },
+          "ret_5d": {
+            "rule_id": "ret_5d",
+            "inputs": [
+              "close"
+            ],
+            "output": -0.029611911012599523
+          },
+          "ret_20d": {
+            "rule_id": "ret_20d",
+            "inputs": [
+              "close"
+            ],
+            "output": -0.05783913043140809
+          },
+          "ma_20": {
+            "rule_id": "ma_20",
+            "inputs": [
+              "close"
+            ],
+            "output": 13882.3063
+          },
+          "ma_60": {
+            "rule_id": "ma_60",
+            "inputs": [
+              "close"
+            ],
+            "output": 14088.900016666668
+          },
+          "ma_slope_20": {
+            "rule_id": "ma_slope_20",
+            "inputs": [
+              "ma_20"
+            ],
+            "output": -0.010396259368989802
+          },
+          "distance_to_ma20": {
+            "rule_id": "distance_to_ma20",
+            "inputs": [
+              "close",
+              "ma_20"
+            ],
+            "output": -0.038135039564715534
+          },
+          "price_percentile_120d": {
+            "rule_id": "price_percentile_120d",
+            "inputs": [
+              "close"
+            ],
+            "output": 0.39166666666666666
+          },
+          "amount_ma_20": {
+            "rule_id": "amount_ma_20",
+            "inputs": [
+              "amount"
+            ],
+            "output": 1214763922227.2
+          },
+          "amount_ratio_1_20": {
+            "rule_id": "amount_ratio_1_20",
+            "inputs": [
+              "amount",
+              "amount_ma_20"
+            ],
+            "output": 0.7760167068245291
+          },
+          "amount_ratio_5_20": {
+            "rule_id": "amount_ratio_5_20",
+            "inputs": [
+              "amount"
+            ],
+            "output": 0.866965087494116
+          },
+          "amount_percentile_120d": {
+            "rule_id": "amount_percentile_120d",
+            "inputs": [
+              "amount"
+            ],
+            "output": 0.041666666666666664
+          },
+          "breadth_ratio": {
+            "rule_id": "breadth_ratio",
+            "inputs": [
+              "adv",
+              "decl"
+            ],
+            "output": 0.12358003442336538
+          },
+          "breadth_diff": {
+            "rule_id": "breadth_diff",
+            "inputs": [
+              "adv",
+              "decl"
+            ],
+            "output": -2187.0
+          },
+          "breadth_ratio_ma_5": {
+            "rule_id": "breadth_ratio_ma_5",
+            "inputs": [
+              "breadth_ratio"
+            ],
+            "output": 0.3704098338497307
+          },
+          "true_range": {
+            "rule_id": "true_range",
+            "inputs": [
+              "high",
+              "low",
+              "close"
+            ],
+            "output": 213.3000000000011
+          },
+          "atr_14": {
+            "rule_id": "atr_14",
+            "inputs": [
+              "true_range"
+            ],
+            "output": 321.35157142857145
+          },
+          "atr_pct_14": {
+            "rule_id": "atr_pct_14",
+            "inputs": [
+              "atr_14",
+              "close"
+            ],
+            "output": 0.02406604371817332
+          },
+          "volatility_percentile_250d": {
+            "rule_id": "volatility_percentile_250d",
+            "inputs": [
+              "atr_pct_14"
+            ],
+            "output": 0.92
+          },
+          "breakout_20d": {
+            "rule_id": "breakout_20d",
+            "inputs": [
+              "close",
+              "high"
+            ],
+            "output": false
+          },
+          "breakdown_20d": {
+            "rule_id": "breakdown_20d",
+            "inputs": [
+              "close",
+              "low"
+            ],
+            "output": false
+          }
+        },
+        "states": {
+          "trend_state": {
+            "rule_id": "trend_state",
+            "matched_case": 1,
+            "value": "down"
+          },
+          "position_state": {
+            "rule_id": "position_state",
+            "matched_case": 1,
+            "value": "low_mid"
+          },
+          "volume_state": {
+            "rule_id": "volume_state",
+            "matched_case": 1,
+            "value": "contraction"
+          },
+          "breadth_state": {
+            "rule_id": "breadth_state",
+            "matched_case": 0,
+            "value": "weak"
+          },
+          "volatility_state": {
+            "rule_id": "volatility_state",
+            "matched_case": null,
+            "value": "extreme"
+          }
+        },
+        "patterns": [],
+        "transitions": [],
+        "salience": [
+          {
+            "rule_id": "s_extreme_breadth_weak",
+            "score": 2.2,
+            "bucket": "negative",
+            "polarity": "negative",
+            "reason": "广度极弱"
+          }
+        ]
+      }
+    },
+    "000016": {
+      "id": "000016",
+      "date": "2026-04-03",
+      "raw": {
+        "date": "2026-04-03",
+        "open": 2856.56,
+        "high": 2857.51,
+        "low": 2827.09,
+        "close": 2830.6,
+        "volume": 363313.0,
+        "amount": 79325741056.0,
+        "adv": 6,
+        "decl": 44
+      },
+      "features": {
+        "ret_1d": -0.00800785014631411,
+        "ret_5d": -0.00236491606486422,
+        "ret_20d": -0.054165135162228095,
+        "ma_20": 2895.2315,
+        "ma_60": 3011.6486666666665,
+        "ma_slope_20": -0.013525544749309115,
+        "distance_to_ma20": -0.02232343078610466,
+        "price_percentile_120d": 0.03333333333333333,
+        "amount_ma_20": 126589606297.6,
+        "amount_ratio_1_20": 0.6266370784779345,
+        "amount_ratio_5_20": 0.8441961787097055,
+        "amount_percentile_120d": 0.025,
+        "breadth_ratio": 0.11999999999760001,
+        "breadth_diff": -38.0,
+        "breadth_ratio_ma_5": 0.3951020408083612,
+        "true_range": 30.420000000000073,
+        "atr_14": 44.63142857142858,
+        "atr_pct_14": 0.015767479888161018,
+        "volatility_percentile_250d": 0.96,
+        "breakout_20d": false,
+        "breakdown_20d": false
+      },
+      "states": {
+        "trend_state": "down",
+        "position_state": "low",
+        "volume_state": "extreme_contraction",
+        "breadth_state": "weak",
+        "volatility_state": "extreme"
+      },
+      "pattern_tags": [],
+      "transition_tags": [],
+      "salience": {
+        "total_score": 2.2,
+        "positive_score": 0.0,
+        "negative_score": 2.2,
+        "warning_score": 0.0,
+        "transition_score": 0.0,
+        "matched_rules": [
+          {
+            "rule_id": "s_extreme_breadth_weak",
+            "score": 2.2,
+            "bucket": "negative",
+            "polarity": "negative",
+            "reason": "广度极弱"
+          }
+        ]
+      },
+      "trace": {
+        "features": {
+          "ret_1d": {
+            "rule_id": "ret_1d",
+            "inputs": [
+              "close"
+            ],
+            "output": -0.00800785014631411
+          },
+          "ret_5d": {
+            "rule_id": "ret_5d",
+            "inputs": [
+              "close"
+            ],
+            "output": -0.00236491606486422
+          },
+          "ret_20d": {
+            "rule_id": "ret_20d",
+            "inputs": [
+              "close"
+            ],
+            "output": -0.054165135162228095
+          },
+          "ma_20": {
+            "rule_id": "ma_20",
+            "inputs": [
+              "close"
+            ],
+            "output": 2895.2315
+          },
+          "ma_60": {
+            "rule_id": "ma_60",
+            "inputs": [
+              "close"
+            ],
+            "output": 3011.6486666666665
+          },
+          "ma_slope_20": {
+            "rule_id": "ma_slope_20",
+            "inputs": [
+              "ma_20"
+            ],
+            "output": -0.013525544749309115
+          },
+          "distance_to_ma20": {
+            "rule_id": "distance_to_ma20",
+            "inputs": [
+              "close",
+              "ma_20"
+            ],
+            "output": -0.02232343078610466
+          },
+          "price_percentile_120d": {
+            "rule_id": "price_percentile_120d",
+            "inputs": [
+              "close"
+            ],
+            "output": 0.03333333333333333
+          },
+          "amount_ma_20": {
+            "rule_id": "amount_ma_20",
+            "inputs": [
+              "amount"
+            ],
+            "output": 126589606297.6
+          },
+          "amount_ratio_1_20": {
+            "rule_id": "amount_ratio_1_20",
+            "inputs": [
+              "amount",
+              "amount_ma_20"
+            ],
+            "output": 0.6266370784779345
+          },
+          "amount_ratio_5_20": {
+            "rule_id": "amount_ratio_5_20",
+            "inputs": [
+              "amount"
+            ],
+            "output": 0.8441961787097055
+          },
+          "amount_percentile_120d": {
+            "rule_id": "amount_percentile_120d",
+            "inputs": [
+              "amount"
+            ],
+            "output": 0.025
+          },
+          "breadth_ratio": {
+            "rule_id": "breadth_ratio",
+            "inputs": [
+              "adv",
+              "decl"
+            ],
+            "output": 0.11999999999760001
+          },
+          "breadth_diff": {
+            "rule_id": "breadth_diff",
+            "inputs": [
+              "adv",
+              "decl"
+            ],
+            "output": -38.0
+          },
+          "breadth_ratio_ma_5": {
+            "rule_id": "breadth_ratio_ma_5",
+            "inputs": [
+              "breadth_ratio"
+            ],
+            "output": 0.3951020408083612
+          },
+          "true_range": {
+            "rule_id": "true_range",
+            "inputs": [
+              "high",
+              "low",
+              "close"
+            ],
+            "output": 30.420000000000073
+          },
+          "atr_14": {
+            "rule_id": "atr_14",
+            "inputs": [
+              "true_range"
+            ],
+            "output": 44.63142857142858
+          },
+          "atr_pct_14": {
+            "rule_id": "atr_pct_14",
+            "inputs": [
+              "atr_14",
+              "close"
+            ],
+            "output": 0.015767479888161018
+          },
+          "volatility_percentile_250d": {
+            "rule_id": "volatility_percentile_250d",
+            "inputs": [
+              "atr_pct_14"
+            ],
+            "output": 0.96
+          },
+          "breakout_20d": {
+            "rule_id": "breakout_20d",
+            "inputs": [
+              "close",
+              "high"
+            ],
+            "output": false
+          },
+          "breakdown_20d": {
+            "rule_id": "breakdown_20d",
+            "inputs": [
+              "close",
+              "low"
+            ],
+            "output": false
+          }
+        },
+        "states": {
+          "trend_state": {
+            "rule_id": "trend_state",
+            "matched_case": 1,
+            "value": "down"
+          },
+          "position_state": {
+            "rule_id": "position_state",
+            "matched_case": 0,
+            "value": "low"
+          },
+          "volume_state": {
+            "rule_id": "volume_state",
+            "matched_case": 0,
+            "value": "extreme_contraction"
+          },
+          "breadth_state": {
+            "rule_id": "breadth_state",
+            "matched_case": 0,
+            "value": "weak"
+          },
+          "volatility_state": {
+            "rule_id": "volatility_state",
+            "matched_case": null,
+            "value": "extreme"
+          }
+        },
+        "patterns": [],
+        "transitions": [],
+        "salience": [
+          {
+            "rule_id": "s_extreme_breadth_weak",
+            "score": 2.2,
+            "bucket": "negative",
+            "polarity": "negative",
+            "reason": "广度极弱"
+          }
+        ]
+      }
+    },
+    "000300": {
+      "id": "000300",
+      "date": "2026-04-03",
+      "raw": {
+        "date": "2026-04-03",
+        "open": 4492.85,
+        "high": 4494.46,
+        "low": 4437.6,
+        "close": 4440.79,
+        "volume": 1683217.0,
+        "amount": 373234925568.0,
+        "adv": 46,
+        "decl": 253
+      },
+      "features": {
+        "ret_1d": -0.00851099932796151,
+        "ret_5d": -0.013721052643268172,
+        "ret_20d": -0.04713074301997233,
+        "ma_20": 4563.354,
+        "ma_60": 4663.355500000001,
+        "ma_slope_20": -0.009845984735712965,
+        "distance_to_ma20": -0.026858315177827552,
+        "price_percentile_120d": 0.016666666666666666,
+        "amount_ma_20": 536012539494.4,
+        "amount_ratio_1_20": 0.696317526302758,
+        "amount_ratio_5_20": 0.8343520280048828,
+        "amount_percentile_120d": 0.075,
+        "breadth_ratio": 0.15384615384563932,
+        "breadth_diff": -207.0,
+        "breadth_ratio_ma_5": 0.3880489964327802,
+        "true_range": 56.85999999999967,
+        "atr_14": 79.0557142857142,
+        "atr_pct_14": 0.017802173551488408,
+        "volatility_percentile_250d": 0.928,
+        "breakout_20d": false,
+        "breakdown_20d": false
+      },
+      "states": {
+        "trend_state": "down",
+        "position_state": "low",
+        "volume_state": "contraction",
+        "breadth_state": "weak",
+        "volatility_state": "extreme"
+      },
+      "pattern_tags": [],
+      "transition_tags": [],
+      "salience": {
+        "total_score": 2.2,
+        "positive_score": 0.0,
+        "negative_score": 2.2,
+        "warning_score": 0.0,
+        "transition_score": 0.0,
+        "matched_rules": [
+          {
+            "rule_id": "s_extreme_breadth_weak",
+            "score": 2.2,
+            "bucket": "negative",
+            "polarity": "negative",
+            "reason": "广度极弱"
+          }
+        ]
+      },
+      "trace": {
+        "features": {
+          "ret_1d": {
+            "rule_id": "ret_1d",
+            "inputs": [
+              "close"
+            ],
+            "output": -0.00851099932796151
+          },
+          "ret_5d": {
+            "rule_id": "ret_5d",
+            "inputs": [
+              "close"
+            ],
+            "output": -0.013721052643268172
+          },
+          "ret_20d": {
+            "rule_id": "ret_20d",
+            "inputs": [
+              "close"
+            ],
+            "output": -0.04713074301997233
+          },
+          "ma_20": {
+            "rule_id": "ma_20",
+            "inputs": [
+              "close"
+            ],
+            "output": 4563.354
+          },
+          "ma_60": {
+            "rule_id": "ma_60",
+            "inputs": [
+              "close"
+            ],
+            "output": 4663.355500000001
+          },
+          "ma_slope_20": {
+            "rule_id": "ma_slope_20",
+            "inputs": [
+              "ma_20"
+            ],
+            "output": -0.009845984735712965
+          },
+          "distance_to_ma20": {
+            "rule_id": "distance_to_ma20",
+            "inputs": [
+              "close",
+              "ma_20"
+            ],
+            "output": -0.026858315177827552
+          },
+          "price_percentile_120d": {
+            "rule_id": "price_percentile_120d",
+            "inputs": [
+              "close"
+            ],
+            "output": 0.016666666666666666
+          },
+          "amount_ma_20": {
+            "rule_id": "amount_ma_20",
+            "inputs": [
+              "amount"
+            ],
+            "output": 536012539494.4
+          },
+          "amount_ratio_1_20": {
+            "rule_id": "amount_ratio_1_20",
+            "inputs": [
+              "amount",
+              "amount_ma_20"
+            ],
+            "output": 0.696317526302758
+          },
+          "amount_ratio_5_20": {
+            "rule_id": "amount_ratio_5_20",
+            "inputs": [
+              "amount"
+            ],
+            "output": 0.8343520280048828
+          },
+          "amount_percentile_120d": {
+            "rule_id": "amount_percentile_120d",
+            "inputs": [
+              "amount"
+            ],
+            "output": 0.075
+          },
+          "breadth_ratio": {
+            "rule_id": "breadth_ratio",
+            "inputs": [
+              "adv",
+              "decl"
+            ],
+            "output": 0.15384615384563932
+          },
+          "breadth_diff": {
+            "rule_id": "breadth_diff",
+            "inputs": [
+              "adv",
+              "decl"
+            ],
+            "output": -207.0
+          },
+          "breadth_ratio_ma_5": {
+            "rule_id": "breadth_ratio_ma_5",
+            "inputs": [
+              "breadth_ratio"
+            ],
+            "output": 0.3880489964327802
+          },
+          "true_range": {
+            "rule_id": "true_range",
+            "inputs": [
+              "high",
+              "low",
+              "close"
+            ],
+            "output": 56.85999999999967
+          },
+          "atr_14": {
+            "rule_id": "atr_14",
+            "inputs": [
+              "true_range"
+            ],
+            "output": 79.0557142857142
+          },
+          "atr_pct_14": {
+            "rule_id": "atr_pct_14",
+            "inputs": [
+              "atr_14",
+              "close"
+            ],
+            "output": 0.017802173551488408
+          },
+          "volatility_percentile_250d": {
+            "rule_id": "volatility_percentile_250d",
+            "inputs": [
+              "atr_pct_14"
+            ],
+            "output": 0.928
+          },
+          "breakout_20d": {
+            "rule_id": "breakout_20d",
+            "inputs": [
+              "close",
+              "high"
+            ],
+            "output": false
+          },
+          "breakdown_20d": {
+            "rule_id": "breakdown_20d",
+            "inputs": [
+              "close",
+              "low"
+            ],
+            "output": false
+          }
+        },
+        "states": {
+          "trend_state": {
+            "rule_id": "trend_state",
+            "matched_case": 1,
+            "value": "down"
+          },
+          "position_state": {
+            "rule_id": "position_state",
+            "matched_case": 0,
+            "value": "low"
+          },
+          "volume_state": {
+            "rule_id": "volume_state",
+            "matched_case": 1,
+            "value": "contraction"
+          },
+          "breadth_state": {
+            "rule_id": "breadth_state",
+            "matched_case": 0,
+            "value": "weak"
+          },
+          "volatility_state": {
+            "rule_id": "volatility_state",
+            "matched_case": null,
+            "value": "extreme"
+          }
+        },
+        "patterns": [],
+        "transitions": [],
+        "salience": [
+          {
+            "rule_id": "s_extreme_breadth_weak",
+            "score": 2.2,
+            "bucket": "negative",
+            "polarity": "negative",
+            "reason": "广度极弱"
+          }
+        ]
+      }
+    },
+    "000905": {
+      "id": "000905",
+      "date": "2026-04-03",
+      "raw": {
+        "date": "2026-04-03",
+        "open": 7636.66,
+        "high": 7640.84,
+        "low": 7518.35,
+        "close": 7534.94,
+        "volume": 1516373.0,
+        "amount": 283332444160.0,
+        "adv": 88,
+        "decl": 409
+      },
+      "features": {
+        "ret_1d": -0.009250140362826453,
+        "ret_5d": -0.026192842492707702,
+        "ret_20d": -0.09872685632347722,
+        "ma_20": 7903.700750000001,
+        "ma_60": 8153.852416666667,
+        "ma_slope_20": -0.022248976826584,
+        "distance_to_ma20": -0.04665671963858209,
+        "price_percentile_120d": 0.5083333333333333,
+        "amount_ma_20": 409067108761.6,
+        "amount_ratio_1_20": 0.6926307153311687,
+        "amount_ratio_5_20": 0.8319740655872253,
+        "amount_percentile_120d": 0.18333333333333332,
+        "breadth_ratio": 0.1770623742451166,
+        "breadth_diff": -321.0,
+        "breadth_ratio_ma_5": 0.3849189543739834,
+        "true_range": 122.48999999999978,
+        "atr_14": 197.4928571428572,
+        "atr_pct_14": 0.02621027601319416,
+        "volatility_percentile_250d": 0.984,
+        "breakout_20d": false,
+        "breakdown_20d": false
+      },
+      "states": {
+        "trend_state": "down",
+        "position_state": "mid",
+        "volume_state": "contraction",
+        "breadth_state": "weak",
+        "volatility_state": "extreme"
+      },
+      "pattern_tags": [],
+      "transition_tags": [],
+      "salience": {
+        "total_score": 2.2,
+        "positive_score": 0.0,
+        "negative_score": 2.2,
+        "warning_score": 0.0,
+        "transition_score": 0.0,
+        "matched_rules": [
+          {
+            "rule_id": "s_extreme_breadth_weak",
+            "score": 2.2,
+            "bucket": "negative",
+            "polarity": "negative",
+            "reason": "广度极弱"
+          }
+        ]
+      },
+      "trace": {
+        "features": {
+          "ret_1d": {
+            "rule_id": "ret_1d",
+            "inputs": [
+              "close"
+            ],
+            "output": -0.009250140362826453
+          },
+          "ret_5d": {
+            "rule_id": "ret_5d",
+            "inputs": [
+              "close"
+            ],
+            "output": -0.026192842492707702
+          },
+          "ret_20d": {
+            "rule_id": "ret_20d",
+            "inputs": [
+              "close"
+            ],
+            "output": -0.09872685632347722
+          },
+          "ma_20": {
+            "rule_id": "ma_20",
+            "inputs": [
+              "close"
+            ],
+            "output": 7903.700750000001
+          },
+          "ma_60": {
+            "rule_id": "ma_60",
+            "inputs": [
+              "close"
+            ],
+            "output": 8153.852416666667
+          },
+          "ma_slope_20": {
+            "rule_id": "ma_slope_20",
+            "inputs": [
+              "ma_20"
+            ],
+            "output": -0.022248976826584
+          },
+          "distance_to_ma20": {
+            "rule_id": "distance_to_ma20",
+            "inputs": [
+              "close",
+              "ma_20"
+            ],
+            "output": -0.04665671963858209
+          },
+          "price_percentile_120d": {
+            "rule_id": "price_percentile_120d",
+            "inputs": [
+              "close"
+            ],
+            "output": 0.5083333333333333
+          },
+          "amount_ma_20": {
+            "rule_id": "amount_ma_20",
+            "inputs": [
+              "amount"
+            ],
+            "output": 409067108761.6
+          },
+          "amount_ratio_1_20": {
+            "rule_id": "amount_ratio_1_20",
+            "inputs": [
+              "amount",
+              "amount_ma_20"
+            ],
+            "output": 0.6926307153311687
+          },
+          "amount_ratio_5_20": {
+            "rule_id": "amount_ratio_5_20",
+            "inputs": [
+              "amount"
+            ],
+            "output": 0.8319740655872253
+          },
+          "amount_percentile_120d": {
+            "rule_id": "amount_percentile_120d",
+            "inputs": [
+              "amount"
+            ],
+            "output": 0.18333333333333332
+          },
+          "breadth_ratio": {
+            "rule_id": "breadth_ratio",
+            "inputs": [
+              "adv",
+              "decl"
+            ],
+            "output": 0.1770623742451166
+          },
+          "breadth_diff": {
+            "rule_id": "breadth_diff",
+            "inputs": [
+              "adv",
+              "decl"
+            ],
+            "output": -321.0
+          },
+          "breadth_ratio_ma_5": {
+            "rule_id": "breadth_ratio_ma_5",
+            "inputs": [
+              "breadth_ratio"
+            ],
+            "output": 0.3849189543739834
+          },
+          "true_range": {
+            "rule_id": "true_range",
+            "inputs": [
+              "high",
+              "low",
+              "close"
+            ],
+            "output": 122.48999999999978
+          },
+          "atr_14": {
+            "rule_id": "atr_14",
+            "inputs": [
+              "true_range"
+            ],
+            "output": 197.4928571428572
+          },
+          "atr_pct_14": {
+            "rule_id": "atr_pct_14",
+            "inputs": [
+              "atr_14",
+              "close"
+            ],
+            "output": 0.02621027601319416
+          },
+          "volatility_percentile_250d": {
+            "rule_id": "volatility_percentile_250d",
+            "inputs": [
+              "atr_pct_14"
+            ],
+            "output": 0.984
+          },
+          "breakout_20d": {
+            "rule_id": "breakout_20d",
+            "inputs": [
+              "close",
+              "high"
+            ],
+            "output": false
+          },
+          "breakdown_20d": {
+            "rule_id": "breakdown_20d",
+            "inputs": [
+              "close",
+              "low"
+            ],
+            "output": false
+          }
+        },
+        "states": {
+          "trend_state": {
+            "rule_id": "trend_state",
+            "matched_case": 1,
+            "value": "down"
+          },
+          "position_state": {
+            "rule_id": "position_state",
+            "matched_case": 2,
+            "value": "mid"
+          },
+          "volume_state": {
+            "rule_id": "volume_state",
+            "matched_case": 1,
+            "value": "contraction"
+          },
+          "breadth_state": {
+            "rule_id": "breadth_state",
+            "matched_case": 0,
+            "value": "weak"
+          },
+          "volatility_state": {
+            "rule_id": "volatility_state",
+            "matched_case": null,
+            "value": "extreme"
+          }
+        },
+        "patterns": [],
+        "transitions": [],
+        "salience": [
+          {
+            "rule_id": "s_extreme_breadth_weak",
+            "score": 2.2,
+            "bucket": "negative",
+            "polarity": "negative",
+            "reason": "广度极弱"
+          }
+        ]
+      }
+    },
+    "399006": {
+      "id": "399006",
+      "date": "2026-04-03",
+      "raw": {
+        "date": "2026-04-03",
+        "open": 3197.77,
+        "high": 3199.44,
+        "low": 3149.15,
+        "close": 3149.6,
+        "volume": 1681541.0,
+        "amount": 437459845120.0,
+        "adv": 192,
+        "decl": 1194
+      },
+      "features": {
+        "ret_1d": -0.007265219926559818,
+        "ret_5d": -0.04438268383557664,
+        "ret_20d": -0.024680271266218745,
+        "ma_20": 3276.8445,
+        "ma_60": 3296.925166666667,
+        "ma_slope_20": -0.0013131054845658685,
+        "distance_to_ma20": -0.03883141235417187,
+        "price_percentile_120d": 0.26666666666666666,
+        "amount_ma_20": 550678706585.6,
+        "amount_ratio_1_20": 0.7944012359446465,
+        "amount_ratio_5_20": 0.8510918418392605,
+        "amount_percentile_120d": 0.025,
+        "breadth_ratio": 0.13852813852803858,
+        "breadth_diff": -1002.0,
+        "breadth_ratio_ma_5": 0.37111134228217735,
+        "true_range": 50.289999999999964,
+        "atr_14": 89.54142857142863,
+        "atr_pct_14": 0.02842946043034945,
+        "volatility_percentile_250d": 0.84,
+        "breakout_20d": false,
+        "breakdown_20d": false
+      },
+      "states": {
+        "trend_state": "down",
+        "position_state": "low_mid",
+        "volume_state": "contraction",
+        "breadth_state": "weak",
+        "volatility_state": "high"
+      },
+      "pattern_tags": [],
+      "transition_tags": [],
+      "salience": {
+        "total_score": 2.2,
+        "positive_score": 0.0,
+        "negative_score": 2.2,
+        "warning_score": 0.0,
+        "transition_score": 0.0,
+        "matched_rules": [
+          {
+            "rule_id": "s_extreme_breadth_weak",
+            "score": 2.2,
+            "bucket": "negative",
+            "polarity": "negative",
+            "reason": "广度极弱"
+          }
+        ]
+      },
+      "trace": {
+        "features": {
+          "ret_1d": {
+            "rule_id": "ret_1d",
+            "inputs": [
+              "close"
+            ],
+            "output": -0.007265219926559818
+          },
+          "ret_5d": {
+            "rule_id": "ret_5d",
+            "inputs": [
+              "close"
+            ],
+            "output": -0.04438268383557664
+          },
+          "ret_20d": {
+            "rule_id": "ret_20d",
+            "inputs": [
+              "close"
+            ],
+            "output": -0.024680271266218745
+          },
+          "ma_20": {
+            "rule_id": "ma_20",
+            "inputs": [
+              "close"
+            ],
+            "output": 3276.8445
+          },
+          "ma_60": {
+            "rule_id": "ma_60",
+            "inputs": [
+              "close"
+            ],
+            "output": 3296.925166666667
+          },
+          "ma_slope_20": {
+            "rule_id": "ma_slope_20",
+            "inputs": [
+              "ma_20"
+            ],
+            "output": -0.0013131054845658685
+          },
+          "distance_to_ma20": {
+            "rule_id": "distance_to_ma20",
+            "inputs": [
+              "close",
+              "ma_20"
+            ],
+            "output": -0.03883141235417187
+          },
+          "price_percentile_120d": {
+            "rule_id": "price_percentile_120d",
+            "inputs": [
+              "close"
+            ],
+            "output": 0.26666666666666666
+          },
+          "amount_ma_20": {
+            "rule_id": "amount_ma_20",
+            "inputs": [
+              "amount"
+            ],
+            "output": 550678706585.6
+          },
+          "amount_ratio_1_20": {
+            "rule_id": "amount_ratio_1_20",
+            "inputs": [
+              "amount",
+              "amount_ma_20"
+            ],
+            "output": 0.7944012359446465
+          },
+          "amount_ratio_5_20": {
+            "rule_id": "amount_ratio_5_20",
+            "inputs": [
+              "amount"
+            ],
+            "output": 0.8510918418392605
+          },
+          "amount_percentile_120d": {
+            "rule_id": "amount_percentile_120d",
+            "inputs": [
+              "amount"
+            ],
+            "output": 0.025
+          },
+          "breadth_ratio": {
+            "rule_id": "breadth_ratio",
+            "inputs": [
+              "adv",
+              "decl"
+            ],
+            "output": 0.13852813852803858
+          },
+          "breadth_diff": {
+            "rule_id": "breadth_diff",
+            "inputs": [
+              "adv",
+              "decl"
+            ],
+            "output": -1002.0
+          },
+          "breadth_ratio_ma_5": {
+            "rule_id": "breadth_ratio_ma_5",
+            "inputs": [
+              "breadth_ratio"
+            ],
+            "output": 0.37111134228217735
+          },
+          "true_range": {
+            "rule_id": "true_range",
+            "inputs": [
+              "high",
+              "low",
+              "close"
+            ],
+            "output": 50.289999999999964
+          },
+          "atr_14": {
+            "rule_id": "atr_14",
+            "inputs": [
+              "true_range"
+            ],
+            "output": 89.54142857142863
+          },
+          "atr_pct_14": {
+            "rule_id": "atr_pct_14",
+            "inputs": [
+              "atr_14",
+              "close"
+            ],
+            "output": 0.02842946043034945
+          },
+          "volatility_percentile_250d": {
+            "rule_id": "volatility_percentile_250d",
+            "inputs": [
+              "atr_pct_14"
+            ],
+            "output": 0.84
+          },
+          "breakout_20d": {
+            "rule_id": "breakout_20d",
+            "inputs": [
+              "close",
+              "high"
+            ],
+            "output": false
+          },
+          "breakdown_20d": {
+            "rule_id": "breakdown_20d",
+            "inputs": [
+              "close",
+              "low"
+            ],
+            "output": false
+          }
+        },
+        "states": {
+          "trend_state": {
+            "rule_id": "trend_state",
+            "matched_case": 1,
+            "value": "down"
+          },
+          "position_state": {
+            "rule_id": "position_state",
+            "matched_case": 1,
+            "value": "low_mid"
+          },
+          "volume_state": {
+            "rule_id": "volume_state",
+            "matched_case": 1,
+            "value": "contraction"
+          },
+          "breadth_state": {
+            "rule_id": "breadth_state",
+            "matched_case": 0,
+            "value": "weak"
+          },
+          "volatility_state": {
+            "rule_id": "volatility_state",
+            "matched_case": 2,
+            "value": "high"
+          }
+        },
+        "patterns": [],
+        "transitions": [],
+        "salience": [
+          {
+            "rule_id": "s_extreme_breadth_weak",
+            "score": 2.2,
+            "bucket": "negative",
+            "polarity": "negative",
+            "reason": "广度极弱"
+          }
+        ]
+      }
+    },
+    "000852": {
+      "id": "000852",
+      "date": "2026-04-03",
+      "raw": {
+        "date": "2026-04-03",
+        "open": 7658.82,
+        "high": 7664.76,
+        "low": 7521.94,
+        "close": 7536.6,
+        "volume": 2236803.0,
+        "amount": 354378842112.0,
+        "adv": 158,
+        "decl": 834
+      },
+      "features": {
+        "ret_1d": -0.011388589373273361,
+        "ret_5d": -0.027072244720389493,
+        "ret_20d": -0.08634669849004617,
+        "ma_20": 7897.347299999999,
+        "ma_60": 8110.088983333334,
+        "ma_slope_20": -0.017553018921081964,
+        "distance_to_ma20": -0.045679553690135766,
+        "price_percentile_120d": 0.425,
+        "amount_ma_20": 459776825753.6,
+        "amount_ratio_1_20": 0.7707627315299183,
+        "amount_ratio_5_20": 0.861175511688346,
+        "amount_percentile_120d": 0.10833333333333334,
+        "breadth_ratio": 0.15927419354822653,
+        "breadth_diff": -676.0,
+        "breadth_ratio_ma_5": 0.38527742712550433,
+        "true_range": 142.82000000000062,
+        "atr_14": 204.42785714285725,
+        "atr_pct_14": 0.027124679184626653,
+        "volatility_percentile_250d": 1.0,
+        "breakout_20d": false,
+        "breakdown_20d": false
+      },
+      "states": {
+        "trend_state": "down",
+        "position_state": "mid",
+        "volume_state": "contraction",
+        "breadth_state": "weak",
+        "volatility_state": "extreme"
+      },
+      "pattern_tags": [],
+      "transition_tags": [],
+      "salience": {
+        "total_score": 2.2,
+        "positive_score": 0.0,
+        "negative_score": 2.2,
+        "warning_score": 0.0,
+        "transition_score": 0.0,
+        "matched_rules": [
+          {
+            "rule_id": "s_extreme_breadth_weak",
+            "score": 2.2,
+            "bucket": "negative",
+            "polarity": "negative",
+            "reason": "广度极弱"
+          }
+        ]
+      },
+      "trace": {
+        "features": {
+          "ret_1d": {
+            "rule_id": "ret_1d",
+            "inputs": [
+              "close"
+            ],
+            "output": -0.011388589373273361
+          },
+          "ret_5d": {
+            "rule_id": "ret_5d",
+            "inputs": [
+              "close"
+            ],
+            "output": -0.027072244720389493
+          },
+          "ret_20d": {
+            "rule_id": "ret_20d",
+            "inputs": [
+              "close"
+            ],
+            "output": -0.08634669849004617
+          },
+          "ma_20": {
+            "rule_id": "ma_20",
+            "inputs": [
+              "close"
+            ],
+            "output": 7897.347299999999
+          },
+          "ma_60": {
+            "rule_id": "ma_60",
+            "inputs": [
+              "close"
+            ],
+            "output": 8110.088983333334
+          },
+          "ma_slope_20": {
+            "rule_id": "ma_slope_20",
+            "inputs": [
+              "ma_20"
+            ],
+            "output": -0.017553018921081964
+          },
+          "distance_to_ma20": {
+            "rule_id": "distance_to_ma20",
+            "inputs": [
+              "close",
+              "ma_20"
+            ],
+            "output": -0.045679553690135766
+          },
+          "price_percentile_120d": {
+            "rule_id": "price_percentile_120d",
+            "inputs": [
+              "close"
+            ],
+            "output": 0.425
+          },
+          "amount_ma_20": {
+            "rule_id": "amount_ma_20",
+            "inputs": [
+              "amount"
+            ],
+            "output": 459776825753.6
+          },
+          "amount_ratio_1_20": {
+            "rule_id": "amount_ratio_1_20",
+            "inputs": [
+              "amount",
+              "amount_ma_20"
+            ],
+            "output": 0.7707627315299183
+          },
+          "amount_ratio_5_20": {
+            "rule_id": "amount_ratio_5_20",
+            "inputs": [
+              "amount"
+            ],
+            "output": 0.861175511688346
+          },
+          "amount_percentile_120d": {
+            "rule_id": "amount_percentile_120d",
+            "inputs": [
+              "amount"
+            ],
+            "output": 0.10833333333333334
+          },
+          "breadth_ratio": {
+            "rule_id": "breadth_ratio",
+            "inputs": [
+              "adv",
+              "decl"
+            ],
+            "output": 0.15927419354822653
+          },
+          "breadth_diff": {
+            "rule_id": "breadth_diff",
+            "inputs": [
+              "adv",
+              "decl"
+            ],
+            "output": -676.0
+          },
+          "breadth_ratio_ma_5": {
+            "rule_id": "breadth_ratio_ma_5",
+            "inputs": [
+              "breadth_ratio"
+            ],
+            "output": 0.38527742712550433
+          },
+          "true_range": {
+            "rule_id": "true_range",
+            "inputs": [
+              "high",
+              "low",
+              "close"
+            ],
+            "output": 142.82000000000062
+          },
+          "atr_14": {
+            "rule_id": "atr_14",
+            "inputs": [
+              "true_range"
+            ],
+            "output": 204.42785714285725
+          },
+          "atr_pct_14": {
+            "rule_id": "atr_pct_14",
+            "inputs": [
+              "atr_14",
+              "close"
+            ],
+            "output": 0.027124679184626653
+          },
+          "volatility_percentile_250d": {
+            "rule_id": "volatility_percentile_250d",
+            "inputs": [
+              "atr_pct_14"
+            ],
+            "output": 1.0
+          },
+          "breakout_20d": {
+            "rule_id": "breakout_20d",
+            "inputs": [
+              "close",
+              "high"
+            ],
+            "output": false
+          },
+          "breakdown_20d": {
+            "rule_id": "breakdown_20d",
+            "inputs": [
+              "close",
+              "low"
+            ],
+            "output": false
+          }
+        },
+        "states": {
+          "trend_state": {
+            "rule_id": "trend_state",
+            "matched_case": 1,
+            "value": "down"
+          },
+          "position_state": {
+            "rule_id": "position_state",
+            "matched_case": 2,
+            "value": "mid"
+          },
+          "volume_state": {
+            "rule_id": "volume_state",
+            "matched_case": 1,
+            "value": "contraction"
+          },
+          "breadth_state": {
+            "rule_id": "breadth_state",
+            "matched_case": 0,
+            "value": "weak"
+          },
+          "volatility_state": {
+            "rule_id": "volatility_state",
+            "matched_case": null,
+            "value": "extreme"
+          }
+        },
+        "patterns": [],
+        "transitions": [],
+        "salience": [
+          {
+            "rule_id": "s_extreme_breadth_weak",
+            "score": 2.2,
+            "bucket": "negative",
+            "polarity": "negative",
+            "reason": "广度极弱"
+          }
+        ]
+      }
+    },
+    "000680": {
+      "id": "000680",
+      "date": "2026-04-03",
+      "raw": {
+        "date": "2026-04-03",
+        "open": 1640.05,
+        "high": 1648.03,
+        "low": 1625.54,
+        "close": 1631.67,
+        "volume": 336352.0,
+        "amount": 181472821248.0,
+        "adv": 150,
+        "decl": 450
+      },
+      "features": {
+        "ret_1d": 0.00021455018022220607,
+        "ret_5d": -0.01867422055427248,
+        "ret_20d": -0.0749173663830004,
+        "ma_20": 1686.58,
+        "ma_60": 1765.4256666666668,
+        "ma_slope_20": -0.016661448485473906,
+        "distance_to_ma20": -0.032557008858162595,
+        "price_percentile_120d": 0.44166666666666665,
+        "amount_ma_20": 217384533196.8,
+        "amount_ratio_1_20": 0.8348009795329421,
+        "amount_ratio_5_20": 0.92171216434891,
+        "amount_percentile_120d": 0.25833333333333336,
+        "breadth_ratio": 0.24999999999958333,
+        "breadth_diff": -300.0,
+        "breadth_ratio_ma_5": 0.3723105037314972,
+        "true_range": 22.49000000000001,
+        "atr_14": 49.07357142857143,
+        "atr_pct_14": 0.030075671813890936,
+        "volatility_percentile_250d": 0.852,
+        "breakout_20d": false,
+        "breakdown_20d": false
+      },
+      "states": {
+        "trend_state": "down",
+        "position_state": "mid",
+        "volume_state": "contraction",
+        "breadth_state": "weak",
+        "volatility_state": "extreme"
+      },
+      "pattern_tags": [
+        "指数上行但跟随不足"
+      ],
+      "transition_tags": [],
+      "salience": {
+        "total_score": 4.6,
+        "positive_score": 0.0,
+        "negative_score": 2.2,
+        "warning_score": 2.4,
+        "transition_score": 0.0,
+        "matched_rules": [
+          {
+            "rule_id": "s_pattern_up_breadth_weak",
+            "score": 2.4,
+            "bucket": "warning",
+            "polarity": "negative",
+            "reason": "指数上行但跟随不足"
+          },
+          {
+            "rule_id": "s_extreme_breadth_weak",
+            "score": 2.2,
+            "bucket": "negative",
+            "polarity": "negative",
+            "reason": "广度极弱"
+          }
+        ]
+      },
+      "trace": {
+        "features": {
+          "ret_1d": {
+            "rule_id": "ret_1d",
+            "inputs": [
+              "close"
+            ],
+            "output": 0.00021455018022220607
+          },
+          "ret_5d": {
+            "rule_id": "ret_5d",
+            "inputs": [
+              "close"
+            ],
+            "output": -0.01867422055427248
+          },
+          "ret_20d": {
+            "rule_id": "ret_20d",
+            "inputs": [
+              "close"
+            ],
+            "output": -0.0749173663830004
+          },
+          "ma_20": {
+            "rule_id": "ma_20",
+            "inputs": [
+              "close"
+            ],
+            "output": 1686.58
+          },
+          "ma_60": {
+            "rule_id": "ma_60",
+            "inputs": [
+              "close"
+            ],
+            "output": 1765.4256666666668
+          },
+          "ma_slope_20": {
+            "rule_id": "ma_slope_20",
+            "inputs": [
+              "ma_20"
+            ],
+            "output": -0.016661448485473906
+          },
+          "distance_to_ma20": {
+            "rule_id": "distance_to_ma20",
+            "inputs": [
+              "close",
+              "ma_20"
+            ],
+            "output": -0.032557008858162595
+          },
+          "price_percentile_120d": {
+            "rule_id": "price_percentile_120d",
+            "inputs": [
+              "close"
+            ],
+            "output": 0.44166666666666665
+          },
+          "amount_ma_20": {
+            "rule_id": "amount_ma_20",
+            "inputs": [
+              "amount"
+            ],
+            "output": 217384533196.8
+          },
+          "amount_ratio_1_20": {
+            "rule_id": "amount_ratio_1_20",
+            "inputs": [
+              "amount",
+              "amount_ma_20"
+            ],
+            "output": 0.8348009795329421
+          },
+          "amount_ratio_5_20": {
+            "rule_id": "amount_ratio_5_20",
+            "inputs": [
+              "amount"
+            ],
+            "output": 0.92171216434891
+          },
+          "amount_percentile_120d": {
+            "rule_id": "amount_percentile_120d",
+            "inputs": [
+              "amount"
+            ],
+            "output": 0.25833333333333336
+          },
+          "breadth_ratio": {
+            "rule_id": "breadth_ratio",
+            "inputs": [
+              "adv",
+              "decl"
+            ],
+            "output": 0.24999999999958333
+          },
+          "breadth_diff": {
+            "rule_id": "breadth_diff",
+            "inputs": [
+              "adv",
+              "decl"
+            ],
+            "output": -300.0
+          },
+          "breadth_ratio_ma_5": {
+            "rule_id": "breadth_ratio_ma_5",
+            "inputs": [
+              "breadth_ratio"
+            ],
+            "output": 0.3723105037314972
+          },
+          "true_range": {
+            "rule_id": "true_range",
+            "inputs": [
+              "high",
+              "low",
+              "close"
+            ],
+            "output": 22.49000000000001
+          },
+          "atr_14": {
+            "rule_id": "atr_14",
+            "inputs": [
+              "true_range"
+            ],
+            "output": 49.07357142857143
+          },
+          "atr_pct_14": {
+            "rule_id": "atr_pct_14",
+            "inputs": [
+              "atr_14",
+              "close"
+            ],
+            "output": 0.030075671813890936
+          },
+          "volatility_percentile_250d": {
+            "rule_id": "volatility_percentile_250d",
+            "inputs": [
+              "atr_pct_14"
+            ],
+            "output": 0.852
+          },
+          "breakout_20d": {
+            "rule_id": "breakout_20d",
+            "inputs": [
+              "close",
+              "high"
+            ],
+            "output": false
+          },
+          "breakdown_20d": {
+            "rule_id": "breakdown_20d",
+            "inputs": [
+              "close",
+              "low"
+            ],
+            "output": false
+          }
+        },
+        "states": {
+          "trend_state": {
+            "rule_id": "trend_state",
+            "matched_case": 1,
+            "value": "down"
+          },
+          "position_state": {
+            "rule_id": "position_state",
+            "matched_case": 2,
+            "value": "mid"
+          },
+          "volume_state": {
+            "rule_id": "volume_state",
+            "matched_case": 1,
+            "value": "contraction"
+          },
+          "breadth_state": {
+            "rule_id": "breadth_state",
+            "matched_case": 0,
+            "value": "weak"
+          },
+          "volatility_state": {
+            "rule_id": "volatility_state",
+            "matched_case": null,
+            "value": "extreme"
+          }
+        },
+        "patterns": [
+          {
+            "rule_id": "p_index_up_breadth_weak",
+            "tag": "指数上行但跟随不足"
+          }
+        ],
+        "transitions": [],
+        "salience": [
+          {
+            "rule_id": "s_pattern_up_breadth_weak",
+            "score": 2.4,
+            "bucket": "warning",
+            "polarity": "negative",
+            "reason": "指数上行但跟随不足"
+          },
+          {
+            "rule_id": "s_extreme_breadth_weak",
+            "score": 2.2,
+            "bucket": "negative",
+            "polarity": "negative",
+            "reason": "广度极弱"
+          }
+        ]
+      }
+    }
+  },
+  "pairs": {
+    "000300_vs_399006": {
+      "id": "000300_vs_399006",
+      "date": "2026-04-03",
+      "left": "000300",
+      "right": "399006",
+      "features": {
+        "rs_ret_5d": 0.03066163119230847,
+        "rs_ret_20d": -0.022450471753753587,
+        "rs_amount_spread": -0.016739813834377615,
+        "rs_breadth_spread": 0.016937654150602832
+      },
+      "states": {
+        "leader_state": "neutral",
+        "leadership_persistence_state": "left_recent_turn",
+        "confirmation_state": "neutral"
+      },
+      "relation_tags": [],
+      "trace": {
+        "features": {
+          "rs_ret_5d": {
+            "rule_id": "rs_ret_5d",
+            "output": 0.03066163119230847
+          },
+          "rs_ret_20d": {
+            "rule_id": "rs_ret_20d",
+            "output": -0.022450471753753587
+          },
+          "rs_amount_spread": {
+            "rule_id": "rs_amount_spread",
+            "output": -0.016739813834377615
+          },
+          "rs_breadth_spread": {
+            "rule_id": "rs_breadth_spread",
+            "output": 0.016937654150602832
+          }
+        },
+        "states": {
+          "leader_state": {
+            "rule_id": "leader_state",
+            "matched_case": null,
+            "value": "neutral"
+          },
+          "leadership_persistence_state": {
+            "rule_id": "leadership_persistence_state",
+            "matched_case": 2,
+            "value": "left_recent_turn"
+          },
+          "confirmation_state": {
+            "rule_id": "confirmation_state",
+            "matched_case": null,
+            "value": "neutral"
+          }
+        },
+        "relation_tags": []
+      }
+    },
+    "000300_vs_000680": {
+      "id": "000300_vs_000680",
+      "date": "2026-04-03",
+      "left": "000300",
+      "right": "000680",
+      "features": {
+        "rs_ret_5d": 0.004953167911004308,
+        "rs_ret_20d": 0.027786623363028062,
+        "rs_amount_spread": -0.08736013634402717,
+        "rs_breadth_spread": 0.01573849270128297
+      },
+      "states": {
+        "leader_state": "neutral",
+        "leadership_persistence_state": "left_persistent",
+        "confirmation_state": "neutral"
+      },
+      "relation_tags": [],
+      "trace": {
+        "features": {
+          "rs_ret_5d": {
+            "rule_id": "rs_ret_5d",
+            "output": 0.004953167911004308
+          },
+          "rs_ret_20d": {
+            "rule_id": "rs_ret_20d",
+            "output": 0.027786623363028062
+          },
+          "rs_amount_spread": {
+            "rule_id": "rs_amount_spread",
+            "output": -0.08736013634402717
+          },
+          "rs_breadth_spread": {
+            "rule_id": "rs_breadth_spread",
+            "output": 0.01573849270128297
+          }
+        },
+        "states": {
+          "leader_state": {
+            "rule_id": "leader_state",
+            "matched_case": null,
+            "value": "neutral"
+          },
+          "leadership_persistence_state": {
+            "rule_id": "leadership_persistence_state",
+            "matched_case": 0,
+            "value": "left_persistent"
+          },
+          "confirmation_state": {
+            "rule_id": "confirmation_state",
+            "matched_case": null,
+            "value": "neutral"
+          }
+        },
+        "relation_tags": []
+      }
+    },
+    "000300_vs_000905": {
+      "id": "000300_vs_000905",
+      "date": "2026-04-03",
+      "left": "000300",
+      "right": "000905",
+      "features": {
+        "rs_ret_5d": 0.01247178984943953,
+        "rs_ret_20d": 0.05159611330350489,
+        "rs_amount_spread": 0.002377962417657531,
+        "rs_breadth_spread": 0.0031300420587968003
+      },
+      "states": {
+        "leader_state": "left_strong",
+        "leadership_persistence_state": "left_persistent",
+        "confirmation_state": "left_confirmed"
+      },
+      "relation_tags": [],
+      "trace": {
+        "features": {
+          "rs_ret_5d": {
+            "rule_id": "rs_ret_5d",
+            "output": 0.01247178984943953
+          },
+          "rs_ret_20d": {
+            "rule_id": "rs_ret_20d",
+            "output": 0.05159611330350489
+          },
+          "rs_amount_spread": {
+            "rule_id": "rs_amount_spread",
+            "output": 0.002377962417657531
+          },
+          "rs_breadth_spread": {
+            "rule_id": "rs_breadth_spread",
+            "output": 0.0031300420587968003
+          }
+        },
+        "states": {
+          "leader_state": {
+            "rule_id": "leader_state",
+            "matched_case": 0,
+            "value": "left_strong"
+          },
+          "leadership_persistence_state": {
+            "rule_id": "leadership_persistence_state",
+            "matched_case": 0,
+            "value": "left_persistent"
+          },
+          "confirmation_state": {
+            "rule_id": "confirmation_state",
+            "matched_case": 0,
+            "value": "left_confirmed"
+          }
+        },
+        "relation_tags": []
+      }
+    },
+    "000300_vs_000852": {
+      "id": "000300_vs_000852",
+      "date": "2026-04-03",
+      "left": "000300",
+      "right": "000852",
+      "features": {
+        "rs_ret_5d": 0.013351192077121321,
+        "rs_ret_20d": 0.03921595547007384,
+        "rs_amount_spread": -0.026823483683463212,
+        "rs_breadth_spread": 0.002771569307275845
+      },
+      "states": {
+        "leader_state": "left_strong",
+        "leadership_persistence_state": "left_persistent",
+        "confirmation_state": "left_unconfirmed"
+      },
+      "relation_tags": [],
+      "trace": {
+        "features": {
+          "rs_ret_5d": {
+            "rule_id": "rs_ret_5d",
+            "output": 0.013351192077121321
+          },
+          "rs_ret_20d": {
+            "rule_id": "rs_ret_20d",
+            "output": 0.03921595547007384
+          },
+          "rs_amount_spread": {
+            "rule_id": "rs_amount_spread",
+            "output": -0.026823483683463212
+          },
+          "rs_breadth_spread": {
+            "rule_id": "rs_breadth_spread",
+            "output": 0.002771569307275845
+          }
+        },
+        "states": {
+          "leader_state": {
+            "rule_id": "leader_state",
+            "matched_case": 0,
+            "value": "left_strong"
+          },
+          "leadership_persistence_state": {
+            "rule_id": "leadership_persistence_state",
+            "matched_case": 0,
+            "value": "left_persistent"
+          },
+          "confirmation_state": {
+            "rule_id": "confirmation_state",
+            "matched_case": 2,
+            "value": "left_unconfirmed"
+          }
+        },
+        "relation_tags": []
+      }
+    },
+    "000016_vs_000852": {
+      "id": "000016_vs_000852",
+      "date": "2026-04-03",
+      "left": "000016",
+      "right": "000852",
+      "features": {
+        "rs_ret_5d": 0.024707328655525274,
+        "rs_ret_20d": 0.032181563327818075,
+        "rs_amount_spread": -0.016979332978640516,
+        "rs_breadth_spread": 0.009824613682856864
+      },
+      "states": {
+        "leader_state": "left_strong",
+        "leadership_persistence_state": "left_persistent",
+        "confirmation_state": "left_unconfirmed"
+      },
+      "relation_tags": [],
+      "trace": {
+        "features": {
+          "rs_ret_5d": {
+            "rule_id": "rs_ret_5d",
+            "output": 0.024707328655525274
+          },
+          "rs_ret_20d": {
+            "rule_id": "rs_ret_20d",
+            "output": 0.032181563327818075
+          },
+          "rs_amount_spread": {
+            "rule_id": "rs_amount_spread",
+            "output": -0.016979332978640516
+          },
+          "rs_breadth_spread": {
+            "rule_id": "rs_breadth_spread",
+            "output": 0.009824613682856864
+          }
+        },
+        "states": {
+          "leader_state": {
+            "rule_id": "leader_state",
+            "matched_case": 0,
+            "value": "left_strong"
+          },
+          "leadership_persistence_state": {
+            "rule_id": "leadership_persistence_state",
+            "matched_case": 0,
+            "value": "left_persistent"
+          },
+          "confirmation_state": {
+            "rule_id": "confirmation_state",
+            "matched_case": 2,
+            "value": "left_unconfirmed"
+          }
+        },
+        "relation_tags": []
+      }
+    },
+    "399006_vs_000680": {
+      "id": "399006_vs_000680",
+      "date": "2026-04-03",
+      "left": "399006",
+      "right": "000680",
+      "features": {
+        "rs_ret_5d": -0.02570846328130416,
+        "rs_ret_20d": 0.05023709511678165,
+        "rs_amount_spread": -0.07062032250964956,
+        "rs_breadth_spread": -0.0011991614493198632
+      },
+      "states": {
+        "leader_state": "left_strong",
+        "leadership_persistence_state": "right_recent_turn",
+        "confirmation_state": "left_unconfirmed"
+      },
+      "relation_tags": [],
+      "trace": {
+        "features": {
+          "rs_ret_5d": {
+            "rule_id": "rs_ret_5d",
+            "output": -0.02570846328130416
+          },
+          "rs_ret_20d": {
+            "rule_id": "rs_ret_20d",
+            "output": 0.05023709511678165
+          },
+          "rs_amount_spread": {
+            "rule_id": "rs_amount_spread",
+            "output": -0.07062032250964956
+          },
+          "rs_breadth_spread": {
+            "rule_id": "rs_breadth_spread",
+            "output": -0.0011991614493198632
+          }
+        },
+        "states": {
+          "leader_state": {
+            "rule_id": "leader_state",
+            "matched_case": 0,
+            "value": "left_strong"
+          },
+          "leadership_persistence_state": {
+            "rule_id": "leadership_persistence_state",
+            "matched_case": 3,
+            "value": "right_recent_turn"
+          },
+          "confirmation_state": {
+            "rule_id": "confirmation_state",
+            "matched_case": 2,
+            "value": "left_unconfirmed"
+          }
+        },
+        "relation_tags": []
+      }
+    },
+    "000905_vs_000852": {
+      "id": "000905_vs_000852",
+      "date": "2026-04-03",
+      "left": "000905",
+      "right": "000852",
+      "features": {
+        "rs_ret_5d": 0.0008794022276817914,
+        "rs_ret_20d": -0.01238015783343105,
+        "rs_amount_spread": -0.029201446101120743,
+        "rs_breadth_spread": -0.00035847275152095515
+      },
+      "states": {
+        "leader_state": "neutral",
+        "leadership_persistence_state": "left_recent_turn",
+        "confirmation_state": "neutral"
+      },
+      "relation_tags": [],
+      "trace": {
+        "features": {
+          "rs_ret_5d": {
+            "rule_id": "rs_ret_5d",
+            "output": 0.0008794022276817914
+          },
+          "rs_ret_20d": {
+            "rule_id": "rs_ret_20d",
+            "output": -0.01238015783343105
+          },
+          "rs_amount_spread": {
+            "rule_id": "rs_amount_spread",
+            "output": -0.029201446101120743
+          },
+          "rs_breadth_spread": {
+            "rule_id": "rs_breadth_spread",
+            "output": -0.00035847275152095515
+          }
+        },
+        "states": {
+          "leader_state": {
+            "rule_id": "leader_state",
+            "matched_case": null,
+            "value": "neutral"
+          },
+          "leadership_persistence_state": {
+            "rule_id": "leadership_persistence_state",
+            "matched_case": 2,
+            "value": "left_recent_turn"
+          },
+          "confirmation_state": {
+            "rule_id": "confirmation_state",
+            "matched_case": null,
+            "value": "neutral"
+          }
+        },
+        "relation_tags": []
+      }
+    }
+  },
+  "market": {
+    "date": "2026-04-03",
+    "relation_tags": [],
+    "top_positive": [],
+    "top_negative": [
+      {
+        "asset": "000001",
+        "score": 2.2,
+        "reasons": [
+          "广度极弱"
+        ]
+      },
+      {
+        "asset": "399001",
+        "score": 2.2,
+        "reasons": [
+          "广度极弱"
+        ]
+      },
+      {
+        "asset": "000016",
+        "score": 2.2,
+        "reasons": [
+          "广度极弱"
+        ]
+      },
+      {
+        "asset": "000300",
+        "score": 2.2,
+        "reasons": [
+          "广度极弱"
+        ]
+      },
+      {
+        "asset": "000905",
+        "score": 2.2,
+        "reasons": [
+          "广度极弱"
+        ]
+      },
+      {
+        "asset": "399006",
+        "score": 2.2,
+        "reasons": [
+          "广度极弱"
+        ]
+      },
+      {
+        "asset": "000852",
+        "score": 2.2,
+        "reasons": [
+          "广度极弱"
+        ]
+      },
+      {
+        "asset": "000680",
+        "score": 2.2,
+        "reasons": [
+          "广度极弱"
+        ]
+      }
+    ],
+    "top_warning": [
+      {
+        "asset": "000680",
+        "score": 2.4,
+        "reasons": [
+          "指数上行但跟随不足"
+        ]
+      }
+    ],
+    "top_transition": [],
+    "market_regime": {
+      "label": "权重防守市",
+      "score": 2.0,
+      "evidence": [
+        "创业板未形成进攻",
+        "小盘赚钱效应弱"
+      ],
+      "confidence": 0.5
+    },
+    "market_context": {
+      "label": "Defense",
+      "score": 6.0,
+      "confidence": 0.6,
+      "allowed_styles": [
+        "防守",
+        "低频",
+        "核心资产轻仓参与"
+      ],
+      "disallowed_styles": [
+        "高弹性追涨",
+        "高频试错",
+        "弱转强博弈"
+      ],
+      "risk_budget": {
+        "total_exposure": 0.3,
+        "max_positions": 3,
+        "max_single_name_weight": 0.1
+      },
+      "evidence": [
+        "市场处于权重防守市",
+        "存在显著负向信号",
+        "存在结构预警"
+      ],
+      "runner_up": "Cash",
+      "runner_up_score": 4.0
+    },
+    "trace": {
+      "relations": [],
+      "regimes": {
+        "defensive_large_cap": {
+          "label": "权重防守市",
+          "score": 2.0,
+          "matched_rules": [
+            {
+              "rule_id": "rr_def_03",
+              "score": 1.0,
+              "evidence": "创业板未形成进攻"
+            },
+            {
+              "rule_id": "rr_def_04",
+              "score": 1.0,
+              "evidence": "小盘赚钱效应弱"
+            }
+          ]
+        },
+        "growth_attack": {
+          "label": "成长进攻市",
+          "score": 0.0,
+          "matched_rules": []
+        },
+        "split_structure": {
+          "label": "结构分裂市",
+          "score": 0.0,
+          "matched_rules": []
+        },
+        "chaotic_market": {
+          "label": "混沌市",
+          "score": 2.0,
+          "matched_rules": [
+            {
+              "rule_id": "rr_cha_02",
+              "score": 2.0,
+              "evidence": "未形成明确结构主线"
+            }
+          ]
+        }
+      },
+      "contexts": {
+        "offense": {
+          "label": "Offense",
+          "score": 0.0,
+          "matched_rules": []
+        },
+        "caution": {
+          "label": "Caution",
+          "score": 0.0,
+          "matched_rules": []
+        },
+        "defense": {
+          "label": "Defense",
+          "score": 6.0,
+          "matched_rules": [
+            {
+              "rule_id": "ctx_def_01",
+              "score": 3.0,
+              "evidence": "市场处于权重防守市"
+            },
+            {
+              "rule_id": "ctx_def_02",
+              "score": 2.0,
+              "evidence": "存在显著负向信号"
+            },
+            {
+              "rule_id": "ctx_def_04",
+              "score": 1.0,
+              "evidence": "存在结构预警"
+            }
+          ]
+        },
+        "cash": {
+          "label": "Cash",
+          "score": 4.0,
+          "matched_rules": [
+            {
+              "rule_id": "ctx_cash_02",
+              "score": 2.0,
+              "evidence": "预警存在且缺乏明确正向信号"
+            },
+            {
+              "rule_id": "ctx_cash_03",
+              "score": 2.0,
+              "evidence": "缺乏明确结构主线"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

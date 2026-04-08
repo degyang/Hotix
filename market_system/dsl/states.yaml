@@ -1,0 +1,66 @@
+version: "0.1"
+dsl_type: states
+
+states:
+  - id: trend_state
+    output: trend_state
+    cases:
+      - when: "self.close > self.ma_20 and self.ma_20 > self.ma_60 and self.ma_slope_20 > 0"
+        value: up
+      - when: "self.close < self.ma_20 and self.ma_20 < self.ma_60 and self.ma_slope_20 < 0"
+        value: down
+      - when: "self.close > self.ma_20 and self.ma_20 <= self.ma_60"
+        value: transitional_up
+      - when: "self.close < self.ma_20 and self.ma_20 >= self.ma_60"
+        value: transitional_down
+    default: range
+
+  - id: position_state
+    output: position_state
+    cases:
+      - when: "self.price_percentile_120d <= 0.20"
+        value: low
+      - when: "self.price_percentile_120d <= 0.40"
+        value: low_mid
+      - when: "self.price_percentile_120d <= 0.60"
+        value: mid
+      - when: "self.price_percentile_120d <= 0.80"
+        value: mid_high
+    default: high
+
+  - id: volume_state
+    output: volume_state
+    cases:
+      - when: "self.amount_ratio_1_20 <= 0.65 and self.amount_percentile_120d <= 0.15"
+        value: extreme_contraction
+      - when: "self.amount_ratio_1_20 <= 0.85"
+        value: contraction
+      - when: "self.amount_ratio_1_20 < 1.15"
+        value: normal
+      - when: "self.amount_ratio_1_20 < 1.50"
+        value: expansion
+    default: extreme_expansion
+
+  - id: breadth_state
+    output: breadth_state
+    cases:
+      - when: "self.breadth_ratio < 0.35"
+        value: weak
+      - when: "self.breadth_ratio < 0.45"
+        value: neutral_weak
+      - when: "self.breadth_ratio <= 0.55"
+        value: neutral
+      - when: "self.breadth_ratio <= 0.65"
+        value: neutral_strong
+    default: strong
+
+  - id: volatility_state
+    output: volatility_state
+    cases:
+      - when: "self.volatility_percentile_250d <= 0.20"
+        value: low
+      - when: "self.volatility_percentile_250d <= 0.60"
+        value: medium
+      - when: "self.volatility_percentile_250d <= 0.85"
+        value: high
+    default: extreme

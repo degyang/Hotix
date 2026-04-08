@@ -1,0 +1,39 @@
+version: "0.1"
+dsl_type: patterns
+
+patterns:
+  - id: p_low_volume_repair
+    group: reversal
+    priority: 80
+    when: "self.position_state in ['low', 'low_mid'] and self.volume_state in ['expansion', 'extreme_expansion'] and self.ret_1d > 0 and self.breadth_state in ['neutral_strong', 'strong']"
+    add_tag: 低位放量修复
+
+  - id: p_mid_trend_breakout
+    group: breakout
+    priority: 90
+    when: "self.trend_state == 'up' and self.position_state in ['mid', 'mid_high'] and self.breakout_20d == true and self.volume_state in ['expansion', 'extreme_expansion']"
+    add_tag: 中继放量突破
+
+  - id: p_high_volume_divergence
+    group: warning
+    priority: 95
+    when: "self.position_state == 'high' and self.volume_state == 'extreme_expansion' and self.ret_1d > -0.01 and self.ret_1d < 0.01"
+    add_tag: 高位放量分歧
+
+  - id: p_down_on_expansion
+    group: breakdown
+    priority: 85
+    when: "self.ret_1d < 0 and self.volume_state in ['expansion', 'extreme_expansion'] and self.breadth_state in ['weak', 'neutral_weak']"
+    add_tag: 放量下跌
+
+  - id: p_pullback_on_contraction
+    group: continuation
+    priority: 75
+    when: "self.trend_state == 'up' and self.ret_1d < 0 and self.volume_state in ['contraction', 'extreme_contraction'] and self.close > self.ma_60"
+    add_tag: 缩量回踩
+
+  - id: p_index_up_breadth_weak
+    group: divergence
+    priority: 88
+    when: "self.ret_1d > 0 and self.breadth_state in ['weak', 'neutral_weak']"
+    add_tag: 指数上行但跟随不足

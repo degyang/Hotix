@@ -1,0 +1,134 @@
+version: "0.1"
+dsl_type: features
+
+features:
+  - id: ret_1d
+    type: formula
+    input: [close]
+    formula: "close / delay(close, 1) - 1"
+    output: ret_1d
+
+  - id: ret_5d
+    type: formula
+    input: [close]
+    formula: "close / delay(close, 5) - 1"
+    output: ret_5d
+
+  - id: ret_20d
+    type: formula
+    input: [close]
+    formula: "close / delay(close, 20) - 1"
+    output: ret_20d
+
+  - id: ma_20
+    type: rolling
+    input: [close]
+    window: 20
+    method: mean
+    output: ma_20
+
+  - id: ma_60
+    type: rolling
+    input: [close]
+    window: 60
+    method: mean
+    output: ma_60
+
+  - id: ma_slope_20
+    type: formula
+    input: [ma_20]
+    formula: "ma_20 / delay(ma_20, 5) - 1"
+    output: ma_slope_20
+
+  - id: distance_to_ma20
+    type: formula
+    input: [close, ma_20]
+    formula: "close / ma_20 - 1"
+    output: distance_to_ma20
+
+  - id: price_percentile_120d
+    type: percentile
+    input: [close]
+    window: 120
+    output: price_percentile_120d
+
+  - id: amount_ma_20
+    type: rolling
+    input: [amount]
+    window: 20
+    method: mean
+    output: amount_ma_20
+
+  - id: amount_ratio_1_20
+    type: formula
+    input: [amount, amount_ma_20]
+    formula: "amount / amount_ma_20"
+    output: amount_ratio_1_20
+
+  - id: amount_ratio_5_20
+    type: formula
+    input: [amount]
+    formula: "rolling_mean(amount, 5) / rolling_mean(amount, 20)"
+    output: amount_ratio_5_20
+
+  - id: amount_percentile_120d
+    type: percentile
+    input: [amount]
+    window: 120
+    output: amount_percentile_120d
+
+  - id: breadth_ratio
+    type: formula
+    input: [adv, decl]
+    formula: "adv / (adv + decl + 1e-9)"
+    output: breadth_ratio
+
+  - id: breadth_diff
+    type: formula
+    input: [adv, decl]
+    formula: "adv - decl"
+    output: breadth_diff
+
+  - id: breadth_ratio_ma_5
+    type: rolling
+    input: [breadth_ratio]
+    window: 5
+    method: mean
+    output: breadth_ratio_ma_5
+
+  - id: true_range
+    type: formula
+    input: [high, low, close]
+    formula: "max(high - low, abs(high - delay(close, 1)), abs(low - delay(close, 1)))"
+    output: true_range
+
+  - id: atr_14
+    type: rolling
+    input: [true_range]
+    window: 14
+    method: mean
+    output: atr_14
+
+  - id: atr_pct_14
+    type: formula
+    input: [atr_14, close]
+    formula: "atr_14 / close"
+    output: atr_pct_14
+
+  - id: volatility_percentile_250d
+    type: percentile
+    input: [atr_pct_14]
+    window: 250
+    output: volatility_percentile_250d
+
+  - id: breakout_20d
+    type: boolean
+    input: [close, high]
+    formula: "close > rolling_max(high, 20, exclude_current=true)"
+    output: breakout_20d
+
+  - id: breakdown_20d
+    type: boolean
+    input: [close, low]
+    formula: "close < rolling_min(low, 20, exclude_current=true)"
+    output: breakdown_20d

@@ -1,0 +1,63 @@
+version: "0.1"
+dsl_type: regimes
+
+regimes:
+  - id: defensive_large_cap
+    label: 权重防守市
+    rules:
+      - id: rr_def_01
+        when: "index.000300.trend_state in ['up', 'transitional_up']"
+        score: 2
+        evidence: 沪深300维持强势
+      - id: rr_def_02
+        when: "'权重大盘主导' in market.relation_tags"
+        score: 3
+        evidence: 权重大盘主导
+      - id: rr_def_03
+        when: "index.399006.trend_state in ['down', 'range', 'transitional_down']"
+        score: 1
+        evidence: 创业板未形成进攻
+      - id: rr_def_04
+        when: "index.000852.breadth_state in ['weak', 'neutral_weak']"
+        score: 1
+        evidence: 小盘赚钱效应弱
+
+  - id: growth_attack
+    label: 成长进攻市
+    rules:
+      - id: rr_gro_01
+        when: "index.399006.trend_state in ['up', 'transitional_up']"
+        score: 2
+        evidence: 创业板进入进攻结构
+      - id: rr_gro_02
+        when: "'成长风格占优' in market.relation_tags"
+        score: 3
+        evidence: 成长风格占优
+      - id: rr_gro_03
+        when: "index.000852.trend_state in ['up', 'transitional_up', 'range'] and index.000852.breadth_state in ['neutral_strong', 'strong']"
+        score: 1
+        evidence: 小盘提供辅助跟随
+
+  - id: split_structure
+    label: 结构分裂市
+    rules:
+      - id: rr_spl_01
+        when: "'成长风格占优' in market.relation_tags and index.000852.breadth_state in ['weak', 'neutral_weak']"
+        score: 2
+        evidence: 成长有表现但小盘承接差
+      - id: rr_spl_02
+        when: "'权重大盘主导' in market.relation_tags and index.399006.trend_state in ['down', 'transitional_down']"
+        score: 3
+        evidence: 权重强而成长弱
+
+  - id: chaotic_market
+    label: 混沌市
+    rules:
+      - id: rr_cha_01
+        when: "index.000300.trend_state == 'range' and index.399006.trend_state == 'range' and index.000852.trend_state == 'range'"
+        score: 2
+        evidence: 三大方向均缺乏清晰方向
+      - id: rr_cha_02
+        when: "len(market.relation_tags) == 0"
+        score: 2
+        evidence: 未形成明确结构主线

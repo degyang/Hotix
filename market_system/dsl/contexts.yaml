@@ -1,0 +1,121 @@
+version: "0.1"
+dsl_type: contexts
+
+contexts:
+  - id: offense
+    label: Offense
+    rules:
+      - id: ctx_off_01
+        when: "market.market_regime.label == '成长进攻市'"
+        score: 3
+        evidence: 市场处于成长进攻市
+      - id: ctx_off_02
+        when: "len(market.top_positive) > 0"
+        score: 1
+        evidence: 存在显著正向信号
+      - id: ctx_off_03
+        when: "'成长风格占优' in market.relation_tags"
+        score: 2
+        evidence: 成长风格占优
+      - id: ctx_off_04
+        when: "len(market.top_negative) == 0"
+        score: 1
+        evidence: 负向显著信号较弱
+    allowed_styles:
+      - 趋势跟随
+      - 高弹性进攻
+      - 强势主线试错
+    disallowed_styles:
+      - 逆势抄底
+      - 弱势股博弈
+    risk_budget:
+      total_exposure: 0.80
+      max_positions: 6
+      max_single_name_weight: 0.20
+
+  - id: caution
+    label: Caution
+    rules:
+      - id: ctx_cau_01
+        when: "market.market_regime.label == '结构分裂市'"
+        score: 2
+        evidence: 市场处于结构分裂市
+      - id: ctx_cau_02
+        when: "len(market.top_positive) > 0 and len(market.top_warning) > 0"
+        score: 2
+        evidence: 正向信号与预警信号并存
+      - id: ctx_cau_03
+        when: "'成长风格占优' in market.relation_tags or '权重大盘主导' in market.relation_tags"
+        score: 1
+        evidence: 存在单边结构主导，但不够全面
+    allowed_styles:
+      - 低频趋势跟随
+      - 只做最强方向
+      - 轻仓试错
+    disallowed_styles:
+      - 高频乱试
+      - 全面铺仓
+    risk_budget:
+      total_exposure: 0.50
+      max_positions: 4
+      max_single_name_weight: 0.15
+
+  - id: defense
+    label: Defense
+    rules:
+      - id: ctx_def_01
+        when: "market.market_regime.label == '权重防守市'"
+        score: 3
+        evidence: 市场处于权重防守市
+      - id: ctx_def_02
+        when: "len(market.top_negative) > 0"
+        score: 2
+        evidence: 存在显著负向信号
+      - id: ctx_def_03
+        when: "'权重大盘主导' in market.relation_tags"
+        score: 1
+        evidence: 权重大盘主导，小票弹性不足
+      - id: ctx_def_04
+        when: "len(market.top_warning) > 0"
+        score: 1
+        evidence: 存在结构预警
+    allowed_styles:
+      - 防守
+      - 低频
+      - 核心资产轻仓参与
+    disallowed_styles:
+      - 高弹性追涨
+      - 高频试错
+      - 弱转强博弈
+    risk_budget:
+      total_exposure: 0.30
+      max_positions: 3
+      max_single_name_weight: 0.10
+
+  - id: cash
+    label: Cash
+    rules:
+      - id: ctx_cash_01
+        when: "market.market_regime.label == '混沌市'"
+        score: 3
+        evidence: 市场处于混沌市
+      - id: ctx_cash_02
+        when: "len(market.top_warning) > 0 and len(market.top_positive) == 0"
+        score: 2
+        evidence: 预警存在且缺乏明确正向信号
+      - id: ctx_cash_03
+        when: "len(market.relation_tags) == 0"
+        score: 2
+        evidence: 缺乏明确结构主线
+    allowed_styles:
+      - 观察
+      - 复盘
+      - 等待
+    disallowed_styles:
+      - 主动进攻
+      - 高频试错
+      - 重仓出击
+    risk_budget:
+      total_exposure: 0.10
+      max_positions: 1
+      max_single_name_weight: 0.05

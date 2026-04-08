@@ -1,0 +1,76 @@
+version: "0.1"
+dsl_type: salience
+
+salience:
+  scoring_rules:
+    - id: s_pattern_trend_breakout
+      group: pattern
+      when: "'中继放量突破' in self.pattern_tags"
+      score: 2.6
+      bucket: positive
+      polarity: positive
+      reason: 中继放量突破
+
+    - id: s_pattern_low_repair
+      group: pattern
+      when: "'低位放量修复' in self.pattern_tags"
+      score: 2.1
+      bucket: positive
+      polarity: positive
+      reason: 低位放量修复
+
+    - id: s_pattern_high_divergence
+      group: pattern
+      when: "'高位放量分歧' in self.pattern_tags"
+      score: 2.8
+      bucket: warning
+      polarity: negative
+      reason: 高位放量分歧
+
+    - id: s_pattern_down_on_expansion
+      group: pattern
+      when: "'放量下跌' in self.pattern_tags"
+      score: 2.5
+      bucket: negative
+      polarity: negative
+      reason: 放量下跌
+
+    - id: s_pattern_up_breadth_weak
+      group: divergence
+      when: "'指数上行但跟随不足' in self.pattern_tags"
+      score: 2.4
+      bucket: warning
+      polarity: negative
+      reason: 指数上行但跟随不足
+
+    - id: s_extreme_breadth_weak
+      group: extreme
+      when: "self.breadth_state == 'weak'"
+      score: 2.2
+      bucket: negative
+      polarity: negative
+      reason: 广度极弱
+
+    - id: s_extreme_breadth_strong
+      group: extreme
+      when: "self.breadth_state == 'strong'"
+      score: 2.0
+      bucket: positive
+      polarity: positive
+      reason: 广度极强
+
+    - id: s_transition_trend_to_up
+      group: transition
+      when: "'趋势转上' in self.transition_tags"
+      score: 2.2
+      bucket: transition
+      polarity: positive
+      reason: 趋势转上
+
+    - id: s_transition_trend_to_down
+      group: transition
+      when: "'趋势转下' in self.transition_tags"
+      score: 2.4
+      bucket: transition
+      polarity: negative
+      reason: 趋势转下

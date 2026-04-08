@@ -1,0 +1,27 @@
+version: "0.1"
+dsl_type: pair_features
+
+pair_features:
+  - id: rs_ret_5d
+    type: formula
+    input: [left.ret_5d, right.ret_5d]
+    formula: "left.ret_5d - right.ret_5d"
+    output: rs_ret_5d
+
+  - id: rs_ret_20d
+    type: formula
+    input: [left.ret_20d, right.ret_20d]
+    formula: "left.ret_20d - right.ret_20d"
+    output: rs_ret_20d
+
+  - id: rs_amount_spread
+    type: formula
+    input: [left.amount_ratio_5_20, right.amount_ratio_5_20]
+    formula: "left.amount_ratio_5_20 - right.amount_ratio_5_20"
+    output: rs_amount_spread
+
+  - id: rs_breadth_spread
+    type: formula
+    input: [left.breadth_ratio_ma_5, right.breadth_ratio_ma_5]
+    formula: "left.breadth_ratio_ma_5 - right.breadth_ratio_ma_5"
+    output: rs_breadth_spread

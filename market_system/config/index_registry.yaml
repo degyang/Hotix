@@ -1,0 +1,41 @@
+indices:
+  "000001":
+    name: 上证指数
+    symbol: "000001"
+    role: broad_market_shanghai
+    layer: broad
+  "399001":
+    name: 深证成指
+    symbol: "399001"
+    role: broad_market_shenzhen
+    layer: broad
+  "000016":
+    name: 上证50
+    symbol: "000016"
+    role: mega_cap_defensive
+    layer: core
+  "000300":
+    name: 沪深300
+    symbol: "000300"
+    role: core_benchmark
+    layer: core
+  "000905":
+    name: 中证500
+    symbol: "000905"
+    role: mid_cap_breadth
+    layer: breadth
+  "399006":
+    name: 创业板指
+    symbol: "399006"
+    role: growth_risk_appetite
+    layer: growth
+  "000852":
+    name: 中证1000
+    symbol: "000852"
+    role: small_cap_sentiment
+    layer: sentiment
+  "000680":
+    name: 科创综指
+    symbol: "000680"
+    role: star_board_breadth
+    layer: growth

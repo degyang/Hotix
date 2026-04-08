@@ -1,0 +1,19 @@
+version: "0.1"
+dsl_type: transitions
+
+transitions:
+  - id: t_trend_upshift
+    when: "prev.trend_state in ['range', 'transitional_up'] and self.trend_state == 'up'"
+    add_tag: 趋势转上
+
+  - id: t_trend_downshift
+    when: "prev.trend_state in ['range', 'transitional_down'] and self.trend_state == 'down'"
+    add_tag: 趋势转下
+
+  - id: t_volume_jump
+    when: "prev.volume_state in ['contraction', 'normal'] and self.volume_state == 'extreme_expansion'"
+    add_tag: 量能跳升
+
+  - id: t_breadth_deterioration
+    when: "prev.breadth_state in ['neutral', 'neutral_strong', 'strong'] and self.breadth_state in ['weak', 'neutral_weak']"
+    add_tag: 广度恶化

@@ -1,0 +1,38 @@
+version: "0.1"
+dsl_type: pair_states
+
+pair_states:
+  - id: leader_state
+    output: leader_state
+    cases:
+      - when: "self.rs_ret_20d >= 0.03"
+        value: left_strong
+      - when: "self.rs_ret_20d <= -0.03"
+        value: right_strong
+    default: neutral
+
+  - id: leadership_persistence_state
+    output: leadership_persistence_state
+    cases:
+      - when: "self.rs_ret_5d > 0 and self.rs_ret_20d > 0"
+        value: left_persistent
+      - when: "self.rs_ret_5d < 0 and self.rs_ret_20d < 0"
+        value: right_persistent
+      - when: "self.rs_ret_5d > 0 and self.rs_ret_20d <= 0"
+        value: left_recent_turn
+      - when: "self.rs_ret_5d < 0 and self.rs_ret_20d >= 0"
+        value: right_recent_turn
+    default: mixed
+
+  - id: confirmation_state
+    output: confirmation_state
+    cases:
+      - when: "self.leader_state == 'left_strong' and self.rs_amount_spread > 0 and self.rs_breadth_spread > 0"
+        value: left_confirmed
+      - when: "self.leader_state == 'right_strong' and self.rs_amount_spread < 0 and self.rs_breadth_spread < 0"
+        value: right_confirmed
+      - when: "self.leader_state == 'left_strong'"
+        value: left_unconfirmed
+      - when: "self.leader_state == 'right_strong'"
+        value: right_unconfirmed
+    default: neutral

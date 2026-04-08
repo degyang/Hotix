@@ -1,0 +1,59 @@
+version: "0.1"
+dsl_type: relation_tags
+
+relation_tags:
+  - id: r_growth_over_core
+    pair: 000300_vs_399006
+    group: style
+    priority: 92
+    when: "self.leader_state == 'right_strong' and self.confirmation_state == 'right_confirmed'"
+    add_tag: 成长风格占优
+
+  - id: r_large_cap_dominant
+    pair: 000300_vs_000852
+    group: structure
+    priority: 90
+    when: "self.leader_state == 'left_strong' and self.confirmation_state == 'left_confirmed'"
+    add_tag: 权重大盘主导
+
+  - id: r_small_cap_rebound
+    pair: 000300_vs_000852
+    group: sentiment
+    priority: 88
+    when: "self.leader_state == 'right_strong' and self.confirmation_state == 'right_confirmed'"
+    add_tag: 小票情绪回暖
+
+  - id: r_mid_cap_follow_through
+    pair: 000300_vs_000905
+    group: breadth
+    priority: 87
+    when: "self.leader_state == 'right_strong' and self.confirmation_state == 'right_confirmed'"
+    add_tag: 中盘扩散占优
+
+  - id: r_mega_cap_defense
+    pair: 000016_vs_000852
+    group: defense
+    priority: 89
+    when: "self.leader_state == 'left_strong' and self.confirmation_state == 'left_confirmed'"
+    add_tag: 超大盘防守主导
+
+  - id: r_small_cap_speculation
+    pair: 000905_vs_000852
+    group: sentiment
+    priority: 86
+    when: "self.leader_state == 'right_strong' and self.confirmation_state == 'right_confirmed'"
+    add_tag: 小盘弹性占优
+
+  - id: r_star_over_core
+    pair: 000300_vs_000680
+    group: growth
+    priority: 87
+    when: "self.leader_state == 'right_strong' and self.confirmation_state == 'right_confirmed'"
+    add_tag: 科创风格占优
+
+  - id: r_star_internal_strength
+    pair: 399006_vs_000680
+    group: growth
+    priority: 85
+    when: "self.leader_state == 'right_strong' and self.confirmation_state == 'right_confirmed'"
+    add_tag: 科创强于创业板

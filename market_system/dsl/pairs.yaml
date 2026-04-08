@@ -1,0 +1,38 @@
+version: "0.1"
+dsl_type: pairs
+
+pairs:
+  - id: 000300_vs_399006
+    left: "000300"
+    right: "399006"
+    tags: [core_vs_growth]
+
+  - id: 000300_vs_000680
+    left: "000300"
+    right: "000680"
+    tags: [core_vs_star]
+
+  - id: 000300_vs_000905
+    left: "000300"
+    right: "000905"
+    tags: [core_vs_mid]
+
+  - id: 000300_vs_000852
+    left: "000300"
+    right: "000852"
+    tags: [core_vs_small]
+
+  - id: 000016_vs_000852
+    left: "000016"
+    right: "000852"
+    tags: [mega_vs_small]
+
+  - id: 399006_vs_000680
+    left: "399006"
+    right: "000680"
+    tags: [growth_internal]
+
+  - id: 000905_vs_000852
+    left: "000905"
+    right: "000852"
+    tags: [mid_vs_small]

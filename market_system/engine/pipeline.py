@@ -1,0 +1,126 @@
+from dataclasses import dataclass
+from pathlib import Path
+import math
+
+from market_system.engine.context_engine import score_market_context
+from market_system.engine.feature_engine import compute_index_features
+from market_system.engine.loader import load_all_data, load_all_dsl, load_registry
+from market_system.engine.output_writer import render_markdown, write_json_output, write_markdown_output
+from market_system.engine.pair_engine import (
+    create_pair_runtime,
+    compute_pair_features,
+    derive_pair_states,
+    detect_pair_relation_tags,
+)
+from market_system.engine.regime_engine import collect_market_relation_tags, score_market_regime
+from market_system.engine.salience_engine import build_market_salience, score_index_salience
+from market_system.engine.state_engine import derive_index_states
+from market_system.engine.tag_engine import detect_index_patterns, detect_index_transitions
+from market_system.engine.validator import validate_all_dsl
+
+
+@dataclass
+class PipelineContext:
+    root: Path
+    registry: dict
+    dsl: dict
+    data: dict
+
+
+def _available_dates(ctx: PipelineContext) -> list[str]:
+    return sorted(set.intersection(*[set(df["date"].tolist()) for df in ctx.data.values()]))
+
+
+def latest_available_date(ctx: PipelineContext) -> str:
+    common_dates = _available_dates(ctx)
+    if not common_dates:
+        raise ValueError("No common market dates available")
+    return common_dates[-1]
+
+
+def _normalize(value):
+    if isinstance(value, dict):
+        return {key: _normalize(item) for key, item in value.items()}
+    if isinstance(value, list):
+        return [_normalize(item) for item in value]
+    if isinstance(value, float) and math.isnan(value):
+        return None
+    return value
+
+
+def build_context(root: str | Path, data_dir: str | Path | None = None) -> PipelineContext:
+    root = Path(root).resolve()
+    registry = load_registry(root / "config" / "index_registry.yaml")
+    dsl = load_all_dsl(root / "dsl")
+    validate_all_dsl(dsl, registry)
+    if data_dir is None:
+        raise ValueError("Provide --data-dir or an explicit data_dir path.")
+    resolved_data_dir = Path(data_dir).expanduser().resolve()
+    data = load_all_data(resolved_data_dir, registry)
+    return PipelineContext(root=root, registry=registry, dsl=dsl, data=data)
+
+
+def run_single_date(ctx: PipelineContext, date: str) -> dict:
+    common_dates = _available_dates(ctx)
+    if date not in common_dates:
+        raise ValueError(f"No market data available for date {date}")
+
+    indices = {}
+    for index_id, df in ctx.data.items():
+        current = compute_index_features(index_id, date, df, ctx.dsl["features"])
+        prev_dates = df[df["date"] < date]["date"]
+        prev_runtime = None
+        if not prev_dates.empty:
+            prev_runtime = compute_index_features(index_id, prev_dates.iloc[-1], df, ctx.dsl["features"])
+            prev_runtime = derive_index_states(prev_runtime, ctx.dsl["states"])
+        current = derive_index_states(current, ctx.dsl["states"], prev_runtime)
+        current = detect_index_patterns(current, ctx.dsl["patterns"], prev_runtime)
+        current = detect_index_transitions(current, ctx.dsl["transitions"], prev_runtime)
+        current = score_index_salience(current, ctx.dsl["salience"], prev_runtime)
+        indices[index_id] = current
+
+    pairs = {}
+    for pair_def in ctx.dsl["pairs"]["pairs"]:
+        pair_runtime = create_pair_runtime(pair_def, date)
+        pair_runtime = compute_pair_features(pair_runtime, ctx.dsl["pair_features"], indices)
+        pair_runtime = derive_pair_states(pair_runtime, ctx.dsl["pair_states"], indices)
+        pair_runtime = detect_pair_relation_tags(pair_runtime, ctx.dsl["relation_tags"], indices)
+        pairs[pair_runtime.id] = pair_runtime
+
+    market = type("MarketRuntime", (), {"date": date, "relation_tags": [], "market_regime": {}, "trace": {}})()
+    for key, value in build_market_salience(indices).items():
+        setattr(market, key, value)
+    market = collect_market_relation_tags(market, pairs)
+    market = score_market_regime(market, indices, pairs, ctx.dsl["regimes"])
+    market.market_context = score_market_context(market, indices, pairs, ctx.dsl["contexts"])
+
+    payload = {
+        "date": date,
+        "indices": {key: value.__dict__ for key, value in indices.items()},
+        "pairs": {key: value.__dict__ for key, value in pairs.items()},
+        "market": {
+            "date": market.date,
+            "relation_tags": market.relation_tags,
+            "top_positive": market.top_positive,
+            "top_negative": market.top_negative,
+            "top_warning": market.top_warning,
+            "top_transition": market.top_transition,
+            "market_regime": market.market_regime,
+            "market_context": market.market_context,
+            "trace": market.trace,
+        },
+    }
+    return _normalize(payload)
+
+
+def run_date_range(ctx: PipelineContext, start: str | None = None, end: str | None = None, write_files: bool = False) -> list[dict]:
+    common_dates = _available_dates(ctx)
+    selected_dates = [date for date in common_dates if (start is None or date >= start) and (end is None or date <= end)]
+    results = []
+    for date in selected_dates:
+        payload = run_single_date(ctx, date)
+        results.append(payload)
+        if write_files:
+            write_json_output(ctx.root / "outputs" / "json", date, payload)
+            write_markdown_output(ctx.root / "outputs" / "markdown", date, render_markdown(payload))
+    return results
