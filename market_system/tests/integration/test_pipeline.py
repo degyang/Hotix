@@ -35,6 +35,7 @@ def test_run_single_date_market_payload_contains_regime_and_relations():
     assert "top_negative" in payload["market"]
     assert "top_warning" in payload["market"]
     assert "top_transition" in payload["market"]
+    assert "policy" in payload["market"]
 
 
 def test_run_date_range_returns_all_common_dates():
@@ -63,6 +64,7 @@ def test_run_single_date_includes_trace_and_regime_confidence():
     assert "salience" in core["trace"]
     assert "confidence" in payload["market"]["market_regime"]
     assert "label" in payload["market"]["market_context"]
+    assert "setup_permissions" in payload["market"]["policy"]
     assert "trace" in payload["market"]
 
 

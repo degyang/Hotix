@@ -17,9 +17,15 @@ def render_markdown(payload: dict) -> str:
     market = payload["market"]
     regime = market["market_regime"]
     context = market.get("market_context", {})
+    policy = market.get("policy", {})
     relation_lines = [f"- {tag}" for tag in market.get("relation_tags", [])]
     if not relation_lines:
         relation_lines = ["- 无"]
+    policy_lines = []
+    for setup, permission in policy.get("setup_permissions", {}).items():
+        policy_lines.append(f"- {setup}: status={permission.get('status')}, size={permission.get('size')}")
+    if not policy_lines:
+        policy_lines = ["- 无"]
     def render_bucket(items):
         if not items:
             return ["- 无"]
@@ -54,6 +60,13 @@ def render_markdown(payload: dict) -> str:
             f"- Disallowed: {', '.join(context.get('disallowed_styles', [])) if context.get('disallowed_styles') else '无'}",
             f"- Risk Budget: total_exposure={context.get('risk_budget', {}).get('total_exposure', 0)}, max_positions={context.get('risk_budget', {}).get('max_positions', 0)}, max_single_name_weight={context.get('risk_budget', {}).get('max_single_name_weight', 0)}",
             f"- Evidence: {'；'.join(context.get('evidence', [])) if context.get('evidence') else '无'}",
+            "",
+            "## 策略权限",
+            *policy_lines,
+            f"- Max New Positions: {policy.get('execution_constraints', {}).get('max_new_positions', 0)}",
+            f"- Intraday Addons: {policy.get('execution_constraints', {}).get('intraday_addons', False)}",
+            f"- Require Confirmation: {policy.get('execution_constraints', {}).get('require_confirmation', True)}",
+            f"- Vetoes: {', '.join(policy.get('vetoes', [])) if policy.get('vetoes') else '无'}",
             "",
             "## 今日最亮信号",
             *render_bucket(market.get("top_positive", [])),

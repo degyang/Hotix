@@ -1,4 +1,4 @@
-from dataclasses import dataclass, field
+from dataclasses import asdict, dataclass, field
 
 
 @dataclass
@@ -46,3 +46,35 @@ class PairRuntime:
         if name == "relation_tags":
             return self.relation_tags
         raise KeyError(name)
+
+
+@dataclass
+class SetupPermission:
+    status: str = "restricted"
+    size: str = "small"
+
+    def to_dict(self) -> dict:
+        return asdict(self)
+
+
+@dataclass
+class ExecutionConstraints:
+    max_new_positions: int = 1
+    intraday_addons: bool = False
+    require_confirmation: bool = True
+    allow_gap_chase: bool = False
+    allow_average_up: bool = False
+
+    def to_dict(self) -> dict:
+        return asdict(self)
+
+
+@dataclass
+class PolicyOutput:
+    setup_permissions: dict = field(default_factory=dict)
+    execution_constraints: dict = field(default_factory=dict)
+    vetoes: list[str] = field(default_factory=list)
+    trace: dict = field(default_factory=dict)
+
+    def to_dict(self) -> dict:
+        return asdict(self)

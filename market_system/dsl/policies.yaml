@@ -1,0 +1,182 @@
+version: "0.1"
+dsl_type: policies
+
+defaults:
+  setup_permissions:
+    breakout:
+      status: restricted
+      size: small
+    continuation_pullback:
+      status: restricted
+      size: small
+    low_level_repair:
+      status: restricted
+      size: small
+    defensive_core_rotation:
+      status: restricted
+      size: small
+    high_beta_chase:
+      status: forbidden
+      size: none
+    reversal_catch:
+      status: forbidden
+      size: none
+    trend_follow:
+      status: restricted
+      size: small
+  execution_constraints:
+    max_new_positions: 1
+    intraday_addons: false
+    require_confirmation: true
+    allow_gap_chase: false
+    allow_average_up: false
+  vetoes: []
+
+policies:
+  - id: pol_growth_confirmed_bonus
+    priority: 90
+    when: "'成长风格占优' in market.relation_tags and market.market_context.label in ['Offense', 'Caution']"
+    set:
+      setup_permissions.breakout.status: allowed
+      setup_permissions.breakout.size: normal
+      setup_permissions.continuation_pullback.status: allowed
+      setup_permissions.continuation_pullback.size: normal
+      setup_permissions.trend_follow.status: allowed
+
+  - id: pol_large_cap_defense_bonus
+    priority: 90
+    when: "'权重大盘主导' in market.relation_tags and market.market_context.label in ['Defense', 'Caution']"
+    set:
+      setup_permissions.defensive_core_rotation.status: allowed
+      setup_permissions.defensive_core_rotation.size: normal
+      setup_permissions.high_beta_chase.status: forbidden
+
+  - id: pol_transition_up_probe
+    priority: 88
+    when: "len(market.top_transition) > 0 and market.market_context.label in ['Cash', 'Caution']"
+    set:
+      setup_permissions.low_level_repair.status: probe_only
+      setup_permissions.low_level_repair.size: tiny
+
+  - id: pol_offense_base
+    priority: 100
+    when: "market.market_context.label == 'Offense'"
+    set:
+      setup_permissions.breakout.status: allowed
+      setup_permissions.breakout.size: normal
+      setup_permissions.continuation_pullback.status: allowed
+      setup_permissions.continuation_pullback.size: normal
+      setup_permissions.low_level_repair.status: probe_only
+      setup_permissions.low_level_repair.size: small
+      setup_permissions.defensive_core_rotation.status: restricted
+      setup_permissions.defensive_core_rotation.size: small
+      setup_permissions.high_beta_chase.status: restricted
+      setup_permissions.high_beta_chase.size: small
+      setup_permissions.trend_follow.status: allowed
+      setup_permissions.trend_follow.size: normal
+      execution_constraints.max_new_positions: 3
+      execution_constraints.intraday_addons: true
+      execution_constraints.require_confirmation: false
+      execution_constraints.allow_gap_chase: true
+      execution_constraints.allow_average_up: true
+
+  - id: pol_caution_base
+    priority: 100
+    when: "market.market_context.label == 'Caution'"
+    set:
+      setup_permissions.breakout.status: restricted
+      setup_permissions.breakout.size: small
+      setup_permissions.continuation_pullback.status: allowed
+      setup_permissions.continuation_pullback.size: small
+      setup_permissions.low_level_repair.status: probe_only
+      setup_permissions.low_level_repair.size: small
+      setup_permissions.defensive_core_rotation.status: restricted
+      setup_permissions.defensive_core_rotation.size: small
+      setup_permissions.high_beta_chase.status: forbidden
+      setup_permissions.reversal_catch.status: forbidden
+      setup_permissions.trend_follow.status: restricted
+      setup_permissions.trend_follow.size: small
+      execution_constraints.max_new_positions: 2
+      execution_constraints.intraday_addons: false
+      execution_constraints.require_confirmation: true
+      execution_constraints.allow_gap_chase: false
+      execution_constraints.allow_average_up: false
+
+  - id: pol_defense_base
+    priority: 100
+    when: "market.market_context.label == 'Defense'"
+    set:
+      setup_permissions.breakout.status: forbidden
+      setup_permissions.breakout.size: none
+      setup_permissions.continuation_pullback.status: restricted
+      setup_permissions.continuation_pullback.size: small
+      setup_permissions.low_level_repair.status: forbidden
+      setup_permissions.low_level_repair.size: none
+      setup_permissions.defensive_core_rotation.status: allowed
+      setup_permissions.defensive_core_rotation.size: small
+      setup_permissions.high_beta_chase.status: forbidden
+      setup_permissions.reversal_catch.status: forbidden
+      setup_permissions.trend_follow.status: restricted
+      setup_permissions.trend_follow.size: tiny
+      execution_constraints.max_new_positions: 1
+      execution_constraints.intraday_addons: false
+      execution_constraints.require_confirmation: true
+      execution_constraints.allow_gap_chase: false
+      execution_constraints.allow_average_up: false
+      vetoes:
+        - no_high_beta_expansion
+
+  - id: pol_cash_base
+    priority: 100
+    when: "market.market_context.label == 'Cash'"
+    set:
+      setup_permissions.breakout.status: forbidden
+      setup_permissions.breakout.size: none
+      setup_permissions.continuation_pullback.status: forbidden
+      setup_permissions.continuation_pullback.size: none
+      setup_permissions.low_level_repair.status: probe_only
+      setup_permissions.low_level_repair.size: tiny
+      setup_permissions.defensive_core_rotation.status: restricted
+      setup_permissions.defensive_core_rotation.size: tiny
+      setup_permissions.high_beta_chase.status: forbidden
+      setup_permissions.reversal_catch.status: forbidden
+      setup_permissions.trend_follow.status: forbidden
+      setup_permissions.trend_follow.size: none
+      execution_constraints.max_new_positions: 1
+      execution_constraints.intraday_addons: false
+      execution_constraints.require_confirmation: true
+      execution_constraints.allow_gap_chase: false
+      execution_constraints.allow_average_up: false
+      vetoes:
+        - chaotic_market_override
+
+  - id: pol_warning_cap
+    priority: 105
+    when: "len(market.top_warning) > 0"
+    set:
+      setup_permissions.breakout.status: restricted
+      setup_permissions.breakout.size: small
+      setup_permissions.high_beta_chase.status: forbidden
+      execution_constraints.require_confirmation: true
+      vetoes:
+        - warning_overhang
+
+  - id: pol_negative_override
+    priority: 110
+    when: "len(market.top_negative) > 0"
+    set:
+      setup_permissions.breakout.status: forbidden
+      setup_permissions.breakout.size: none
+      setup_permissions.reversal_catch.status: forbidden
+      execution_constraints.intraday_addons: false
+      vetoes:
+        - negative_structure_pressure
+
+  - id: pol_no_structure_override
+    priority: 115
+    when: "len(market.relation_tags) == 0"
+    set:
+      setup_permissions.breakout.status: forbidden
+      setup_permissions.high_beta_chase.status: forbidden
+      vetoes:
+        - no_clear_structure

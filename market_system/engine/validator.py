@@ -76,3 +76,15 @@ def validate_all_dsl(dsl: dict, registry: dict) -> None:
             _ensure("score" in rule, f"context rule missing score: {context.get('id')}")
             _ensure("evidence" in rule, f"context rule missing evidence: {context.get('id')}")
             _validate_expression(rule["when"], f"context {context['id']}")
+
+    _ensure("policies" in dsl and "policies" in dsl["policies"], "policies.yaml missing policies")
+    _ensure("defaults" in dsl["policies"], "policies.yaml missing defaults")
+    _ensure("setup_permissions" in dsl["policies"]["defaults"], "policies defaults missing setup_permissions")
+    _ensure("execution_constraints" in dsl["policies"]["defaults"], "policies defaults missing execution_constraints")
+    _ensure("vetoes" in dsl["policies"]["defaults"], "policies defaults missing vetoes")
+    _collect_unique_ids(dsl["policies"]["policies"], "policies")
+    for policy in dsl["policies"]["policies"]:
+        _ensure("priority" in policy, f"policy missing priority: {policy.get('id')}")
+        _ensure("when" in policy, f"policy missing when: {policy.get('id')}")
+        _ensure("set" in policy, f"policy rule missing set: {policy.get('id')}")
+        _validate_expression(policy["when"], f"policy {policy['id']}")

@@ -21,6 +21,7 @@ def test_phase1_config_files_exist():
         "dsl/relation_tags.yaml",
         "dsl/regimes.yaml",
         "dsl/contexts.yaml",
+        "dsl/policies.yaml",
     ]
     for rel in required:
         assert (PACKAGE_ROOT / rel).exists(), rel
@@ -54,6 +55,7 @@ def test_validate_all_dsl_accepts_code_based_regime_expression():
             ]
         },
         "contexts": {"contexts": []},
+        "policies": {"defaults": {"setup_permissions": {}, "execution_constraints": {}, "vetoes": []}, "policies": []},
     }
     validate_all_dsl(dsl, registry)
 
@@ -80,6 +82,7 @@ def test_validate_all_dsl_rejects_invalid_regime_expression():
             ]
         },
         "contexts": {"contexts": []},
+        "policies": {"defaults": {"setup_permissions": {}, "execution_constraints": {}, "vetoes": []}, "policies": []},
     }
     with pytest.raises(ConfigValidationError, match="regime test invalid expression"):
         validate_all_dsl(dsl, registry)
@@ -99,6 +102,7 @@ def test_validate_all_dsl_rejects_unknown_pair_reference():
         "relation_tags": {"relation_tags": []},
         "regimes": {"regimes": []},
         "contexts": {"contexts": []},
+        "policies": {"defaults": {"setup_permissions": {}, "execution_constraints": {}, "vetoes": []}, "policies": []},
     }
     with pytest.raises(ConfigValidationError):
         validate_all_dsl(dsl, registry)
@@ -118,6 +122,7 @@ def test_validate_all_dsl_rejects_duplicate_feature_ids():
         "relation_tags": {"relation_tags": []},
         "regimes": {"regimes": []},
         "contexts": {"contexts": []},
+        "policies": {"defaults": {"setup_permissions": {}, "execution_constraints": {}, "vetoes": []}, "policies": []},
     }
     with pytest.raises(ConfigValidationError):
         validate_all_dsl(dsl, registry)
@@ -137,6 +142,7 @@ def test_validate_all_dsl_rejects_state_rule_missing_default():
         "relation_tags": {"relation_tags": []},
         "regimes": {"regimes": []},
         "contexts": {"contexts": []},
+        "policies": {"defaults": {"setup_permissions": {}, "execution_constraints": {}, "vetoes": []}, "policies": []},
     }
     with pytest.raises(ConfigValidationError):
         validate_all_dsl(dsl, registry)
@@ -165,6 +171,7 @@ def test_validate_all_dsl_rejects_invalid_state_expression():
         "relation_tags": {"relation_tags": []},
         "regimes": {"regimes": []},
         "contexts": {"contexts": []},
+        "policies": {"defaults": {"setup_permissions": {}, "execution_constraints": {}, "vetoes": []}, "policies": []},
     }
     with pytest.raises(ConfigValidationError, match="invalid expression"):
         validate_all_dsl(dsl, registry)
@@ -226,4 +233,27 @@ def test_validate_all_dsl_rejects_invalid_context_expression():
         },
     }
     with pytest.raises(ConfigValidationError, match="context cash invalid expression"):
+        validate_all_dsl(dsl, registry)
+
+
+def test_validate_all_dsl_rejects_policy_rule_missing_set():
+    registry = {"indices": {"000300": {"name": "沪深300"}}}
+    dsl = {
+        "features": {"features": []},
+        "states": {"states": []},
+        "patterns": {"patterns": []},
+        "transitions": {"transitions": []},
+        "salience": {"salience": {"scoring_rules": []}},
+        "pairs": {"pairs": []},
+        "pair_features": {"pair_features": []},
+        "pair_states": {"pair_states": []},
+        "relation_tags": {"relation_tags": []},
+        "regimes": {"regimes": []},
+        "contexts": {"contexts": []},
+        "policies": {
+            "defaults": {"setup_permissions": {}, "execution_constraints": {}, "vetoes": []},
+            "policies": [{"id": "pol_bad", "priority": 100, "when": "market.market_context.label == 'Cash'"}],
+        },
+    }
+    with pytest.raises(ConfigValidationError, match="policy rule missing set"):
         validate_all_dsl(dsl, registry)

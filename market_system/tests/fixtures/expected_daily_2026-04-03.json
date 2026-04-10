@@ -2613,6 +2613,71 @@
       "runner_up": "Cash",
       "runner_up_score": 4.0
     },
+    "policy": {
+      "setup_permissions": {
+        "breakout": {
+          "status": "forbidden",
+          "size": "none"
+        },
+        "continuation_pullback": {
+          "status": "restricted",
+          "size": "small"
+        },
+        "low_level_repair": {
+          "status": "forbidden",
+          "size": "none"
+        },
+        "defensive_core_rotation": {
+          "status": "allowed",
+          "size": "small"
+        },
+        "high_beta_chase": {
+          "status": "forbidden",
+          "size": "none"
+        },
+        "reversal_catch": {
+          "status": "forbidden",
+          "size": "none"
+        },
+        "trend_follow": {
+          "status": "restricted",
+          "size": "tiny"
+        }
+      },
+      "execution_constraints": {
+        "max_new_positions": 1,
+        "intraday_addons": false,
+        "require_confirmation": true,
+        "allow_gap_chase": false,
+        "allow_average_up": false
+      },
+      "vetoes": [
+        "no_high_beta_expansion",
+        "warning_overhang",
+        "negative_structure_pressure",
+        "no_clear_structure"
+      ],
+      "trace": {
+        "matched_rules": [
+          {
+            "rule_id": "pol_defense_base",
+            "priority": 100
+          },
+          {
+            "rule_id": "pol_warning_cap",
+            "priority": 105
+          },
+          {
+            "rule_id": "pol_negative_override",
+            "priority": 110
+          },
+          {
+            "rule_id": "pol_no_structure_override",
+            "priority": 115
+          }
+        ]
+      }
+    },
     "trace": {
       "relations": [],
       "regimes": {
@@ -2702,6 +2767,26 @@
             }
           ]
         }
+      },
+      "policy": {
+        "matched_rules": [
+          {
+            "rule_id": "pol_defense_base",
+            "priority": 100
+          },
+          {
+            "rule_id": "pol_warning_cap",
+            "priority": 105
+          },
+          {
+            "rule_id": "pol_negative_override",
+            "priority": 110
+          },
+          {
+            "rule_id": "pol_no_structure_override",
+            "priority": 115
+          }
+        ]
       }
     }
   }

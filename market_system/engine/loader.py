@@ -17,6 +17,7 @@ DSL_FILES = [
     "relation_tags.yaml",
     "regimes.yaml",
     "contexts.yaml",
+    "policies.yaml",
 ]
 
 

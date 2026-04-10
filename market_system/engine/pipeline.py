@@ -13,6 +13,7 @@ from market_system.engine.pair_engine import (
     detect_pair_relation_tags,
 )
 from market_system.engine.regime_engine import collect_market_relation_tags, score_market_regime
+from market_system.engine.policy_engine import score_policy
 from market_system.engine.salience_engine import build_market_salience, score_index_salience
 from market_system.engine.state_engine import derive_index_states
 from market_system.engine.tag_engine import detect_index_patterns, detect_index_transitions
@@ -93,6 +94,7 @@ def run_single_date(ctx: PipelineContext, date: str) -> dict:
     market = collect_market_relation_tags(market, pairs)
     market = score_market_regime(market, indices, pairs, ctx.dsl["regimes"])
     market.market_context = score_market_context(market, indices, pairs, ctx.dsl["contexts"])
+    market.policy = score_policy(market, indices, pairs, ctx.dsl["policies"])
 
     payload = {
         "date": date,
@@ -107,6 +109,7 @@ def run_single_date(ctx: PipelineContext, date: str) -> dict:
             "top_transition": market.top_transition,
             "market_regime": market.market_regime,
             "market_context": market.market_context,
+            "policy": market.policy,
             "trace": market.trace,
         },
     }
