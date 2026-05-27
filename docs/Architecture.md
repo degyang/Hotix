@@ -111,6 +111,19 @@ Universe Analysis makes a configured asset group the unit of market analysis. A 
 - cross-section TOPN rankings for price, volume, volatility, breadth, and position
 - short descriptive summaries
 
+## Market Profile
+
+Market Profile turns universe profiles into a top-level market structure summary. It consumes universe salience and summaries, then outputs:
+
+- `primary_label`
+- `one_liner`
+- `dominant_dimensions`
+- `key_points`
+- `top_salience`
+- `universe_summaries`
+
+This layer is descriptive. It does not forecast, backtest, produce trading signals, recommend positions, or execute trades.
+
 ## DSL Execution
 
 DSL expressions are evaluated by:
@@ -151,6 +164,8 @@ Full JSON output includes:
 - `universes`
 - `pairs`
 - `market`
+
+`market.market_profile` is the first-read summary for Markdown reports and full JSON payloads.
 
 Report files are written to:
 

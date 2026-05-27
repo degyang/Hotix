@@ -5,6 +5,7 @@ from pathlib import Path
 from hotix.engine.context_engine import score_market_context
 from hotix.engine.feature_engine import compute_index_features
 from hotix.engine.loader import load_all_data, load_all_dsl, load_registry
+from hotix.engine.market_profile_engine import build_market_profile
 from hotix.engine.models import MarketRuntime
 from hotix.engine.output_writer import (
     render_markdown,
@@ -117,6 +118,7 @@ def run_single_date(ctx: PipelineContext, date: str) -> dict:
         market, indices, pairs, ctx.dsl["contexts"]
     )
     market.policy = score_policy(market, indices, pairs, ctx.dsl["policies"])
+    market_profile = build_market_profile(date, universes)
 
     payload = {
         "date": date,
@@ -132,6 +134,7 @@ def run_single_date(ctx: PipelineContext, date: str) -> dict:
             "top_transition": market.top_transition,
             "market_regime": market.market_regime,
             "market_context": market.market_context,
+            "market_profile": market_profile,
             "policy": market.policy,
             "trace": market.trace,
         },

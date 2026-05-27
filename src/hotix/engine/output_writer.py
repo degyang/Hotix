@@ -20,6 +20,7 @@ def render_markdown(payload: dict) -> str:
     regime = market["market_regime"]
     context = market.get("market_context", {})
     policy = market.get("policy", {})
+    profile = market.get("market_profile", {})
     relation_lines = [f"- {tag}" for tag in market.get("relation_tags", [])]
     if not relation_lines:
         relation_lines = ["- 无"]
@@ -39,6 +40,33 @@ def render_markdown(payload: dict) -> str:
             for item in items
         ]
 
+    def render_lines(items):
+        return [f"- {item}" for item in items] if items else ["- 无"]
+
+    def render_salience_items(items):
+        if not items:
+            return ["- 无"]
+        lines = []
+        for item in items:
+            asset = item.get("asset_id") or item.get("asset") or "unknown"
+            dimension = item.get("dimension", "")
+            score = item.get("score", 0.0)
+            reason = item.get("reason", "")
+            lines.append(f"- {asset} [{dimension}] score={score:.2f}: {reason}")
+        return lines
+
+    universe_sections = []
+    for universe_id, universe in payload.get("universes", {}).items():
+        universe_sections.extend(
+            [
+                f"### {universe.get('name', universe_id)}",
+                *render_lines(universe.get("summary", [])),
+                "",
+            ]
+        )
+    if not universe_sections:
+        universe_sections = ["- 无"]
+
     index_sections = []
     for index_id, runtime in payload.get("indices", {}).items():
         states = runtime.get("states", {})
@@ -55,6 +83,35 @@ def render_markdown(payload: dict) -> str:
         "\n".join(
             [
                 f"# 市场结构日报 - {payload['date']}",
+                "",
+                "## 一句话画像",
+                f"- {profile.get('one_liner', '当前市场画像：暂无清晰单边结构。')}",
+                f"- Label: {profile.get('primary_label', 'no_clear_structure')}",
+                "",
+                "## 今日主导维度",
+                *render_lines(profile.get("dominant_dimensions", [])),
+                "",
+                "## 关键结论",
+                *render_lines(profile.get("key_points", [])),
+                "",
+                "## Universe 分析",
+                *universe_sections,
+                "",
+                "## Salience 明细",
+                "### Positive",
+                *render_salience_items(
+                    profile.get("top_salience", {}).get("positive", [])
+                ),
+                "",
+                "### Negative",
+                *render_salience_items(
+                    profile.get("top_salience", {}).get("negative", [])
+                ),
+                "",
+                "### Warning",
+                *render_salience_items(
+                    profile.get("top_salience", {}).get("warning", [])
+                ),
                 "",
                 "## 市场状态",
                 f"- Regime: {regime.get('label', '')}",

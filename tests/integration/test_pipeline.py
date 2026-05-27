@@ -4,6 +4,7 @@ from pathlib import Path
 import pytest
 from conftest import FIXTURES_DIR, PACKAGE_ROOT
 
+from hotix.engine.output_writer import render_markdown
 from hotix.engine.pipeline import (
     build_context,
     latest_available_date,
@@ -49,6 +50,16 @@ def test_run_single_date_includes_universe_profiles():
     assert "cross_section" in broad
     assert "salience" in broad
     assert "summary" in broad
+
+
+def test_run_single_date_includes_market_profile():
+    ctx = build_context(PACKAGE_ROOT, data_dir=FIXTURES_DIR)
+    payload = run_single_date(ctx, "2026-04-03")
+
+    profile = payload["market"]["market_profile"]
+    assert "primary_label" in profile
+    assert "dominant_dimensions" in profile
+    assert "key_points" in profile
 
 
 def test_run_single_date_market_payload_contains_regime_and_relations():
@@ -308,6 +319,8 @@ def test_run_daily_latest_uses_latest_common_date_from_external_data_dir():
     assert "cross_section" in broad
     assert "price" in broad["cross_section"]
     assert broad["summary"]
+    profile = payload["market"]["market_profile"]
+    assert profile["primary_label"]
     items = [
         item
         for index_payload in payload["indices"].values()
@@ -324,6 +337,18 @@ def test_run_daily_latest_uses_latest_common_date_from_external_data_dir():
         "score",
         "evidence",
     } <= set(items[0])
+
+
+@pytest.mark.external
+def test_real_data_latest_markdown_report_contains_market_profile():
+    ctx = build_context(PACKAGE_ROOT, data_dir=Path("~/data/index/daily").expanduser())
+    payload = run_single_date(ctx, latest_available_date(ctx))
+
+    text = render_markdown(payload)
+
+    assert "## 一句话画像" in text
+    assert "## Universe 分析" in text
+    assert payload["market"]["market_profile"]["primary_label"] in text
 
 
 def test_run_daily_requires_data_dir():

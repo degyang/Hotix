@@ -2,6 +2,8 @@
 
 This is the shortest path from a fresh checkout to a working market summary.
 
+Hotix describes current market structure. It does not forecast, backtest, generate buy/sell signals, recommend positions, or execute trades.
+
 ## 1. Install
 
 ```bash
@@ -31,6 +33,7 @@ The compact output contains:
 - `market.top_transition`
 - `market.market_regime`
 - `market.market_context`
+- `market.market_profile`
 - `market.policy`
 - `market.trace`
 

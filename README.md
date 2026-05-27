@@ -2,6 +2,8 @@
 
 Hotix is a Python rules-and-DSL market structure analysis engine. It loads index CSV data, evaluates YAML-defined rules, and produces structured JSON or Markdown summaries for one date or a date range.
 
+Hotix is a market follower, not a market predictor. It does not forecast future returns, run backtests, generate buy/sell signals, recommend positions, or execute trades.
+
 Current package name: `hotix`
 
 Deprecated package name: `market_system`
@@ -12,6 +14,7 @@ Hotix currently supports:
 
 - loading registered index CSV files from an explicit `--data-dir`
 - calculating index features, states, pattern tags, transition tags, and salience
+- building universe profiles and a market profile from observed structure
 - calculating pair features, pair states, and relation tags
 - scoring market regime, market context, and policy permissions
 - printing compact or full JSON payloads

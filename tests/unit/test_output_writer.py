@@ -54,3 +54,43 @@ def test_render_markdown_includes_market_sections():
     assert "## 今日最亮信号" in markdown
     assert "## 今日切换" in markdown
     assert "## 指数状态概览" in markdown
+
+
+def test_render_markdown_includes_market_profile_and_universe_sections():
+    payload = {
+        "date": "2026-05-27",
+        "market": {
+            "market_profile": {
+                "one_liner": "当前市场画像：breadth_weakness。",
+                "primary_label": "breadth_weakness",
+                "dominant_dimensions": ["breadth"],
+                "key_points": ["广度是当前主导负向维度。"],
+                "top_salience": {"positive": [], "negative": [], "warning": []},
+            },
+            "market_regime": {"label": "", "score": 0, "confidence": 0, "evidence": []},
+            "market_context": {},
+            "policy": {},
+            "relation_tags": [],
+            "top_positive": [],
+            "top_negative": [],
+            "top_warning": [],
+            "top_transition": [],
+        },
+        "universes": {
+            "broad_indices": {
+                "name": "宽基指数",
+                "summary": ["宽基指数内部广度偏弱。"],
+                "salience": {"top_positive": [], "top_negative": [], "top_warning": []},
+            }
+        },
+        "indices": {},
+    }
+
+    text = render_markdown(payload)
+
+    assert "## 一句话画像" in text
+    assert "breadth_weakness" in text
+    assert "## 今日主导维度" in text
+    assert "## 关键结论" in text
+    assert "## Universe 分析" in text
+    assert "宽基指数内部广度偏弱" in text

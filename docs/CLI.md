@@ -8,6 +8,8 @@ hotix
 
 The script calls `hotix.run_daily:main`.
 
+The CLI reports observed market structure only. It does not forecast, backtest, generate buy/sell signals, recommend positions, or execute trades.
+
 ## Required Data Argument
 
 Every normal run requires `--data-dir`.
@@ -53,6 +55,8 @@ Full JSON payload:
 ```bash
 hotix --date 2026-04-03 --data-dir tests/fixtures --dump-json
 ```
+
+The full payload includes `universes` and `market.market_profile` for the market-structure summary.
 
 Write JSON and Markdown reports:
 

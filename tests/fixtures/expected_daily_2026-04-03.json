@@ -4865,6 +4865,223 @@
       "runner_up": "Cash",
       "runner_up_score": 4.0
     },
+    "market_profile": {
+      "date": "2026-04-03",
+      "primary_label": "breadth_weakness",
+      "one_liner": "当前市场画像：广度偏弱是主要结构特征。",
+      "dominant_dimensions": [
+        "breadth"
+      ],
+      "condition": "market_following",
+      "key_points": [
+        "breadth 是当前主导维度。",
+        "负向显著性集中在广度或参与度维度。",
+        "当前正向显著性 0 项，负向显著性 5 项。",
+        "宽基指数内部广度偏弱。",
+        "宽基指数负向显著性多于正向显著性。"
+      ],
+      "top_salience": {
+        "positive": [],
+        "negative": [
+          {
+            "id": "000680:2026-04-03:s_pattern_up_breadth_weak",
+            "rule_id": "s_pattern_up_breadth_weak",
+            "date": "2026-04-03",
+            "scope": "asset",
+            "asset_id": "000680",
+            "dimension": "breadth",
+            "category": "divergence",
+            "polarity": "negative",
+            "score": 2.4,
+            "severity": "medium",
+            "confidence": 0.7,
+            "freshness": "current",
+            "reason": "指数上行但跟随不足",
+            "evidence": {
+              "ret_1d": 0.00021455018022220607,
+              "breadth_ratio": 0.24999999999958333
+            },
+            "tags": [
+              "weak_participation"
+            ],
+            "universe_id": null,
+            "rank": null,
+            "metric": null,
+            "direction": null,
+            "universe_name": "宽基指数"
+          },
+          {
+            "id": "000680:2026-04-03:s_pattern_up_breadth_weak",
+            "rule_id": "s_pattern_up_breadth_weak",
+            "date": "2026-04-03",
+            "scope": "asset",
+            "asset_id": "000680",
+            "dimension": "breadth",
+            "category": "divergence",
+            "polarity": "negative",
+            "score": 2.4,
+            "severity": "medium",
+            "confidence": 0.7,
+            "freshness": "current",
+            "reason": "指数上行但跟随不足",
+            "evidence": {
+              "ret_1d": 0.00021455018022220607,
+              "breadth_ratio": 0.24999999999958333
+            },
+            "tags": [
+              "weak_participation"
+            ],
+            "universe_id": null,
+            "rank": null,
+            "metric": null,
+            "direction": null,
+            "universe_name": "成长代理"
+          },
+          {
+            "id": "000001:2026-04-03:s_extreme_breadth_weak",
+            "rule_id": "s_extreme_breadth_weak",
+            "date": "2026-04-03",
+            "scope": "asset",
+            "asset_id": "000001",
+            "dimension": "breadth",
+            "category": "state",
+            "polarity": "negative",
+            "score": 2.2,
+            "severity": "high",
+            "confidence": 0.8,
+            "freshness": "current",
+            "reason": "广度极弱",
+            "evidence": {
+              "breadth_ratio": 0.15126772668665608
+            },
+            "tags": [
+              "weak_breadth"
+            ],
+            "universe_id": null,
+            "rank": null,
+            "metric": null,
+            "direction": null,
+            "universe_name": "宽基指数"
+          },
+          {
+            "id": "399001:2026-04-03:s_extreme_breadth_weak",
+            "rule_id": "s_extreme_breadth_weak",
+            "date": "2026-04-03",
+            "scope": "asset",
+            "asset_id": "399001",
+            "dimension": "breadth",
+            "category": "state",
+            "polarity": "negative",
+            "score": 2.2,
+            "severity": "high",
+            "confidence": 0.8,
+            "freshness": "current",
+            "reason": "广度极弱",
+            "evidence": {
+              "breadth_ratio": 0.12358003442336538
+            },
+            "tags": [
+              "weak_breadth"
+            ],
+            "universe_id": null,
+            "rank": null,
+            "metric": null,
+            "direction": null,
+            "universe_name": "宽基指数"
+          },
+          {
+            "id": "000016:2026-04-03:s_extreme_breadth_weak",
+            "rule_id": "s_extreme_breadth_weak",
+            "date": "2026-04-03",
+            "scope": "asset",
+            "asset_id": "000016",
+            "dimension": "breadth",
+            "category": "state",
+            "polarity": "negative",
+            "score": 2.2,
+            "severity": "high",
+            "confidence": 0.8,
+            "freshness": "current",
+            "reason": "广度极弱",
+            "evidence": {
+              "breadth_ratio": 0.11999999999760001
+            },
+            "tags": [
+              "weak_breadth"
+            ],
+            "universe_id": null,
+            "rank": null,
+            "metric": null,
+            "direction": null,
+            "universe_name": "宽基指数"
+          }
+        ],
+        "warning": [
+          {
+            "id": "000680:2026-04-03:s_pattern_up_breadth_weak",
+            "rule_id": "s_pattern_up_breadth_weak",
+            "date": "2026-04-03",
+            "scope": "asset",
+            "asset_id": "000680",
+            "dimension": "breadth",
+            "category": "divergence",
+            "polarity": "negative",
+            "score": 2.4,
+            "severity": "medium",
+            "confidence": 0.7,
+            "freshness": "current",
+            "reason": "指数上行但跟随不足",
+            "evidence": {
+              "ret_1d": 0.00021455018022220607,
+              "breadth_ratio": 0.24999999999958333
+            },
+            "tags": [
+              "weak_participation"
+            ],
+            "universe_id": null,
+            "rank": null,
+            "metric": null,
+            "direction": null,
+            "universe_name": "宽基指数"
+          },
+          {
+            "id": "000680:2026-04-03:s_pattern_up_breadth_weak",
+            "rule_id": "s_pattern_up_breadth_weak",
+            "date": "2026-04-03",
+            "scope": "asset",
+            "asset_id": "000680",
+            "dimension": "breadth",
+            "category": "divergence",
+            "polarity": "negative",
+            "score": 2.4,
+            "severity": "medium",
+            "confidence": 0.7,
+            "freshness": "current",
+            "reason": "指数上行但跟随不足",
+            "evidence": {
+              "ret_1d": 0.00021455018022220607,
+              "breadth_ratio": 0.24999999999958333
+            },
+            "tags": [
+              "weak_participation"
+            ],
+            "universe_id": null,
+            "rank": null,
+            "metric": null,
+            "direction": null,
+            "universe_name": "成长代理"
+          }
+        ]
+      },
+      "universe_summaries": [
+        "宽基指数内部广度偏弱。",
+        "宽基指数负向显著性多于正向显著性。",
+        "宽基指数主导趋势状态为down。",
+        "成长代理内部广度偏弱。",
+        "成长代理负向显著性多于正向显著性。",
+        "成长代理主导趋势状态为down。"
+      ]
+    },
     "policy": {
       "setup_permissions": {
         "breakout": {
