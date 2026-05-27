@@ -1,0 +1,230 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hotix"
+version = "0.1.0"
+description = "Hotix market structure analysis engine"
+requires-python = ">=3.11"
+authors = [
+    {name = "Hotix Team", email = "dev@hotix.local"}
+]
+license = {text = "MIT"}
+keywords = ["market-analysis", "dsl", "trading", "pipeline"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Software Development :: Libraries :: Application Frameworks",
+]
+dependencies = [
+    "numpy>=1.26.0",
+    "pandas>=2.2.0",
+    "pyarrow>=15.0.0",
+    "pyyaml>=6.0.1",
+]
+
+[project.scripts]
+hotix = "hotix.run_daily:main"
+
+[project.optional-dependencies]
+api = [
+    "fastapi>=0.104.1",
+    "uvicorn[standard]>=0.24.0",
+]
+dev = [
+    # Testing
+    "pytest>=7.4.3",
+    "pytest-cov>=4.1.0",
+    "pytest-mock>=3.12.0",
+    "pytest-asyncio>=0.21.1",
+    "pytest-xdist>=3.5.0",
+    "factory-boy>=3.3.0",
+    "faker>=20.1.0",
+    "httpx>=0.25.2",
+
+    # Code Quality
+    "black>=23.12.1",
+    "ruff>=0.1.11",
+    "mypy>=1.8.0",
+    "pandas-stubs>=2.2.0",
+    "types-PyYAML>=6.0.12",
+
+    # Development Tools
+    "pre-commit>=3.6.0",
+    "ipython>=8.18.1",
+    "ipdb>=0.13.13",
+    "rich>=13.7.0",
+
+    # Documentation
+    "mkdocs>=1.5.3",
+    "mkdocs-material>=9.4.14",
+]
+
+[project.urls]
+Homepage = "https://github.com/your-org/hotix"
+Repository = "https://github.com/your-org/hotix.git"
+Documentation = "https://hotix.readthedocs.io/"
+Issues = "https://github.com/your-org/hotix/issues"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"hotix" = [
+    "py.typed",
+    "config/*.yaml",
+    "dsl/*.yaml",
+]
+
+# ==================== Testing ====================
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "-v",
+    "--tb=short",
+    "--strict-markers",
+    "--disable-warnings",
+    "-m",
+    "not external",
+]
+markers = [
+    "unit: 单元测试 (快速, 隔离)",
+    "integration: 集成测试 (数据库, API)",
+    "e2e: 端到端测试 (完整流程)",
+    "slow: 慢速测试 (超过 1 秒)",
+    "asyncio: 异步测试",
+    "external: 依赖本机外部数据目录的测试",
+]
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore::UserWarning",
+]
+
+# ==================== Coverage ====================
+
+[tool.coverage.run]
+source = ["hotix"]
+omit = [
+    "*/tests/*",
+    "*/migrations/*",
+    "*/venv/*",
+    "*/__pycache__/*",
+    "*/manage.py",
+]
+branch = true
+
+[tool.coverage.report]
+precision = 2
+show_missing = true
+skip_covered = false
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "if settings.DEBUG",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if 0:",
+    "if __name__ == .__main__.:",
+    "class .*\\bProtocol\\):",
+    "@(abc\\.)?abstractmethod",
+]
+
+[tool.coverage.html]
+directory = "htmlcov"
+
+# ==================== Linting & Formatting ====================
+
+[tool.black]
+line-length = 88
+target-version = ["py311"]
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
+
+[tool.ruff]
+target-version = "py311"
+line-length = 88
+fix = true
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "UP",  # pyupgrade
+    "S",   # flake8-bandit (security)
+    "A",   # flake8-builtins
+    "RUF", # Ruff-specific rules
+]
+ignore = [
+    "E501",   # 行长度 (由 black 处理)
+    "B008",   # 函数调用中的可执行默认参数
+    "C901",   # 函数过于复杂 (暂时忽略, 后续重构)
+    "RUF001", # 中文报告文本保留全角标点
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["hotix"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101", "S105", "S106", "S107", "S603"]  # tests 中允许 assert, hardcoded, subprocess 等
+
+# ==================== Type Checking ====================
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+check_untyped_defs = true
+disallow_incomplete_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+strict_equality = true
+
+[[tool.mypy.overrides]]
+module = "tests.*"
+disallow_untyped_defs = false
+check_untyped_defs = false
+
+[[tool.mypy.overrides]]
+module = "*.tests.*"
+disallow_untyped_defs = false
+check_untyped_defs = false
+
+[[tool.mypy.overrides]]
+module = "faker.*"
+ignore_missing_imports = true

@@ -8,13 +8,13 @@
 python3 -m venv .venv
 source .venv/bin/activate
 python3 -m pip install --upgrade pip
-python3 -m pip install -r market_system/requirements.txt
+python3 -m pip install -e ".[dev]"
 ```
 
 ## 2. 运行单日市场摘要
 
 ```bash
-python3 -m market_system.run_daily --date 2026-04-05
+hotix --date 2026-04-03 --data-dir tests/fixtures
 ```
 
 你会看到一个简化后的市场结果，核心关注：
@@ -28,7 +28,7 @@ python3 -m market_system.run_daily --date 2026-04-05
 如果你想看所有指数、指数对、trace 和市场信息：
 
 ```bash
-python3 -m market_system.run_daily --date 2026-04-05 --dump-json
+hotix --date 2026-04-03 --data-dir tests/fixtures --dump-json
 ```
 
 这个输出适合：
@@ -39,20 +39,13 @@ python3 -m market_system.run_daily --date 2026-04-05 --dump-json
 
 ## 4. 生成日报文件
 
-把 JSON 和 Markdown 文件直接写到 `market_system/outputs/`：
+把 JSON 和 Markdown 文件写到 `src/hotix/outputs/`：
 
 ```bash
-python3 -m market_system.run_daily --start 2026-04-04 --end 2026-04-05 --write-files
+hotix --start 2026-04-02 --end 2026-04-03 --data-dir tests/fixtures --write-files
 ```
 
-生成结果：
-
-- `market_system/outputs/json/2026-04-04.json`
-- `market_system/outputs/json/2026-04-05.json`
-- `market_system/outputs/markdown/2026-04-04.md`
-- `market_system/outputs/markdown/2026-04-05.md`
-
-Markdown 日报示例内容包括：
+Markdown 日报内容包括：
 
 - 市场状态
 - 今日最亮信号 / 最暗信号 / 预警 / 切换
@@ -65,65 +58,44 @@ Markdown 日报示例内容包括：
 调试单指数：
 
 ```bash
-python3 -m market_system.run_daily --date 2026-04-05 --debug-index hs300
+hotix --date 2026-04-03 --data-dir tests/fixtures --debug-index 000300
 ```
 
 调试指数对：
 
 ```bash
-python3 -m market_system.run_daily --date 2026-04-05 --debug-pair hs300_vs_cyb
+hotix --date 2026-04-03 --data-dir tests/fixtures --debug-pair 000300_vs_399006
 ```
 
 调试市场级结果：
 
 ```bash
-python3 -m market_system.run_daily --date 2026-04-05 --debug-market
+hotix --date 2026-04-03 --data-dir tests/fixtures --debug-market
 ```
-
-这些模式适合快速判断：
-
-- 某个 feature 是否按预期计算
-- state 是否落到了正确分支
-- pair / regime 规则是否命中
 
 ## 6. 运行测试
 
 ```bash
-python3 -m pytest market_system/tests -q
+python3 -m pytest
 ```
 
-如果环境正常，当前仓库应通过全部测试。
+默认测试只使用 `tests/fixtures` 中的确定性样例数据。标记为 `external` 的测试依赖本机外部行情目录，默认不运行。
 
-## 7. 当前版本的一个重要限制
+## 7. 数据目录要求
 
-当前默认数据源是：
+CSV 文件需要提供这些标准字段：
 
-- `market_system/tests/fixtures/*.csv`
-
-这意味着它更像“可运行的引擎原型 + 样例数据”，不是直接接生产行情目录的成品版本。若要切到真实数据，需要修改 `market_system/engine/pipeline.py` 中 `build_context()` 使用的数据目录。
-
-## 8. 你最可能会用到的 4 条命令
-
-安装依赖：
-
-```bash
-python3 -m pip install -r market_system/requirements.txt
+```text
+date, open, high, low, close, volume, amount, adv, decl
 ```
 
-看单日摘要：
+加载器也会把以下外部字段名标准化：
 
-```bash
-python3 -m market_system.run_daily --date 2026-04-05
+```text
+datetime -> date
+vol -> volume
+up_count -> adv
+down_count -> decl
 ```
 
-看完整 JSON：
-
-```bash
-python3 -m market_system.run_daily --date 2026-04-05 --dump-json
-```
-
-跑测试：
-
-```bash
-python3 -m pytest market_system/tests -q
-```
+每个在 `src/hotix/config/index_registry.yaml` 中注册的指数，都需要在 `--data-dir` 指向的目录里有对应 CSV 文件，文件名可以是指数 id 或配置中的 `symbol`。
