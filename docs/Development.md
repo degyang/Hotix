@@ -57,6 +57,14 @@ Run an external-data test explicitly:
 python3 -m pytest -m external
 ```
 
+The external test reads real local data from:
+
+```text
+~/data/index/daily
+```
+
+It should not assert a fixed latest date. It computes the latest common date from the loaded files and verifies the current output contract against that real dataset.
+
 ## Adding Or Changing Rules
 
 When changing DSL behavior:
@@ -82,6 +90,22 @@ regimes.yaml
 contexts.yaml
 policies.yaml
 ```
+
+For `salience.yaml`, every scoring rule must include:
+
+```text
+id
+group
+when
+score
+bucket
+polarity
+reason
+dimension
+category
+```
+
+Optional Salience v2 fields include `severity`, `confidence`, `freshness`, `evidence_fields`, and `tags`. Engine tests should cover both the legacy score buckets and the structured `salience.items` output when these rules change.
 
 ## Adding A New Index
 

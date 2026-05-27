@@ -358,3 +358,92 @@ def test_validate_all_dsl_rejects_policy_rule_missing_set():
     }
     with pytest.raises(ConfigValidationError, match="policy rule missing set"):
         validate_all_dsl(dsl, registry)
+
+
+def test_validate_all_dsl_rejects_salience_rule_missing_dimension():
+    registry = {"indices": {"000300": {"name": "沪深300"}}}
+    dsl = {
+        "features": {"features": []},
+        "states": {"states": []},
+        "patterns": {"patterns": []},
+        "transitions": {"transitions": []},
+        "salience": {
+            "salience": {
+                "scoring_rules": [
+                    {
+                        "id": "s_bad",
+                        "group": "pattern",
+                        "when": "self.ret_1d > 0",
+                        "score": 1.0,
+                        "bucket": "positive",
+                        "polarity": "positive",
+                        "reason": "missing dimension",
+                        "category": "pattern",
+                    }
+                ]
+            }
+        },
+        "pairs": {"pairs": []},
+        "pair_features": {"pair_features": []},
+        "pair_states": {"pair_states": []},
+        "relation_tags": {"relation_tags": []},
+        "regimes": {"regimes": []},
+        "contexts": {"contexts": []},
+        "policies": {
+            "defaults": {
+                "setup_permissions": {},
+                "execution_constraints": {},
+                "vetoes": [],
+            },
+            "policies": [],
+        },
+    }
+
+    with pytest.raises(ConfigValidationError, match="salience rule missing dimension"):
+        validate_all_dsl(dsl, registry)
+
+
+def test_validate_all_dsl_rejects_invalid_salience_expression():
+    registry = {"indices": {"000300": {"name": "沪深300"}}}
+    dsl = {
+        "features": {"features": []},
+        "states": {"states": []},
+        "patterns": {"patterns": []},
+        "transitions": {"transitions": []},
+        "salience": {
+            "salience": {
+                "scoring_rules": [
+                    {
+                        "id": "s_bad",
+                        "group": "pattern",
+                        "when": "self.ret_1d >",
+                        "score": 1.0,
+                        "bucket": "positive",
+                        "polarity": "positive",
+                        "reason": "bad expression",
+                        "dimension": "price",
+                        "category": "pattern",
+                    }
+                ]
+            }
+        },
+        "pairs": {"pairs": []},
+        "pair_features": {"pair_features": []},
+        "pair_states": {"pair_states": []},
+        "relation_tags": {"relation_tags": []},
+        "regimes": {"regimes": []},
+        "contexts": {"contexts": []},
+        "policies": {
+            "defaults": {
+                "setup_permissions": {},
+                "execution_constraints": {},
+                "vetoes": [],
+            },
+            "policies": [],
+        },
+    }
+
+    with pytest.raises(
+        ConfigValidationError, match="salience s_bad invalid expression"
+    ):
+        validate_all_dsl(dsl, registry)

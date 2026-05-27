@@ -66,11 +66,32 @@ CLI args
 Runtime objects are defined in `src/hotix/engine/models.py`:
 
 - `IndexRuntime`: raw row, features, states, pattern tags, transition tags, salience, trace
+- `SalienceItem`: structured salience evidence with scope, asset, dimension, category, polarity, score, severity, confidence, reason, evidence, and optional rank metadata
 - `PairRuntime`: pair features, pair states, relation tags, trace
 - `MarketRuntime`: market relation tags, signal buckets, regime, context, policy, trace
 - `PolicyOutput`: policy permissions, execution constraints, vetoes, trace
 
 `MarketRuntime` is an explicit dataclass. The project no longer uses dynamically-created market objects in the pipeline.
+
+## Salience V2 Core
+
+Salience is the engine layer that turns market observations into ranked "what matters today" evidence. It has two complementary forms:
+
+- Rule salience: DSL rules score notable states, patterns, divergences, and transitions for each asset.
+- Cross-section salience: `build_cross_section_salience()` ranks the strongest and weakest assets for metrics such as price return, volume expansion, volatility, breadth, and position.
+
+The rule salience output keeps the original compatibility fields:
+
+```text
+total_score
+positive_score
+negative_score
+warning_score
+transition_score
+matched_rules
+```
+
+It also emits `items`, a list of structured `SalienceItem` dictionaries. These items preserve the original score bucket behavior while adding explicit dimension, category, polarity, confidence, freshness, evidence fields, and tags for downstream universe and report layers.
 
 ## DSL Execution
 

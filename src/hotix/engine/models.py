@@ -2,6 +2,32 @@ from dataclasses import asdict, dataclass, field
 
 
 @dataclass
+class SalienceItem:
+    id: str
+    rule_id: str | None
+    date: str
+    scope: str
+    asset_id: str | None
+    dimension: str
+    category: str
+    polarity: str
+    score: float
+    severity: str
+    confidence: float
+    freshness: str
+    reason: str
+    evidence: dict = field(default_factory=dict)
+    tags: list[str] = field(default_factory=list)
+    universe_id: str | None = None
+    rank: int | None = None
+    metric: str | None = None
+    direction: str | None = None
+
+    def to_dict(self) -> dict:
+        return asdict(self)
+
+
+@dataclass
 class IndexRuntime:
     id: str
     date: str

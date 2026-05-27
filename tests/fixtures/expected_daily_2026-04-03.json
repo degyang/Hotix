@@ -56,10 +56,40 @@
         "matched_rules": [
           {
             "rule_id": "s_extreme_breadth_weak",
+            "item_id": "000001:2026-04-03:s_extreme_breadth_weak",
             "score": 2.2,
             "bucket": "negative",
             "polarity": "negative",
+            "dimension": "breadth",
+            "category": "state",
             "reason": "广度极弱"
+          }
+        ],
+        "items": [
+          {
+            "id": "000001:2026-04-03:s_extreme_breadth_weak",
+            "rule_id": "s_extreme_breadth_weak",
+            "date": "2026-04-03",
+            "scope": "asset",
+            "asset_id": "000001",
+            "dimension": "breadth",
+            "category": "state",
+            "polarity": "negative",
+            "score": 2.2,
+            "severity": "high",
+            "confidence": 0.8,
+            "freshness": "current",
+            "reason": "广度极弱",
+            "evidence": {
+              "breadth_ratio": 0.15126772668665608
+            },
+            "tags": [
+              "weak_breadth"
+            ],
+            "universe_id": null,
+            "rank": null,
+            "metric": null,
+            "direction": null
           }
         ]
       },
@@ -254,9 +284,12 @@
         "salience": [
           {
             "rule_id": "s_extreme_breadth_weak",
+            "item_id": "000001:2026-04-03:s_extreme_breadth_weak",
             "score": 2.2,
             "bucket": "negative",
             "polarity": "negative",
+            "dimension": "breadth",
+            "category": "state",
             "reason": "广度极弱"
           }
         ]
@@ -317,10 +350,40 @@
         "matched_rules": [
           {
             "rule_id": "s_extreme_breadth_weak",
+            "item_id": "399001:2026-04-03:s_extreme_breadth_weak",
             "score": 2.2,
             "bucket": "negative",
             "polarity": "negative",
+            "dimension": "breadth",
+            "category": "state",
             "reason": "广度极弱"
+          }
+        ],
+        "items": [
+          {
+            "id": "399001:2026-04-03:s_extreme_breadth_weak",
+            "rule_id": "s_extreme_breadth_weak",
+            "date": "2026-04-03",
+            "scope": "asset",
+            "asset_id": "399001",
+            "dimension": "breadth",
+            "category": "state",
+            "polarity": "negative",
+            "score": 2.2,
+            "severity": "high",
+            "confidence": 0.8,
+            "freshness": "current",
+            "reason": "广度极弱",
+            "evidence": {
+              "breadth_ratio": 0.12358003442336538
+            },
+            "tags": [
+              "weak_breadth"
+            ],
+            "universe_id": null,
+            "rank": null,
+            "metric": null,
+            "direction": null
           }
         ]
       },
@@ -515,9 +578,12 @@
         "salience": [
           {
             "rule_id": "s_extreme_breadth_weak",
+            "item_id": "399001:2026-04-03:s_extreme_breadth_weak",
             "score": 2.2,
             "bucket": "negative",
             "polarity": "negative",
+            "dimension": "breadth",
+            "category": "state",
             "reason": "广度极弱"
           }
         ]
@@ -578,10 +644,40 @@
         "matched_rules": [
           {
             "rule_id": "s_extreme_breadth_weak",
+            "item_id": "000016:2026-04-03:s_extreme_breadth_weak",
             "score": 2.2,
             "bucket": "negative",
             "polarity": "negative",
+            "dimension": "breadth",
+            "category": "state",
             "reason": "广度极弱"
+          }
+        ],
+        "items": [
+          {
+            "id": "000016:2026-04-03:s_extreme_breadth_weak",
+            "rule_id": "s_extreme_breadth_weak",
+            "date": "2026-04-03",
+            "scope": "asset",
+            "asset_id": "000016",
+            "dimension": "breadth",
+            "category": "state",
+            "polarity": "negative",
+            "score": 2.2,
+            "severity": "high",
+            "confidence": 0.8,
+            "freshness": "current",
+            "reason": "广度极弱",
+            "evidence": {
+              "breadth_ratio": 0.11999999999760001
+            },
+            "tags": [
+              "weak_breadth"
+            ],
+            "universe_id": null,
+            "rank": null,
+            "metric": null,
+            "direction": null
           }
         ]
       },
@@ -776,9 +872,12 @@
         "salience": [
           {
             "rule_id": "s_extreme_breadth_weak",
+            "item_id": "000016:2026-04-03:s_extreme_breadth_weak",
             "score": 2.2,
             "bucket": "negative",
             "polarity": "negative",
+            "dimension": "breadth",
+            "category": "state",
             "reason": "广度极弱"
           }
         ]
@@ -839,10 +938,40 @@
         "matched_rules": [
           {
             "rule_id": "s_extreme_breadth_weak",
+            "item_id": "000300:2026-04-03:s_extreme_breadth_weak",
             "score": 2.2,
             "bucket": "negative",
             "polarity": "negative",
+            "dimension": "breadth",
+            "category": "state",
             "reason": "广度极弱"
+          }
+        ],
+        "items": [
+          {
+            "id": "000300:2026-04-03:s_extreme_breadth_weak",
+            "rule_id": "s_extreme_breadth_weak",
+            "date": "2026-04-03",
+            "scope": "asset",
+            "asset_id": "000300",
+            "dimension": "breadth",
+            "category": "state",
+            "polarity": "negative",
+            "score": 2.2,
+            "severity": "high",
+            "confidence": 0.8,
+            "freshness": "current",
+            "reason": "广度极弱",
+            "evidence": {
+              "breadth_ratio": 0.15384615384563932
+            },
+            "tags": [
+              "weak_breadth"
+            ],
+            "universe_id": null,
+            "rank": null,
+            "metric": null,
+            "direction": null
           }
         ]
       },
@@ -1037,9 +1166,12 @@
         "salience": [
           {
             "rule_id": "s_extreme_breadth_weak",
+            "item_id": "000300:2026-04-03:s_extreme_breadth_weak",
             "score": 2.2,
             "bucket": "negative",
             "polarity": "negative",
+            "dimension": "breadth",
+            "category": "state",
             "reason": "广度极弱"
           }
         ]
@@ -1100,10 +1232,40 @@
         "matched_rules": [
           {
             "rule_id": "s_extreme_breadth_weak",
+            "item_id": "000905:2026-04-03:s_extreme_breadth_weak",
             "score": 2.2,
             "bucket": "negative",
             "polarity": "negative",
+            "dimension": "breadth",
+            "category": "state",
             "reason": "广度极弱"
+          }
+        ],
+        "items": [
+          {
+            "id": "000905:2026-04-03:s_extreme_breadth_weak",
+            "rule_id": "s_extreme_breadth_weak",
+            "date": "2026-04-03",
+            "scope": "asset",
+            "asset_id": "000905",
+            "dimension": "breadth",
+            "category": "state",
+            "polarity": "negative",
+            "score": 2.2,
+            "severity": "high",
+            "confidence": 0.8,
+            "freshness": "current",
+            "reason": "广度极弱",
+            "evidence": {
+              "breadth_ratio": 0.1770623742451166
+            },
+            "tags": [
+              "weak_breadth"
+            ],
+            "universe_id": null,
+            "rank": null,
+            "metric": null,
+            "direction": null
           }
         ]
       },
@@ -1298,9 +1460,12 @@
         "salience": [
           {
             "rule_id": "s_extreme_breadth_weak",
+            "item_id": "000905:2026-04-03:s_extreme_breadth_weak",
             "score": 2.2,
             "bucket": "negative",
             "polarity": "negative",
+            "dimension": "breadth",
+            "category": "state",
             "reason": "广度极弱"
           }
         ]
@@ -1361,10 +1526,40 @@
         "matched_rules": [
           {
             "rule_id": "s_extreme_breadth_weak",
+            "item_id": "399006:2026-04-03:s_extreme_breadth_weak",
             "score": 2.2,
             "bucket": "negative",
             "polarity": "negative",
+            "dimension": "breadth",
+            "category": "state",
             "reason": "广度极弱"
+          }
+        ],
+        "items": [
+          {
+            "id": "399006:2026-04-03:s_extreme_breadth_weak",
+            "rule_id": "s_extreme_breadth_weak",
+            "date": "2026-04-03",
+            "scope": "asset",
+            "asset_id": "399006",
+            "dimension": "breadth",
+            "category": "state",
+            "polarity": "negative",
+            "score": 2.2,
+            "severity": "high",
+            "confidence": 0.8,
+            "freshness": "current",
+            "reason": "广度极弱",
+            "evidence": {
+              "breadth_ratio": 0.13852813852803858
+            },
+            "tags": [
+              "weak_breadth"
+            ],
+            "universe_id": null,
+            "rank": null,
+            "metric": null,
+            "direction": null
           }
         ]
       },
@@ -1559,9 +1754,12 @@
         "salience": [
           {
             "rule_id": "s_extreme_breadth_weak",
+            "item_id": "399006:2026-04-03:s_extreme_breadth_weak",
             "score": 2.2,
             "bucket": "negative",
             "polarity": "negative",
+            "dimension": "breadth",
+            "category": "state",
             "reason": "广度极弱"
           }
         ]
@@ -1622,10 +1820,40 @@
         "matched_rules": [
           {
             "rule_id": "s_extreme_breadth_weak",
+            "item_id": "000852:2026-04-03:s_extreme_breadth_weak",
             "score": 2.2,
             "bucket": "negative",
             "polarity": "negative",
+            "dimension": "breadth",
+            "category": "state",
             "reason": "广度极弱"
+          }
+        ],
+        "items": [
+          {
+            "id": "000852:2026-04-03:s_extreme_breadth_weak",
+            "rule_id": "s_extreme_breadth_weak",
+            "date": "2026-04-03",
+            "scope": "asset",
+            "asset_id": "000852",
+            "dimension": "breadth",
+            "category": "state",
+            "polarity": "negative",
+            "score": 2.2,
+            "severity": "high",
+            "confidence": 0.8,
+            "freshness": "current",
+            "reason": "广度极弱",
+            "evidence": {
+              "breadth_ratio": 0.15927419354822653
+            },
+            "tags": [
+              "weak_breadth"
+            ],
+            "universe_id": null,
+            "rank": null,
+            "metric": null,
+            "direction": null
           }
         ]
       },
@@ -1820,9 +2048,12 @@
         "salience": [
           {
             "rule_id": "s_extreme_breadth_weak",
+            "item_id": "000852:2026-04-03:s_extreme_breadth_weak",
             "score": 2.2,
             "bucket": "negative",
             "polarity": "negative",
+            "dimension": "breadth",
+            "category": "state",
             "reason": "广度极弱"
           }
         ]
@@ -1885,17 +2116,76 @@
         "matched_rules": [
           {
             "rule_id": "s_pattern_up_breadth_weak",
+            "item_id": "000680:2026-04-03:s_pattern_up_breadth_weak",
             "score": 2.4,
             "bucket": "warning",
             "polarity": "negative",
+            "dimension": "breadth",
+            "category": "divergence",
             "reason": "指数上行但跟随不足"
           },
           {
             "rule_id": "s_extreme_breadth_weak",
+            "item_id": "000680:2026-04-03:s_extreme_breadth_weak",
             "score": 2.2,
             "bucket": "negative",
             "polarity": "negative",
+            "dimension": "breadth",
+            "category": "state",
             "reason": "广度极弱"
+          }
+        ],
+        "items": [
+          {
+            "id": "000680:2026-04-03:s_pattern_up_breadth_weak",
+            "rule_id": "s_pattern_up_breadth_weak",
+            "date": "2026-04-03",
+            "scope": "asset",
+            "asset_id": "000680",
+            "dimension": "breadth",
+            "category": "divergence",
+            "polarity": "negative",
+            "score": 2.4,
+            "severity": "medium",
+            "confidence": 0.7,
+            "freshness": "current",
+            "reason": "指数上行但跟随不足",
+            "evidence": {
+              "ret_1d": 0.00021455018022220607,
+              "breadth_ratio": 0.24999999999958333
+            },
+            "tags": [
+              "weak_participation"
+            ],
+            "universe_id": null,
+            "rank": null,
+            "metric": null,
+            "direction": null
+          },
+          {
+            "id": "000680:2026-04-03:s_extreme_breadth_weak",
+            "rule_id": "s_extreme_breadth_weak",
+            "date": "2026-04-03",
+            "scope": "asset",
+            "asset_id": "000680",
+            "dimension": "breadth",
+            "category": "state",
+            "polarity": "negative",
+            "score": 2.2,
+            "severity": "high",
+            "confidence": 0.8,
+            "freshness": "current",
+            "reason": "广度极弱",
+            "evidence": {
+              "breadth_ratio": 0.24999999999958333
+            },
+            "tags": [
+              "weak_breadth"
+            ],
+            "universe_id": null,
+            "rank": null,
+            "metric": null,
+            "direction": null
           }
         ]
       },
@@ -2095,16 +2385,22 @@
         "salience": [
           {
             "rule_id": "s_pattern_up_breadth_weak",
+            "item_id": "000680:2026-04-03:s_pattern_up_breadth_weak",
             "score": 2.4,
             "bucket": "warning",
             "polarity": "negative",
+            "dimension": "breadth",
+            "category": "divergence",
             "reason": "指数上行但跟随不足"
           },
           {
             "rule_id": "s_extreme_breadth_weak",
+            "item_id": "000680:2026-04-03:s_extreme_breadth_weak",
             "score": 2.2,
             "bucket": "negative",
             "polarity": "negative",
+            "dimension": "breadth",
+            "category": "state",
             "reason": "广度极弱"
           }
         ]

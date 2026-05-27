@@ -9,6 +9,13 @@ salience:
       score: 2.6
       bucket: positive
       polarity: positive
+      dimension: price
+      category: pattern
+      severity: high
+      confidence: 0.75
+      freshness: current
+      evidence_fields: [ret_1d, amount_ratio_1_20, breadth_ratio]
+      tags: [breakout, trend]
       reason: 中继放量突破
 
     - id: s_pattern_low_repair
@@ -17,6 +24,13 @@ salience:
       score: 2.1
       bucket: positive
       polarity: positive
+      dimension: price
+      category: pattern
+      severity: medium
+      confidence: 0.70
+      freshness: current
+      evidence_fields: [ret_1d, price_percentile_120d, amount_ratio_1_20]
+      tags: [repair, low_position]
       reason: 低位放量修复
 
     - id: s_pattern_high_divergence
@@ -25,6 +39,13 @@ salience:
       score: 2.8
       bucket: warning
       polarity: negative
+      dimension: price
+      category: divergence
+      severity: high
+      confidence: 0.75
+      freshness: current
+      evidence_fields: [ret_1d, price_percentile_120d, amount_ratio_1_20]
+      tags: [high_position, divergence]
       reason: 高位放量分歧
 
     - id: s_pattern_down_on_expansion
@@ -33,6 +54,13 @@ salience:
       score: 2.5
       bucket: negative
       polarity: negative
+      dimension: price
+      category: pattern
+      severity: high
+      confidence: 0.75
+      freshness: current
+      evidence_fields: [ret_1d, amount_ratio_1_20]
+      tags: [downside, volume_expansion]
       reason: 放量下跌
 
     - id: s_pattern_up_breadth_weak
@@ -41,6 +69,13 @@ salience:
       score: 2.4
       bucket: warning
       polarity: negative
+      dimension: breadth
+      category: divergence
+      severity: medium
+      confidence: 0.70
+      freshness: current
+      evidence_fields: [ret_1d, breadth_ratio]
+      tags: [weak_participation]
       reason: 指数上行但跟随不足
 
     - id: s_extreme_breadth_weak
@@ -49,6 +84,13 @@ salience:
       score: 2.2
       bucket: negative
       polarity: negative
+      dimension: breadth
+      category: state
+      severity: high
+      confidence: 0.80
+      freshness: current
+      evidence_fields: [breadth_ratio]
+      tags: [weak_breadth]
       reason: 广度极弱
 
     - id: s_extreme_breadth_strong
@@ -57,6 +99,13 @@ salience:
       score: 2.0
       bucket: positive
       polarity: positive
+      dimension: breadth
+      category: state
+      severity: medium
+      confidence: 0.80
+      freshness: current
+      evidence_fields: [breadth_ratio]
+      tags: [strong_breadth]
       reason: 广度极强
 
     - id: s_transition_trend_to_up
@@ -65,6 +114,13 @@ salience:
       score: 2.2
       bucket: transition
       polarity: positive
+      dimension: price
+      category: transition
+      severity: medium
+      confidence: 0.70
+      freshness: current
+      evidence_fields: [ret_1d, ma_slope_20]
+      tags: [trend_transition]
       reason: 趋势转上
 
     - id: s_transition_trend_to_down
@@ -73,4 +129,11 @@ salience:
       score: 2.4
       bucket: transition
       polarity: negative
+      dimension: price
+      category: transition
+      severity: high
+      confidence: 0.70
+      freshness: current
+      evidence_fields: [ret_1d, ma_slope_20]
+      tags: [trend_transition]
       reason: 趋势转下

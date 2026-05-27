@@ -4,7 +4,12 @@ from pathlib import Path
 import pytest
 from conftest import FIXTURES_DIR, PACKAGE_ROOT
 
-from hotix.engine.pipeline import build_context, run_date_range, run_single_date
+from hotix.engine.pipeline import (
+    build_context,
+    latest_available_date,
+    run_date_range,
+    run_single_date,
+)
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 
@@ -262,6 +267,11 @@ def test_run_daily_latest_uses_latest_common_date_from_external_data_dir():
     import json
     import subprocess
 
+    external_data_dir = Path("~/data/index/daily").expanduser()
+    expected_date = latest_available_date(
+        build_context(PACKAGE_ROOT, data_dir=external_data_dir)
+    )
+
     completed = subprocess.run(
         [
             sys.executable,
@@ -269,7 +279,7 @@ def test_run_daily_latest_uses_latest_common_date_from_external_data_dir():
             "hotix.run_daily",
             "--latest",
             "--data-dir",
-            str(Path("~/data/index/daily").expanduser()),
+            str(external_data_dir),
             "--dump-json",
         ],
         capture_output=True,
@@ -278,7 +288,23 @@ def test_run_daily_latest_uses_latest_common_date_from_external_data_dir():
         cwd=REPO_ROOT,
     )
     payload = json.loads(completed.stdout)
-    assert payload["date"] == "2026-04-07"
+    assert payload["date"] == expected_date
+    items = [
+        item
+        for index_payload in payload["indices"].values()
+        for item in index_payload["salience"].get("items", [])
+    ]
+    assert items
+    assert {
+        "id",
+        "rule_id",
+        "asset_id",
+        "dimension",
+        "category",
+        "polarity",
+        "score",
+        "evidence",
+    } <= set(items[0])
 
 
 def test_run_daily_requires_data_dir():

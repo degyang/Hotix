@@ -46,6 +46,40 @@ def validate_all_dsl(dsl: dict, registry: dict) -> None:
             _validate_expression(case["when"], f"state {state['id']}")
 
     _ensure("pairs" in dsl, "dsl missing pairs")
+    _ensure(
+        "salience" in dsl and "salience" in dsl["salience"],
+        "salience.yaml missing salience",
+    )
+    _ensure(
+        "scoring_rules" in dsl["salience"]["salience"],
+        "salience.yaml missing scoring_rules",
+    )
+    _collect_unique_ids(dsl["salience"]["salience"]["scoring_rules"], "salience")
+    for rule in dsl["salience"]["salience"]["scoring_rules"]:
+        for required in [
+            "group",
+            "when",
+            "score",
+            "bucket",
+            "polarity",
+            "reason",
+            "dimension",
+            "category",
+        ]:
+            _ensure(
+                required in rule,
+                f"salience rule missing {required}: {rule.get('id')}",
+            )
+        _ensure(
+            rule["bucket"] in {"positive", "negative", "warning", "transition"},
+            f"salience rule invalid bucket: {rule.get('id')}",
+        )
+        _ensure(
+            rule["polarity"] in {"positive", "negative", "neutral"},
+            f"salience rule invalid polarity: {rule.get('id')}",
+        )
+        _validate_expression(rule["when"], f"salience {rule['id']}")
+
     _ensure("pairs" in dsl["pairs"], "pairs.yaml missing pairs")
     _collect_unique_ids(dsl["pairs"]["pairs"], "pairs")
 
