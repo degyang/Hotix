@@ -1,101 +1,100 @@
-# Hotix 快速使用指南
+# Hotix Quickstart
 
-这份指南面向第一次接触 Hotix、希望在几分钟内跑出结果的使用者。
+This is the shortest path from a fresh checkout to a working market summary.
 
-## 1. 安装依赖
+## 1. Install
 
 ```bash
+cd /Users/mac/Projects/Hotix
 python3 -m venv .venv
 source .venv/bin/activate
 python3 -m pip install --upgrade pip
 python3 -m pip install -e ".[dev]"
 ```
 
-## 2. 运行单日市场摘要
+Use `.venv/bin/hotix` directly if another `hotix` command exists on your system.
+
+## 2. Run A Single Date
 
 ```bash
 hotix --date 2026-04-03 --data-dir tests/fixtures
 ```
 
-你会看到一个简化后的市场结果，核心关注：
+The compact output contains:
 
-- `market.market_regime.label`：市场阶段标签
-- `market.market_regime.score`：Regime 得分
-- `market.market_regime.confidence`：置信度
+- `date`
+- `market.date`
+- `market.relation_tags`
+- `market.top_positive`
+- `market.top_negative`
+- `market.top_warning`
+- `market.top_transition`
+- `market.market_regime`
+- `market.market_context`
+- `market.policy`
+- `market.trace`
 
-## 3. 看完整数据
-
-如果你想看所有指数、指数对、trace 和市场信息：
+## 3. Print Full JSON
 
 ```bash
 hotix --date 2026-04-03 --data-dir tests/fixtures --dump-json
 ```
 
-这个输出适合：
+Use this when checking index features, states, tags, pair results, policy output, or trace details.
 
-- 排查 DSL 规则效果
-- 观察 feature/state/tag 的实际产物
-- 对照 golden fixture 做人工检查
+## 4. Use Latest Common Date
 
-## 4. 生成日报文件
+```bash
+hotix --latest --data-dir tests/fixtures --dump-json
+```
 
-把 JSON 和 Markdown 文件写到 `src/hotix/outputs/`：
+`--latest` selects the latest date that exists in every registered index CSV.
+
+## 5. Write Report Files
 
 ```bash
 hotix --start 2026-04-02 --end 2026-04-03 --data-dir tests/fixtures --write-files
 ```
 
-Markdown 日报内容包括：
+Files are written to:
 
-- 市场状态
-- 今日最亮信号 / 最暗信号 / 预警 / 切换
-- 结构关系
-- Regime 证据
-- 指数状态概览
+```text
+src/hotix/outputs/json/YYYY-MM-DD.json
+src/hotix/outputs/markdown/YYYY-MM-DD.md
+```
 
-## 5. 使用调试模式
+The output directory is generated runtime data. It does not need to be committed.
 
-调试单指数：
+## 6. Debug Payloads
 
 ```bash
 hotix --date 2026-04-03 --data-dir tests/fixtures --debug-index 000300
-```
-
-调试指数对：
-
-```bash
 hotix --date 2026-04-03 --data-dir tests/fixtures --debug-pair 000300_vs_399006
-```
-
-调试市场级结果：
-
-```bash
 hotix --date 2026-04-03 --data-dir tests/fixtures --debug-market
 ```
 
-## 6. 运行测试
+Use debug output to inspect rule inputs, computed features, states, matched tags, regime evidence, market context, or policy permissions.
+
+## 7. Run Tests
 
 ```bash
 python3 -m pytest
 ```
 
-默认测试只使用 `tests/fixtures` 中的确定性样例数据。标记为 `external` 的测试依赖本机外部行情目录，默认不运行。
-
-## 7. 数据目录要求
-
-CSV 文件需要提供这些标准字段：
+Expected default behavior:
 
 ```text
-date, open, high, low, close, volume, amount, adv, decl
+54 passed, 1 deselected
 ```
 
-加载器也会把以下外部字段名标准化：
+The deselected test is marked `external` and depends on a local real-data directory.
 
-```text
-datetime -> date
-vol -> volume
-up_count -> adv
-down_count -> decl
+## 8. Common Problems
+
+If `hotix --date ...` prints an unexpected error or help text, you may be running a system command instead of this project's console script. Use:
+
+```bash
+.venv/bin/hotix --date 2026-04-03 --data-dir tests/fixtures
 ```
 
-每个在 `src/hotix/config/index_registry.yaml` 中注册的指数，都需要在 `--data-dir` 指向的目录里有对应 CSV 文件，文件名可以是指数 id 或配置中的 `symbol`。
+If data loading fails, confirm that every index in `src/hotix/config/index_registry.yaml` has a matching CSV in the data directory.
