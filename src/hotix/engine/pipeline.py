@@ -22,6 +22,7 @@ from hotix.engine.regime_engine import collect_market_relation_tags, score_marke
 from hotix.engine.salience_engine import build_market_salience, score_index_salience
 from hotix.engine.state_engine import derive_index_states
 from hotix.engine.tag_engine import detect_index_patterns, detect_index_transitions
+from hotix.engine.universe_engine import build_all_universe_profiles
 from hotix.engine.validator import validate_all_dsl
 
 
@@ -93,6 +94,8 @@ def run_single_date(ctx: PipelineContext, date: str) -> dict:
         current = score_index_salience(current, ctx.dsl["salience"], prev_runtime)
         indices[index_id] = current
 
+    universes = build_all_universe_profiles(ctx.dsl["universes"], indices)
+
     pairs = {}
     for pair_def in ctx.dsl["pairs"]["pairs"]:
         pair_runtime = create_pair_runtime(pair_def, date)
@@ -118,6 +121,7 @@ def run_single_date(ctx: PipelineContext, date: str) -> dict:
     payload = {
         "date": date,
         "indices": {key: value.__dict__ for key, value in indices.items()},
+        "universes": universes,
         "pairs": {key: value.__dict__ for key, value in pairs.items()},
         "market": {
             "date": market.date,

@@ -29,6 +29,8 @@ def test_load_all_dsl_returns_expected_roots():
     assert "features" in dsl
     assert "regimes" in dsl
     assert "contexts" in dsl
+    assert "universes" in dsl
+    assert "universes" in dsl["universes"]
 
 
 def test_load_csv_data_normalizes_dates_and_order():

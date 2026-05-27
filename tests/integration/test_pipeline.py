@@ -17,7 +17,7 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 def test_run_single_date_returns_complete_payload():
     ctx = build_context(PACKAGE_ROOT, data_dir=FIXTURES_DIR)
     payload = run_single_date(ctx, "2026-04-03")
-    assert set(payload) == {"date", "indices", "pairs", "market"}
+    assert set(payload) == {"date", "indices", "pairs", "market", "universes"}
     assert set(payload["indices"]) == {
         "000001",
         "399001",
@@ -37,6 +37,18 @@ def test_run_single_date_returns_complete_payload():
         "399006_vs_000680",
         "000905_vs_000852",
     }
+
+
+def test_run_single_date_includes_universe_profiles():
+    ctx = build_context(PACKAGE_ROOT, data_dir=FIXTURES_DIR)
+    payload = run_single_date(ctx, "2026-04-03")
+
+    broad = payload["universes"]["broad_indices"]
+    assert broad["name"] == "宽基指数"
+    assert "state" in broad
+    assert "cross_section" in broad
+    assert "salience" in broad
+    assert "summary" in broad
 
 
 def test_run_single_date_market_payload_contains_regime_and_relations():
@@ -289,6 +301,13 @@ def test_run_daily_latest_uses_latest_common_date_from_external_data_dir():
     )
     payload = json.loads(completed.stdout)
     assert payload["date"] == expected_date
+    assert "broad_indices" in payload["universes"]
+    broad = payload["universes"]["broad_indices"]
+    assert len(broad["members"]) == 8
+    assert "breadth_distribution" in broad["state"]
+    assert "cross_section" in broad
+    assert "price" in broad["cross_section"]
+    assert broad["summary"]
     items = [
         item
         for index_payload in payload["indices"].values()

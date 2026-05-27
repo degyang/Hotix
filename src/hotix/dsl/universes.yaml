@@ -1,0 +1,25 @@
+version: "0.1"
+dsl_type: universes
+
+universes:
+  - id: broad_indices
+    name: 宽基指数
+    type: index_panel
+    role: market_core
+    members:
+      - "000001"
+      - "399001"
+      - "000016"
+      - "000300"
+      - "000905"
+      - "000852"
+      - "399006"
+      - "000680"
+
+  - id: growth_proxy
+    name: 成长代理
+    type: index_panel
+    role: risk_appetite
+    members:
+      - "399006"
+      - "000680"

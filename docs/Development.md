@@ -89,6 +89,7 @@ relation_tags.yaml
 regimes.yaml
 contexts.yaml
 policies.yaml
+universes.yaml
 ```
 
 For `salience.yaml`, every scoring rule must include:
@@ -106,6 +107,8 @@ category
 ```
 
 Optional Salience v2 fields include `severity`, `confidence`, `freshness`, `evidence_fields`, and `tags`. Engine tests should cover both the legacy score buckets and the structured `salience.items` output when these rules change.
+
+For `universes.yaml`, every universe must include `id`, `name`, `type`, `role`, and a non-empty `members` list. Members must reference ids from `config/index_registry.yaml`.
 
 ## Adding A New Index
 

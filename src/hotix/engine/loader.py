@@ -17,6 +17,7 @@ DSL_FILES = [
     "regimes.yaml",
     "contexts.yaml",
     "policies.yaml",
+    "universes.yaml",
 ]
 
 

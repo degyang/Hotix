@@ -2407,6 +2407,1962 @@
       }
     }
   },
+  "universes": {
+    "broad_indices": {
+      "id": "broad_indices",
+      "name": "宽基指数",
+      "type": "index_panel",
+      "role": "market_core",
+      "members": [
+        "000001",
+        "399001",
+        "000016",
+        "000300",
+        "000905",
+        "000852",
+        "399006",
+        "000680"
+      ],
+      "participation": {
+        "member_count": 8,
+        "weak_breadth_count": 8,
+        "strong_breadth_count": 0,
+        "weak_breadth_ratio": 1.0,
+        "strong_breadth_ratio": 0.0
+      },
+      "state": {
+        "trend_distribution": {
+          "down": 8
+        },
+        "position_distribution": {
+          "low_mid": 3,
+          "low": 2,
+          "mid": 3
+        },
+        "volume_distribution": {
+          "contraction": 7,
+          "extreme_contraction": 1
+        },
+        "breadth_distribution": {
+          "weak": 8
+        },
+        "volatility_distribution": {
+          "extreme": 7,
+          "high": 1
+        }
+      },
+      "salience": {
+        "items": [
+          {
+            "id": "000680:2026-04-03:s_pattern_up_breadth_weak",
+            "rule_id": "s_pattern_up_breadth_weak",
+            "date": "2026-04-03",
+            "scope": "asset",
+            "asset_id": "000680",
+            "dimension": "breadth",
+            "category": "divergence",
+            "polarity": "negative",
+            "score": 2.4,
+            "severity": "medium",
+            "confidence": 0.7,
+            "freshness": "current",
+            "reason": "指数上行但跟随不足",
+            "evidence": {
+              "ret_1d": 0.00021455018022220607,
+              "breadth_ratio": 0.24999999999958333
+            },
+            "tags": [
+              "weak_participation"
+            ],
+            "universe_id": null,
+            "rank": null,
+            "metric": null,
+            "direction": null
+          },
+          {
+            "id": "000001:2026-04-03:s_extreme_breadth_weak",
+            "rule_id": "s_extreme_breadth_weak",
+            "date": "2026-04-03",
+            "scope": "asset",
+            "asset_id": "000001",
+            "dimension": "breadth",
+            "category": "state",
+            "polarity": "negative",
+            "score": 2.2,
+            "severity": "high",
+            "confidence": 0.8,
+            "freshness": "current",
+            "reason": "广度极弱",
+            "evidence": {
+              "breadth_ratio": 0.15126772668665608
+            },
+            "tags": [
+              "weak_breadth"
+            ],
+            "universe_id": null,
+            "rank": null,
+            "metric": null,
+            "direction": null
+          },
+          {
+            "id": "399001:2026-04-03:s_extreme_breadth_weak",
+            "rule_id": "s_extreme_breadth_weak",
+            "date": "2026-04-03",
+            "scope": "asset",
+            "asset_id": "399001",
+            "dimension": "breadth",
+            "category": "state",
+            "polarity": "negative",
+            "score": 2.2,
+            "severity": "high",
+            "confidence": 0.8,
+            "freshness": "current",
+            "reason": "广度极弱",
+            "evidence": {
+              "breadth_ratio": 0.12358003442336538
+            },
+            "tags": [
+              "weak_breadth"
+            ],
+            "universe_id": null,
+            "rank": null,
+            "metric": null,
+            "direction": null
+          },
+          {
+            "id": "000016:2026-04-03:s_extreme_breadth_weak",
+            "rule_id": "s_extreme_breadth_weak",
+            "date": "2026-04-03",
+            "scope": "asset",
+            "asset_id": "000016",
+            "dimension": "breadth",
+            "category": "state",
+            "polarity": "negative",
+            "score": 2.2,
+            "severity": "high",
+            "confidence": 0.8,
+            "freshness": "current",
+            "reason": "广度极弱",
+            "evidence": {
+              "breadth_ratio": 0.11999999999760001
+            },
+            "tags": [
+              "weak_breadth"
+            ],
+            "universe_id": null,
+            "rank": null,
+            "metric": null,
+            "direction": null
+          },
+          {
+            "id": "000300:2026-04-03:s_extreme_breadth_weak",
+            "rule_id": "s_extreme_breadth_weak",
+            "date": "2026-04-03",
+            "scope": "asset",
+            "asset_id": "000300",
+            "dimension": "breadth",
+            "category": "state",
+            "polarity": "negative",
+            "score": 2.2,
+            "severity": "high",
+            "confidence": 0.8,
+            "freshness": "current",
+            "reason": "广度极弱",
+            "evidence": {
+              "breadth_ratio": 0.15384615384563932
+            },
+            "tags": [
+              "weak_breadth"
+            ],
+            "universe_id": null,
+            "rank": null,
+            "metric": null,
+            "direction": null
+          },
+          {
+            "id": "000905:2026-04-03:s_extreme_breadth_weak",
+            "rule_id": "s_extreme_breadth_weak",
+            "date": "2026-04-03",
+            "scope": "asset",
+            "asset_id": "000905",
+            "dimension": "breadth",
+            "category": "state",
+            "polarity": "negative",
+            "score": 2.2,
+            "severity": "high",
+            "confidence": 0.8,
+            "freshness": "current",
+            "reason": "广度极弱",
+            "evidence": {
+              "breadth_ratio": 0.1770623742451166
+            },
+            "tags": [
+              "weak_breadth"
+            ],
+            "universe_id": null,
+            "rank": null,
+            "metric": null,
+            "direction": null
+          },
+          {
+            "id": "000852:2026-04-03:s_extreme_breadth_weak",
+            "rule_id": "s_extreme_breadth_weak",
+            "date": "2026-04-03",
+            "scope": "asset",
+            "asset_id": "000852",
+            "dimension": "breadth",
+            "category": "state",
+            "polarity": "negative",
+            "score": 2.2,
+            "severity": "high",
+            "confidence": 0.8,
+            "freshness": "current",
+            "reason": "广度极弱",
+            "evidence": {
+              "breadth_ratio": 0.15927419354822653
+            },
+            "tags": [
+              "weak_breadth"
+            ],
+            "universe_id": null,
+            "rank": null,
+            "metric": null,
+            "direction": null
+          },
+          {
+            "id": "399006:2026-04-03:s_extreme_breadth_weak",
+            "rule_id": "s_extreme_breadth_weak",
+            "date": "2026-04-03",
+            "scope": "asset",
+            "asset_id": "399006",
+            "dimension": "breadth",
+            "category": "state",
+            "polarity": "negative",
+            "score": 2.2,
+            "severity": "high",
+            "confidence": 0.8,
+            "freshness": "current",
+            "reason": "广度极弱",
+            "evidence": {
+              "breadth_ratio": 0.13852813852803858
+            },
+            "tags": [
+              "weak_breadth"
+            ],
+            "universe_id": null,
+            "rank": null,
+            "metric": null,
+            "direction": null
+          },
+          {
+            "id": "000680:2026-04-03:s_extreme_breadth_weak",
+            "rule_id": "s_extreme_breadth_weak",
+            "date": "2026-04-03",
+            "scope": "asset",
+            "asset_id": "000680",
+            "dimension": "breadth",
+            "category": "state",
+            "polarity": "negative",
+            "score": 2.2,
+            "severity": "high",
+            "confidence": 0.8,
+            "freshness": "current",
+            "reason": "广度极弱",
+            "evidence": {
+              "breadth_ratio": 0.24999999999958333
+            },
+            "tags": [
+              "weak_breadth"
+            ],
+            "universe_id": null,
+            "rank": null,
+            "metric": null,
+            "direction": null
+          }
+        ],
+        "top_positive": [],
+        "top_negative": [
+          {
+            "id": "000680:2026-04-03:s_pattern_up_breadth_weak",
+            "rule_id": "s_pattern_up_breadth_weak",
+            "date": "2026-04-03",
+            "scope": "asset",
+            "asset_id": "000680",
+            "dimension": "breadth",
+            "category": "divergence",
+            "polarity": "negative",
+            "score": 2.4,
+            "severity": "medium",
+            "confidence": 0.7,
+            "freshness": "current",
+            "reason": "指数上行但跟随不足",
+            "evidence": {
+              "ret_1d": 0.00021455018022220607,
+              "breadth_ratio": 0.24999999999958333
+            },
+            "tags": [
+              "weak_participation"
+            ],
+            "universe_id": null,
+            "rank": null,
+            "metric": null,
+            "direction": null
+          },
+          {
+            "id": "000001:2026-04-03:s_extreme_breadth_weak",
+            "rule_id": "s_extreme_breadth_weak",
+            "date": "2026-04-03",
+            "scope": "asset",
+            "asset_id": "000001",
+            "dimension": "breadth",
+            "category": "state",
+            "polarity": "negative",
+            "score": 2.2,
+            "severity": "high",
+            "confidence": 0.8,
+            "freshness": "current",
+            "reason": "广度极弱",
+            "evidence": {
+              "breadth_ratio": 0.15126772668665608
+            },
+            "tags": [
+              "weak_breadth"
+            ],
+            "universe_id": null,
+            "rank": null,
+            "metric": null,
+            "direction": null
+          },
+          {
+            "id": "399001:2026-04-03:s_extreme_breadth_weak",
+            "rule_id": "s_extreme_breadth_weak",
+            "date": "2026-04-03",
+            "scope": "asset",
+            "asset_id": "399001",
+            "dimension": "breadth",
+            "category": "state",
+            "polarity": "negative",
+            "score": 2.2,
+            "severity": "high",
+            "confidence": 0.8,
+            "freshness": "current",
+            "reason": "广度极弱",
+            "evidence": {
+              "breadth_ratio": 0.12358003442336538
+            },
+            "tags": [
+              "weak_breadth"
+            ],
+            "universe_id": null,
+            "rank": null,
+            "metric": null,
+            "direction": null
+          },
+          {
+            "id": "000016:2026-04-03:s_extreme_breadth_weak",
+            "rule_id": "s_extreme_breadth_weak",
+            "date": "2026-04-03",
+            "scope": "asset",
+            "asset_id": "000016",
+            "dimension": "breadth",
+            "category": "state",
+            "polarity": "negative",
+            "score": 2.2,
+            "severity": "high",
+            "confidence": 0.8,
+            "freshness": "current",
+            "reason": "广度极弱",
+            "evidence": {
+              "breadth_ratio": 0.11999999999760001
+            },
+            "tags": [
+              "weak_breadth"
+            ],
+            "universe_id": null,
+            "rank": null,
+            "metric": null,
+            "direction": null
+          },
+          {
+            "id": "000300:2026-04-03:s_extreme_breadth_weak",
+            "rule_id": "s_extreme_breadth_weak",
+            "date": "2026-04-03",
+            "scope": "asset",
+            "asset_id": "000300",
+            "dimension": "breadth",
+            "category": "state",
+            "polarity": "negative",
+            "score": 2.2,
+            "severity": "high",
+            "confidence": 0.8,
+            "freshness": "current",
+            "reason": "广度极弱",
+            "evidence": {
+              "breadth_ratio": 0.15384615384563932
+            },
+            "tags": [
+              "weak_breadth"
+            ],
+            "universe_id": null,
+            "rank": null,
+            "metric": null,
+            "direction": null
+          }
+        ],
+        "top_warning": [
+          {
+            "id": "000680:2026-04-03:s_pattern_up_breadth_weak",
+            "rule_id": "s_pattern_up_breadth_weak",
+            "date": "2026-04-03",
+            "scope": "asset",
+            "asset_id": "000680",
+            "dimension": "breadth",
+            "category": "divergence",
+            "polarity": "negative",
+            "score": 2.4,
+            "severity": "medium",
+            "confidence": 0.7,
+            "freshness": "current",
+            "reason": "指数上行但跟随不足",
+            "evidence": {
+              "ret_1d": 0.00021455018022220607,
+              "breadth_ratio": 0.24999999999958333
+            },
+            "tags": [
+              "weak_participation"
+            ],
+            "universe_id": null,
+            "rank": null,
+            "metric": null,
+            "direction": null
+          }
+        ],
+        "top_divergence": [
+          {
+            "id": "000680:2026-04-03:s_pattern_up_breadth_weak",
+            "rule_id": "s_pattern_up_breadth_weak",
+            "date": "2026-04-03",
+            "scope": "asset",
+            "asset_id": "000680",
+            "dimension": "breadth",
+            "category": "divergence",
+            "polarity": "negative",
+            "score": 2.4,
+            "severity": "medium",
+            "confidence": 0.7,
+            "freshness": "current",
+            "reason": "指数上行但跟随不足",
+            "evidence": {
+              "ret_1d": 0.00021455018022220607,
+              "breadth_ratio": 0.24999999999958333
+            },
+            "tags": [
+              "weak_participation"
+            ],
+            "universe_id": null,
+            "rank": null,
+            "metric": null,
+            "direction": null
+          }
+        ]
+      },
+      "cross_section": {
+        "price": {
+          "ret_1d": {
+            "top_gain": [
+              {
+                "id": "2026-04-03:price:ret_1d:top_gain:000680",
+                "rule_id": null,
+                "date": "2026-04-03",
+                "scope": "cross_section",
+                "asset_id": "000680",
+                "dimension": "price",
+                "category": "cross_section_topn",
+                "polarity": "positive",
+                "score": 0.00021455018022220607,
+                "severity": "medium",
+                "confidence": 1.0,
+                "freshness": "current",
+                "reason": "ret_1d top_gain rank 1",
+                "evidence": {
+                  "ret_1d": 0.00021455018022220607
+                },
+                "tags": [],
+                "universe_id": null,
+                "rank": 1,
+                "metric": "ret_1d",
+                "direction": "positive"
+              },
+              {
+                "id": "2026-04-03:price:ret_1d:top_gain:399006",
+                "rule_id": null,
+                "date": "2026-04-03",
+                "scope": "cross_section",
+                "asset_id": "399006",
+                "dimension": "price",
+                "category": "cross_section_topn",
+                "polarity": "positive",
+                "score": -0.007265219926559818,
+                "severity": "medium",
+                "confidence": 1.0,
+                "freshness": "current",
+                "reason": "ret_1d top_gain rank 2",
+                "evidence": {
+                  "ret_1d": -0.007265219926559818
+                },
+                "tags": [],
+                "universe_id": null,
+                "rank": 2,
+                "metric": "ret_1d",
+                "direction": "positive"
+              },
+              {
+                "id": "2026-04-03:price:ret_1d:top_gain:000016",
+                "rule_id": null,
+                "date": "2026-04-03",
+                "scope": "cross_section",
+                "asset_id": "000016",
+                "dimension": "price",
+                "category": "cross_section_topn",
+                "polarity": "positive",
+                "score": -0.00800785014631411,
+                "severity": "medium",
+                "confidence": 1.0,
+                "freshness": "current",
+                "reason": "ret_1d top_gain rank 3",
+                "evidence": {
+                  "ret_1d": -0.00800785014631411
+                },
+                "tags": [],
+                "universe_id": null,
+                "rank": 3,
+                "metric": "ret_1d",
+                "direction": "positive"
+              }
+            ],
+            "top_decline": [
+              {
+                "id": "2026-04-03:price:ret_1d:top_decline:000852",
+                "rule_id": null,
+                "date": "2026-04-03",
+                "scope": "cross_section",
+                "asset_id": "000852",
+                "dimension": "price",
+                "category": "cross_section_topn",
+                "polarity": "negative",
+                "score": -0.011388589373273361,
+                "severity": "medium",
+                "confidence": 1.0,
+                "freshness": "current",
+                "reason": "ret_1d top_decline rank 1",
+                "evidence": {
+                  "ret_1d": -0.011388589373273361
+                },
+                "tags": [],
+                "universe_id": null,
+                "rank": 1,
+                "metric": "ret_1d",
+                "direction": "negative"
+              },
+              {
+                "id": "2026-04-03:price:ret_1d:top_decline:000001",
+                "rule_id": null,
+                "date": "2026-04-03",
+                "scope": "cross_section",
+                "asset_id": "000001",
+                "dimension": "price",
+                "category": "cross_section_topn",
+                "polarity": "negative",
+                "score": -0.009999260070063687,
+                "severity": "medium",
+                "confidence": 1.0,
+                "freshness": "current",
+                "reason": "ret_1d top_decline rank 2",
+                "evidence": {
+                  "ret_1d": -0.009999260070063687
+                },
+                "tags": [],
+                "universe_id": null,
+                "rank": 2,
+                "metric": "ret_1d",
+                "direction": "negative"
+              },
+              {
+                "id": "2026-04-03:price:ret_1d:top_decline:399001",
+                "rule_id": null,
+                "date": "2026-04-03",
+                "scope": "cross_section",
+                "asset_id": "399001",
+                "dimension": "price",
+                "category": "cross_section_topn",
+                "polarity": "negative",
+                "score": -0.009938500523172578,
+                "severity": "medium",
+                "confidence": 1.0,
+                "freshness": "current",
+                "reason": "ret_1d top_decline rank 3",
+                "evidence": {
+                  "ret_1d": -0.009938500523172578
+                },
+                "tags": [],
+                "universe_id": null,
+                "rank": 3,
+                "metric": "ret_1d",
+                "direction": "negative"
+              }
+            ]
+          }
+        },
+        "volume": {
+          "amount_ratio_1_20": {
+            "top_expansion": [
+              {
+                "id": "2026-04-03:volume:amount_ratio_1_20:top_expansion:000680",
+                "rule_id": null,
+                "date": "2026-04-03",
+                "scope": "cross_section",
+                "asset_id": "000680",
+                "dimension": "volume",
+                "category": "cross_section_topn",
+                "polarity": "positive",
+                "score": 0.8348009795329421,
+                "severity": "medium",
+                "confidence": 1.0,
+                "freshness": "current",
+                "reason": "amount_ratio_1_20 top_expansion rank 1",
+                "evidence": {
+                  "amount_ratio_1_20": 0.8348009795329421
+                },
+                "tags": [],
+                "universe_id": null,
+                "rank": 1,
+                "metric": "amount_ratio_1_20",
+                "direction": "positive"
+              },
+              {
+                "id": "2026-04-03:volume:amount_ratio_1_20:top_expansion:399006",
+                "rule_id": null,
+                "date": "2026-04-03",
+                "scope": "cross_section",
+                "asset_id": "399006",
+                "dimension": "volume",
+                "category": "cross_section_topn",
+                "polarity": "positive",
+                "score": 0.7944012359446465,
+                "severity": "medium",
+                "confidence": 1.0,
+                "freshness": "current",
+                "reason": "amount_ratio_1_20 top_expansion rank 2",
+                "evidence": {
+                  "amount_ratio_1_20": 0.7944012359446465
+                },
+                "tags": [],
+                "universe_id": null,
+                "rank": 2,
+                "metric": "amount_ratio_1_20",
+                "direction": "positive"
+              },
+              {
+                "id": "2026-04-03:volume:amount_ratio_1_20:top_expansion:399001",
+                "rule_id": null,
+                "date": "2026-04-03",
+                "scope": "cross_section",
+                "asset_id": "399001",
+                "dimension": "volume",
+                "category": "cross_section_topn",
+                "polarity": "positive",
+                "score": 0.7760167068245291,
+                "severity": "medium",
+                "confidence": 1.0,
+                "freshness": "current",
+                "reason": "amount_ratio_1_20 top_expansion rank 3",
+                "evidence": {
+                  "amount_ratio_1_20": 0.7760167068245291
+                },
+                "tags": [],
+                "universe_id": null,
+                "rank": 3,
+                "metric": "amount_ratio_1_20",
+                "direction": "positive"
+              }
+            ],
+            "top_contraction": [
+              {
+                "id": "2026-04-03:volume:amount_ratio_1_20:top_contraction:000016",
+                "rule_id": null,
+                "date": "2026-04-03",
+                "scope": "cross_section",
+                "asset_id": "000016",
+                "dimension": "volume",
+                "category": "cross_section_topn",
+                "polarity": "negative",
+                "score": 0.6266370784779345,
+                "severity": "medium",
+                "confidence": 1.0,
+                "freshness": "current",
+                "reason": "amount_ratio_1_20 top_contraction rank 1",
+                "evidence": {
+                  "amount_ratio_1_20": 0.6266370784779345
+                },
+                "tags": [],
+                "universe_id": null,
+                "rank": 1,
+                "metric": "amount_ratio_1_20",
+                "direction": "negative"
+              },
+              {
+                "id": "2026-04-03:volume:amount_ratio_1_20:top_contraction:000905",
+                "rule_id": null,
+                "date": "2026-04-03",
+                "scope": "cross_section",
+                "asset_id": "000905",
+                "dimension": "volume",
+                "category": "cross_section_topn",
+                "polarity": "negative",
+                "score": 0.6926307153311687,
+                "severity": "medium",
+                "confidence": 1.0,
+                "freshness": "current",
+                "reason": "amount_ratio_1_20 top_contraction rank 2",
+                "evidence": {
+                  "amount_ratio_1_20": 0.6926307153311687
+                },
+                "tags": [],
+                "universe_id": null,
+                "rank": 2,
+                "metric": "amount_ratio_1_20",
+                "direction": "negative"
+              },
+              {
+                "id": "2026-04-03:volume:amount_ratio_1_20:top_contraction:000300",
+                "rule_id": null,
+                "date": "2026-04-03",
+                "scope": "cross_section",
+                "asset_id": "000300",
+                "dimension": "volume",
+                "category": "cross_section_topn",
+                "polarity": "negative",
+                "score": 0.696317526302758,
+                "severity": "medium",
+                "confidence": 1.0,
+                "freshness": "current",
+                "reason": "amount_ratio_1_20 top_contraction rank 3",
+                "evidence": {
+                  "amount_ratio_1_20": 0.696317526302758
+                },
+                "tags": [],
+                "universe_id": null,
+                "rank": 3,
+                "metric": "amount_ratio_1_20",
+                "direction": "negative"
+              }
+            ]
+          }
+        },
+        "volatility": {
+          "volatility_percentile_250d": {
+            "top_high_volatility": [
+              {
+                "id": "2026-04-03:volatility:volatility_percentile_250d:top_high_volatility:000001",
+                "rule_id": null,
+                "date": "2026-04-03",
+                "scope": "cross_section",
+                "asset_id": "000001",
+                "dimension": "volatility",
+                "category": "cross_section_topn",
+                "polarity": "positive",
+                "score": 1.0,
+                "severity": "medium",
+                "confidence": 1.0,
+                "freshness": "current",
+                "reason": "volatility_percentile_250d top_high_volatility rank 1",
+                "evidence": {
+                  "volatility_percentile_250d": 1.0
+                },
+                "tags": [],
+                "universe_id": null,
+                "rank": 1,
+                "metric": "volatility_percentile_250d",
+                "direction": "positive"
+              },
+              {
+                "id": "2026-04-03:volatility:volatility_percentile_250d:top_high_volatility:000852",
+                "rule_id": null,
+                "date": "2026-04-03",
+                "scope": "cross_section",
+                "asset_id": "000852",
+                "dimension": "volatility",
+                "category": "cross_section_topn",
+                "polarity": "positive",
+                "score": 1.0,
+                "severity": "medium",
+                "confidence": 1.0,
+                "freshness": "current",
+                "reason": "volatility_percentile_250d top_high_volatility rank 2",
+                "evidence": {
+                  "volatility_percentile_250d": 1.0
+                },
+                "tags": [],
+                "universe_id": null,
+                "rank": 2,
+                "metric": "volatility_percentile_250d",
+                "direction": "positive"
+              },
+              {
+                "id": "2026-04-03:volatility:volatility_percentile_250d:top_high_volatility:000905",
+                "rule_id": null,
+                "date": "2026-04-03",
+                "scope": "cross_section",
+                "asset_id": "000905",
+                "dimension": "volatility",
+                "category": "cross_section_topn",
+                "polarity": "positive",
+                "score": 0.984,
+                "severity": "medium",
+                "confidence": 1.0,
+                "freshness": "current",
+                "reason": "volatility_percentile_250d top_high_volatility rank 3",
+                "evidence": {
+                  "volatility_percentile_250d": 0.984
+                },
+                "tags": [],
+                "universe_id": null,
+                "rank": 3,
+                "metric": "volatility_percentile_250d",
+                "direction": "positive"
+              }
+            ],
+            "top_low_volatility": [
+              {
+                "id": "2026-04-03:volatility:volatility_percentile_250d:top_low_volatility:399006",
+                "rule_id": null,
+                "date": "2026-04-03",
+                "scope": "cross_section",
+                "asset_id": "399006",
+                "dimension": "volatility",
+                "category": "cross_section_topn",
+                "polarity": "negative",
+                "score": 0.84,
+                "severity": "medium",
+                "confidence": 1.0,
+                "freshness": "current",
+                "reason": "volatility_percentile_250d top_low_volatility rank 1",
+                "evidence": {
+                  "volatility_percentile_250d": 0.84
+                },
+                "tags": [],
+                "universe_id": null,
+                "rank": 1,
+                "metric": "volatility_percentile_250d",
+                "direction": "negative"
+              },
+              {
+                "id": "2026-04-03:volatility:volatility_percentile_250d:top_low_volatility:000680",
+                "rule_id": null,
+                "date": "2026-04-03",
+                "scope": "cross_section",
+                "asset_id": "000680",
+                "dimension": "volatility",
+                "category": "cross_section_topn",
+                "polarity": "negative",
+                "score": 0.852,
+                "severity": "medium",
+                "confidence": 1.0,
+                "freshness": "current",
+                "reason": "volatility_percentile_250d top_low_volatility rank 2",
+                "evidence": {
+                  "volatility_percentile_250d": 0.852
+                },
+                "tags": [],
+                "universe_id": null,
+                "rank": 2,
+                "metric": "volatility_percentile_250d",
+                "direction": "negative"
+              },
+              {
+                "id": "2026-04-03:volatility:volatility_percentile_250d:top_low_volatility:399001",
+                "rule_id": null,
+                "date": "2026-04-03",
+                "scope": "cross_section",
+                "asset_id": "399001",
+                "dimension": "volatility",
+                "category": "cross_section_topn",
+                "polarity": "negative",
+                "score": 0.92,
+                "severity": "medium",
+                "confidence": 1.0,
+                "freshness": "current",
+                "reason": "volatility_percentile_250d top_low_volatility rank 3",
+                "evidence": {
+                  "volatility_percentile_250d": 0.92
+                },
+                "tags": [],
+                "universe_id": null,
+                "rank": 3,
+                "metric": "volatility_percentile_250d",
+                "direction": "negative"
+              }
+            ]
+          }
+        },
+        "breadth": {
+          "breadth_ratio": {
+            "top_breadth": [
+              {
+                "id": "2026-04-03:breadth:breadth_ratio:top_breadth:000680",
+                "rule_id": null,
+                "date": "2026-04-03",
+                "scope": "cross_section",
+                "asset_id": "000680",
+                "dimension": "breadth",
+                "category": "cross_section_topn",
+                "polarity": "positive",
+                "score": 0.24999999999958333,
+                "severity": "medium",
+                "confidence": 1.0,
+                "freshness": "current",
+                "reason": "breadth_ratio top_breadth rank 1",
+                "evidence": {
+                  "breadth_ratio": 0.24999999999958333
+                },
+                "tags": [],
+                "universe_id": null,
+                "rank": 1,
+                "metric": "breadth_ratio",
+                "direction": "positive"
+              },
+              {
+                "id": "2026-04-03:breadth:breadth_ratio:top_breadth:000905",
+                "rule_id": null,
+                "date": "2026-04-03",
+                "scope": "cross_section",
+                "asset_id": "000905",
+                "dimension": "breadth",
+                "category": "cross_section_topn",
+                "polarity": "positive",
+                "score": 0.1770623742451166,
+                "severity": "medium",
+                "confidence": 1.0,
+                "freshness": "current",
+                "reason": "breadth_ratio top_breadth rank 2",
+                "evidence": {
+                  "breadth_ratio": 0.1770623742451166
+                },
+                "tags": [],
+                "universe_id": null,
+                "rank": 2,
+                "metric": "breadth_ratio",
+                "direction": "positive"
+              },
+              {
+                "id": "2026-04-03:breadth:breadth_ratio:top_breadth:000852",
+                "rule_id": null,
+                "date": "2026-04-03",
+                "scope": "cross_section",
+                "asset_id": "000852",
+                "dimension": "breadth",
+                "category": "cross_section_topn",
+                "polarity": "positive",
+                "score": 0.15927419354822653,
+                "severity": "medium",
+                "confidence": 1.0,
+                "freshness": "current",
+                "reason": "breadth_ratio top_breadth rank 3",
+                "evidence": {
+                  "breadth_ratio": 0.15927419354822653
+                },
+                "tags": [],
+                "universe_id": null,
+                "rank": 3,
+                "metric": "breadth_ratio",
+                "direction": "positive"
+              }
+            ],
+            "bottom_breadth": [
+              {
+                "id": "2026-04-03:breadth:breadth_ratio:bottom_breadth:000016",
+                "rule_id": null,
+                "date": "2026-04-03",
+                "scope": "cross_section",
+                "asset_id": "000016",
+                "dimension": "breadth",
+                "category": "cross_section_topn",
+                "polarity": "negative",
+                "score": 0.11999999999760001,
+                "severity": "medium",
+                "confidence": 1.0,
+                "freshness": "current",
+                "reason": "breadth_ratio bottom_breadth rank 1",
+                "evidence": {
+                  "breadth_ratio": 0.11999999999760001
+                },
+                "tags": [],
+                "universe_id": null,
+                "rank": 1,
+                "metric": "breadth_ratio",
+                "direction": "negative"
+              },
+              {
+                "id": "2026-04-03:breadth:breadth_ratio:bottom_breadth:399001",
+                "rule_id": null,
+                "date": "2026-04-03",
+                "scope": "cross_section",
+                "asset_id": "399001",
+                "dimension": "breadth",
+                "category": "cross_section_topn",
+                "polarity": "negative",
+                "score": 0.12358003442336538,
+                "severity": "medium",
+                "confidence": 1.0,
+                "freshness": "current",
+                "reason": "breadth_ratio bottom_breadth rank 2",
+                "evidence": {
+                  "breadth_ratio": 0.12358003442336538
+                },
+                "tags": [],
+                "universe_id": null,
+                "rank": 2,
+                "metric": "breadth_ratio",
+                "direction": "negative"
+              },
+              {
+                "id": "2026-04-03:breadth:breadth_ratio:bottom_breadth:399006",
+                "rule_id": null,
+                "date": "2026-04-03",
+                "scope": "cross_section",
+                "asset_id": "399006",
+                "dimension": "breadth",
+                "category": "cross_section_topn",
+                "polarity": "negative",
+                "score": 0.13852813852803858,
+                "severity": "medium",
+                "confidence": 1.0,
+                "freshness": "current",
+                "reason": "breadth_ratio bottom_breadth rank 3",
+                "evidence": {
+                  "breadth_ratio": 0.13852813852803858
+                },
+                "tags": [],
+                "universe_id": null,
+                "rank": 3,
+                "metric": "breadth_ratio",
+                "direction": "negative"
+              }
+            ]
+          }
+        },
+        "position": {
+          "price_percentile_120d": {
+            "top_high_position": [
+              {
+                "id": "2026-04-03:position:price_percentile_120d:top_high_position:000905",
+                "rule_id": null,
+                "date": "2026-04-03",
+                "scope": "cross_section",
+                "asset_id": "000905",
+                "dimension": "position",
+                "category": "cross_section_topn",
+                "polarity": "positive",
+                "score": 0.5083333333333333,
+                "severity": "medium",
+                "confidence": 1.0,
+                "freshness": "current",
+                "reason": "price_percentile_120d top_high_position rank 1",
+                "evidence": {
+                  "price_percentile_120d": 0.5083333333333333
+                },
+                "tags": [],
+                "universe_id": null,
+                "rank": 1,
+                "metric": "price_percentile_120d",
+                "direction": "positive"
+              },
+              {
+                "id": "2026-04-03:position:price_percentile_120d:top_high_position:000680",
+                "rule_id": null,
+                "date": "2026-04-03",
+                "scope": "cross_section",
+                "asset_id": "000680",
+                "dimension": "position",
+                "category": "cross_section_topn",
+                "polarity": "positive",
+                "score": 0.44166666666666665,
+                "severity": "medium",
+                "confidence": 1.0,
+                "freshness": "current",
+                "reason": "price_percentile_120d top_high_position rank 2",
+                "evidence": {
+                  "price_percentile_120d": 0.44166666666666665
+                },
+                "tags": [],
+                "universe_id": null,
+                "rank": 2,
+                "metric": "price_percentile_120d",
+                "direction": "positive"
+              },
+              {
+                "id": "2026-04-03:position:price_percentile_120d:top_high_position:000852",
+                "rule_id": null,
+                "date": "2026-04-03",
+                "scope": "cross_section",
+                "asset_id": "000852",
+                "dimension": "position",
+                "category": "cross_section_topn",
+                "polarity": "positive",
+                "score": 0.425,
+                "severity": "medium",
+                "confidence": 1.0,
+                "freshness": "current",
+                "reason": "price_percentile_120d top_high_position rank 3",
+                "evidence": {
+                  "price_percentile_120d": 0.425
+                },
+                "tags": [],
+                "universe_id": null,
+                "rank": 3,
+                "metric": "price_percentile_120d",
+                "direction": "positive"
+              }
+            ],
+            "top_low_position": [
+              {
+                "id": "2026-04-03:position:price_percentile_120d:top_low_position:000300",
+                "rule_id": null,
+                "date": "2026-04-03",
+                "scope": "cross_section",
+                "asset_id": "000300",
+                "dimension": "position",
+                "category": "cross_section_topn",
+                "polarity": "negative",
+                "score": 0.016666666666666666,
+                "severity": "medium",
+                "confidence": 1.0,
+                "freshness": "current",
+                "reason": "price_percentile_120d top_low_position rank 1",
+                "evidence": {
+                  "price_percentile_120d": 0.016666666666666666
+                },
+                "tags": [],
+                "universe_id": null,
+                "rank": 1,
+                "metric": "price_percentile_120d",
+                "direction": "negative"
+              },
+              {
+                "id": "2026-04-03:position:price_percentile_120d:top_low_position:000016",
+                "rule_id": null,
+                "date": "2026-04-03",
+                "scope": "cross_section",
+                "asset_id": "000016",
+                "dimension": "position",
+                "category": "cross_section_topn",
+                "polarity": "negative",
+                "score": 0.03333333333333333,
+                "severity": "medium",
+                "confidence": 1.0,
+                "freshness": "current",
+                "reason": "price_percentile_120d top_low_position rank 2",
+                "evidence": {
+                  "price_percentile_120d": 0.03333333333333333
+                },
+                "tags": [],
+                "universe_id": null,
+                "rank": 2,
+                "metric": "price_percentile_120d",
+                "direction": "negative"
+              },
+              {
+                "id": "2026-04-03:position:price_percentile_120d:top_low_position:000001",
+                "rule_id": null,
+                "date": "2026-04-03",
+                "scope": "cross_section",
+                "asset_id": "000001",
+                "dimension": "position",
+                "category": "cross_section_topn",
+                "polarity": "negative",
+                "score": 0.21666666666666667,
+                "severity": "medium",
+                "confidence": 1.0,
+                "freshness": "current",
+                "reason": "price_percentile_120d top_low_position rank 3",
+                "evidence": {
+                  "price_percentile_120d": 0.21666666666666667
+                },
+                "tags": [],
+                "universe_id": null,
+                "rank": 3,
+                "metric": "price_percentile_120d",
+                "direction": "negative"
+              }
+            ]
+          }
+        }
+      },
+      "summary": [
+        "宽基指数内部广度偏弱。",
+        "宽基指数负向显著性多于正向显著性。",
+        "宽基指数主导趋势状态为down。"
+      ]
+    },
+    "growth_proxy": {
+      "id": "growth_proxy",
+      "name": "成长代理",
+      "type": "index_panel",
+      "role": "risk_appetite",
+      "members": [
+        "399006",
+        "000680"
+      ],
+      "participation": {
+        "member_count": 2,
+        "weak_breadth_count": 2,
+        "strong_breadth_count": 0,
+        "weak_breadth_ratio": 1.0,
+        "strong_breadth_ratio": 0.0
+      },
+      "state": {
+        "trend_distribution": {
+          "down": 2
+        },
+        "position_distribution": {
+          "low_mid": 1,
+          "mid": 1
+        },
+        "volume_distribution": {
+          "contraction": 2
+        },
+        "breadth_distribution": {
+          "weak": 2
+        },
+        "volatility_distribution": {
+          "high": 1,
+          "extreme": 1
+        }
+      },
+      "salience": {
+        "items": [
+          {
+            "id": "000680:2026-04-03:s_pattern_up_breadth_weak",
+            "rule_id": "s_pattern_up_breadth_weak",
+            "date": "2026-04-03",
+            "scope": "asset",
+            "asset_id": "000680",
+            "dimension": "breadth",
+            "category": "divergence",
+            "polarity": "negative",
+            "score": 2.4,
+            "severity": "medium",
+            "confidence": 0.7,
+            "freshness": "current",
+            "reason": "指数上行但跟随不足",
+            "evidence": {
+              "ret_1d": 0.00021455018022220607,
+              "breadth_ratio": 0.24999999999958333
+            },
+            "tags": [
+              "weak_participation"
+            ],
+            "universe_id": null,
+            "rank": null,
+            "metric": null,
+            "direction": null
+          },
+          {
+            "id": "399006:2026-04-03:s_extreme_breadth_weak",
+            "rule_id": "s_extreme_breadth_weak",
+            "date": "2026-04-03",
+            "scope": "asset",
+            "asset_id": "399006",
+            "dimension": "breadth",
+            "category": "state",
+            "polarity": "negative",
+            "score": 2.2,
+            "severity": "high",
+            "confidence": 0.8,
+            "freshness": "current",
+            "reason": "广度极弱",
+            "evidence": {
+              "breadth_ratio": 0.13852813852803858
+            },
+            "tags": [
+              "weak_breadth"
+            ],
+            "universe_id": null,
+            "rank": null,
+            "metric": null,
+            "direction": null
+          },
+          {
+            "id": "000680:2026-04-03:s_extreme_breadth_weak",
+            "rule_id": "s_extreme_breadth_weak",
+            "date": "2026-04-03",
+            "scope": "asset",
+            "asset_id": "000680",
+            "dimension": "breadth",
+            "category": "state",
+            "polarity": "negative",
+            "score": 2.2,
+            "severity": "high",
+            "confidence": 0.8,
+            "freshness": "current",
+            "reason": "广度极弱",
+            "evidence": {
+              "breadth_ratio": 0.24999999999958333
+            },
+            "tags": [
+              "weak_breadth"
+            ],
+            "universe_id": null,
+            "rank": null,
+            "metric": null,
+            "direction": null
+          }
+        ],
+        "top_positive": [],
+        "top_negative": [
+          {
+            "id": "000680:2026-04-03:s_pattern_up_breadth_weak",
+            "rule_id": "s_pattern_up_breadth_weak",
+            "date": "2026-04-03",
+            "scope": "asset",
+            "asset_id": "000680",
+            "dimension": "breadth",
+            "category": "divergence",
+            "polarity": "negative",
+            "score": 2.4,
+            "severity": "medium",
+            "confidence": 0.7,
+            "freshness": "current",
+            "reason": "指数上行但跟随不足",
+            "evidence": {
+              "ret_1d": 0.00021455018022220607,
+              "breadth_ratio": 0.24999999999958333
+            },
+            "tags": [
+              "weak_participation"
+            ],
+            "universe_id": null,
+            "rank": null,
+            "metric": null,
+            "direction": null
+          },
+          {
+            "id": "399006:2026-04-03:s_extreme_breadth_weak",
+            "rule_id": "s_extreme_breadth_weak",
+            "date": "2026-04-03",
+            "scope": "asset",
+            "asset_id": "399006",
+            "dimension": "breadth",
+            "category": "state",
+            "polarity": "negative",
+            "score": 2.2,
+            "severity": "high",
+            "confidence": 0.8,
+            "freshness": "current",
+            "reason": "广度极弱",
+            "evidence": {
+              "breadth_ratio": 0.13852813852803858
+            },
+            "tags": [
+              "weak_breadth"
+            ],
+            "universe_id": null,
+            "rank": null,
+            "metric": null,
+            "direction": null
+          },
+          {
+            "id": "000680:2026-04-03:s_extreme_breadth_weak",
+            "rule_id": "s_extreme_breadth_weak",
+            "date": "2026-04-03",
+            "scope": "asset",
+            "asset_id": "000680",
+            "dimension": "breadth",
+            "category": "state",
+            "polarity": "negative",
+            "score": 2.2,
+            "severity": "high",
+            "confidence": 0.8,
+            "freshness": "current",
+            "reason": "广度极弱",
+            "evidence": {
+              "breadth_ratio": 0.24999999999958333
+            },
+            "tags": [
+              "weak_breadth"
+            ],
+            "universe_id": null,
+            "rank": null,
+            "metric": null,
+            "direction": null
+          }
+        ],
+        "top_warning": [
+          {
+            "id": "000680:2026-04-03:s_pattern_up_breadth_weak",
+            "rule_id": "s_pattern_up_breadth_weak",
+            "date": "2026-04-03",
+            "scope": "asset",
+            "asset_id": "000680",
+            "dimension": "breadth",
+            "category": "divergence",
+            "polarity": "negative",
+            "score": 2.4,
+            "severity": "medium",
+            "confidence": 0.7,
+            "freshness": "current",
+            "reason": "指数上行但跟随不足",
+            "evidence": {
+              "ret_1d": 0.00021455018022220607,
+              "breadth_ratio": 0.24999999999958333
+            },
+            "tags": [
+              "weak_participation"
+            ],
+            "universe_id": null,
+            "rank": null,
+            "metric": null,
+            "direction": null
+          }
+        ],
+        "top_divergence": [
+          {
+            "id": "000680:2026-04-03:s_pattern_up_breadth_weak",
+            "rule_id": "s_pattern_up_breadth_weak",
+            "date": "2026-04-03",
+            "scope": "asset",
+            "asset_id": "000680",
+            "dimension": "breadth",
+            "category": "divergence",
+            "polarity": "negative",
+            "score": 2.4,
+            "severity": "medium",
+            "confidence": 0.7,
+            "freshness": "current",
+            "reason": "指数上行但跟随不足",
+            "evidence": {
+              "ret_1d": 0.00021455018022220607,
+              "breadth_ratio": 0.24999999999958333
+            },
+            "tags": [
+              "weak_participation"
+            ],
+            "universe_id": null,
+            "rank": null,
+            "metric": null,
+            "direction": null
+          }
+        ]
+      },
+      "cross_section": {
+        "price": {
+          "ret_1d": {
+            "top_gain": [
+              {
+                "id": "2026-04-03:price:ret_1d:top_gain:000680",
+                "rule_id": null,
+                "date": "2026-04-03",
+                "scope": "cross_section",
+                "asset_id": "000680",
+                "dimension": "price",
+                "category": "cross_section_topn",
+                "polarity": "positive",
+                "score": 0.00021455018022220607,
+                "severity": "medium",
+                "confidence": 1.0,
+                "freshness": "current",
+                "reason": "ret_1d top_gain rank 1",
+                "evidence": {
+                  "ret_1d": 0.00021455018022220607
+                },
+                "tags": [],
+                "universe_id": null,
+                "rank": 1,
+                "metric": "ret_1d",
+                "direction": "positive"
+              },
+              {
+                "id": "2026-04-03:price:ret_1d:top_gain:399006",
+                "rule_id": null,
+                "date": "2026-04-03",
+                "scope": "cross_section",
+                "asset_id": "399006",
+                "dimension": "price",
+                "category": "cross_section_topn",
+                "polarity": "positive",
+                "score": -0.007265219926559818,
+                "severity": "medium",
+                "confidence": 1.0,
+                "freshness": "current",
+                "reason": "ret_1d top_gain rank 2",
+                "evidence": {
+                  "ret_1d": -0.007265219926559818
+                },
+                "tags": [],
+                "universe_id": null,
+                "rank": 2,
+                "metric": "ret_1d",
+                "direction": "positive"
+              }
+            ],
+            "top_decline": [
+              {
+                "id": "2026-04-03:price:ret_1d:top_decline:399006",
+                "rule_id": null,
+                "date": "2026-04-03",
+                "scope": "cross_section",
+                "asset_id": "399006",
+                "dimension": "price",
+                "category": "cross_section_topn",
+                "polarity": "negative",
+                "score": -0.007265219926559818,
+                "severity": "medium",
+                "confidence": 1.0,
+                "freshness": "current",
+                "reason": "ret_1d top_decline rank 1",
+                "evidence": {
+                  "ret_1d": -0.007265219926559818
+                },
+                "tags": [],
+                "universe_id": null,
+                "rank": 1,
+                "metric": "ret_1d",
+                "direction": "negative"
+              },
+              {
+                "id": "2026-04-03:price:ret_1d:top_decline:000680",
+                "rule_id": null,
+                "date": "2026-04-03",
+                "scope": "cross_section",
+                "asset_id": "000680",
+                "dimension": "price",
+                "category": "cross_section_topn",
+                "polarity": "negative",
+                "score": 0.00021455018022220607,
+                "severity": "medium",
+                "confidence": 1.0,
+                "freshness": "current",
+                "reason": "ret_1d top_decline rank 2",
+                "evidence": {
+                  "ret_1d": 0.00021455018022220607
+                },
+                "tags": [],
+                "universe_id": null,
+                "rank": 2,
+                "metric": "ret_1d",
+                "direction": "negative"
+              }
+            ]
+          }
+        },
+        "volume": {
+          "amount_ratio_1_20": {
+            "top_expansion": [
+              {
+                "id": "2026-04-03:volume:amount_ratio_1_20:top_expansion:000680",
+                "rule_id": null,
+                "date": "2026-04-03",
+                "scope": "cross_section",
+                "asset_id": "000680",
+                "dimension": "volume",
+                "category": "cross_section_topn",
+                "polarity": "positive",
+                "score": 0.8348009795329421,
+                "severity": "medium",
+                "confidence": 1.0,
+                "freshness": "current",
+                "reason": "amount_ratio_1_20 top_expansion rank 1",
+                "evidence": {
+                  "amount_ratio_1_20": 0.8348009795329421
+                },
+                "tags": [],
+                "universe_id": null,
+                "rank": 1,
+                "metric": "amount_ratio_1_20",
+                "direction": "positive"
+              },
+              {
+                "id": "2026-04-03:volume:amount_ratio_1_20:top_expansion:399006",
+                "rule_id": null,
+                "date": "2026-04-03",
+                "scope": "cross_section",
+                "asset_id": "399006",
+                "dimension": "volume",
+                "category": "cross_section_topn",
+                "polarity": "positive",
+                "score": 0.7944012359446465,
+                "severity": "medium",
+                "confidence": 1.0,
+                "freshness": "current",
+                "reason": "amount_ratio_1_20 top_expansion rank 2",
+                "evidence": {
+                  "amount_ratio_1_20": 0.7944012359446465
+                },
+                "tags": [],
+                "universe_id": null,
+                "rank": 2,
+                "metric": "amount_ratio_1_20",
+                "direction": "positive"
+              }
+            ],
+            "top_contraction": [
+              {
+                "id": "2026-04-03:volume:amount_ratio_1_20:top_contraction:399006",
+                "rule_id": null,
+                "date": "2026-04-03",
+                "scope": "cross_section",
+                "asset_id": "399006",
+                "dimension": "volume",
+                "category": "cross_section_topn",
+                "polarity": "negative",
+                "score": 0.7944012359446465,
+                "severity": "medium",
+                "confidence": 1.0,
+                "freshness": "current",
+                "reason": "amount_ratio_1_20 top_contraction rank 1",
+                "evidence": {
+                  "amount_ratio_1_20": 0.7944012359446465
+                },
+                "tags": [],
+                "universe_id": null,
+                "rank": 1,
+                "metric": "amount_ratio_1_20",
+                "direction": "negative"
+              },
+              {
+                "id": "2026-04-03:volume:amount_ratio_1_20:top_contraction:000680",
+                "rule_id": null,
+                "date": "2026-04-03",
+                "scope": "cross_section",
+                "asset_id": "000680",
+                "dimension": "volume",
+                "category": "cross_section_topn",
+                "polarity": "negative",
+                "score": 0.8348009795329421,
+                "severity": "medium",
+                "confidence": 1.0,
+                "freshness": "current",
+                "reason": "amount_ratio_1_20 top_contraction rank 2",
+                "evidence": {
+                  "amount_ratio_1_20": 0.8348009795329421
+                },
+                "tags": [],
+                "universe_id": null,
+                "rank": 2,
+                "metric": "amount_ratio_1_20",
+                "direction": "negative"
+              }
+            ]
+          }
+        },
+        "volatility": {
+          "volatility_percentile_250d": {
+            "top_high_volatility": [
+              {
+                "id": "2026-04-03:volatility:volatility_percentile_250d:top_high_volatility:000680",
+                "rule_id": null,
+                "date": "2026-04-03",
+                "scope": "cross_section",
+                "asset_id": "000680",
+                "dimension": "volatility",
+                "category": "cross_section_topn",
+                "polarity": "positive",
+                "score": 0.852,
+                "severity": "medium",
+                "confidence": 1.0,
+                "freshness": "current",
+                "reason": "volatility_percentile_250d top_high_volatility rank 1",
+                "evidence": {
+                  "volatility_percentile_250d": 0.852
+                },
+                "tags": [],
+                "universe_id": null,
+                "rank": 1,
+                "metric": "volatility_percentile_250d",
+                "direction": "positive"
+              },
+              {
+                "id": "2026-04-03:volatility:volatility_percentile_250d:top_high_volatility:399006",
+                "rule_id": null,
+                "date": "2026-04-03",
+                "scope": "cross_section",
+                "asset_id": "399006",
+                "dimension": "volatility",
+                "category": "cross_section_topn",
+                "polarity": "positive",
+                "score": 0.84,
+                "severity": "medium",
+                "confidence": 1.0,
+                "freshness": "current",
+                "reason": "volatility_percentile_250d top_high_volatility rank 2",
+                "evidence": {
+                  "volatility_percentile_250d": 0.84
+                },
+                "tags": [],
+                "universe_id": null,
+                "rank": 2,
+                "metric": "volatility_percentile_250d",
+                "direction": "positive"
+              }
+            ],
+            "top_low_volatility": [
+              {
+                "id": "2026-04-03:volatility:volatility_percentile_250d:top_low_volatility:399006",
+                "rule_id": null,
+                "date": "2026-04-03",
+                "scope": "cross_section",
+                "asset_id": "399006",
+                "dimension": "volatility",
+                "category": "cross_section_topn",
+                "polarity": "negative",
+                "score": 0.84,
+                "severity": "medium",
+                "confidence": 1.0,
+                "freshness": "current",
+                "reason": "volatility_percentile_250d top_low_volatility rank 1",
+                "evidence": {
+                  "volatility_percentile_250d": 0.84
+                },
+                "tags": [],
+                "universe_id": null,
+                "rank": 1,
+                "metric": "volatility_percentile_250d",
+                "direction": "negative"
+              },
+              {
+                "id": "2026-04-03:volatility:volatility_percentile_250d:top_low_volatility:000680",
+                "rule_id": null,
+                "date": "2026-04-03",
+                "scope": "cross_section",
+                "asset_id": "000680",
+                "dimension": "volatility",
+                "category": "cross_section_topn",
+                "polarity": "negative",
+                "score": 0.852,
+                "severity": "medium",
+                "confidence": 1.0,
+                "freshness": "current",
+                "reason": "volatility_percentile_250d top_low_volatility rank 2",
+                "evidence": {
+                  "volatility_percentile_250d": 0.852
+                },
+                "tags": [],
+                "universe_id": null,
+                "rank": 2,
+                "metric": "volatility_percentile_250d",
+                "direction": "negative"
+              }
+            ]
+          }
+        },
+        "breadth": {
+          "breadth_ratio": {
+            "top_breadth": [
+              {
+                "id": "2026-04-03:breadth:breadth_ratio:top_breadth:000680",
+                "rule_id": null,
+                "date": "2026-04-03",
+                "scope": "cross_section",
+                "asset_id": "000680",
+                "dimension": "breadth",
+                "category": "cross_section_topn",
+                "polarity": "positive",
+                "score": 0.24999999999958333,
+                "severity": "medium",
+                "confidence": 1.0,
+                "freshness": "current",
+                "reason": "breadth_ratio top_breadth rank 1",
+                "evidence": {
+                  "breadth_ratio": 0.24999999999958333
+                },
+                "tags": [],
+                "universe_id": null,
+                "rank": 1,
+                "metric": "breadth_ratio",
+                "direction": "positive"
+              },
+              {
+                "id": "2026-04-03:breadth:breadth_ratio:top_breadth:399006",
+                "rule_id": null,
+                "date": "2026-04-03",
+                "scope": "cross_section",
+                "asset_id": "399006",
+                "dimension": "breadth",
+                "category": "cross_section_topn",
+                "polarity": "positive",
+                "score": 0.13852813852803858,
+                "severity": "medium",
+                "confidence": 1.0,
+                "freshness": "current",
+                "reason": "breadth_ratio top_breadth rank 2",
+                "evidence": {
+                  "breadth_ratio": 0.13852813852803858
+                },
+                "tags": [],
+                "universe_id": null,
+                "rank": 2,
+                "metric": "breadth_ratio",
+                "direction": "positive"
+              }
+            ],
+            "bottom_breadth": [
+              {
+                "id": "2026-04-03:breadth:breadth_ratio:bottom_breadth:399006",
+                "rule_id": null,
+                "date": "2026-04-03",
+                "scope": "cross_section",
+                "asset_id": "399006",
+                "dimension": "breadth",
+                "category": "cross_section_topn",
+                "polarity": "negative",
+                "score": 0.13852813852803858,
+                "severity": "medium",
+                "confidence": 1.0,
+                "freshness": "current",
+                "reason": "breadth_ratio bottom_breadth rank 1",
+                "evidence": {
+                  "breadth_ratio": 0.13852813852803858
+                },
+                "tags": [],
+                "universe_id": null,
+                "rank": 1,
+                "metric": "breadth_ratio",
+                "direction": "negative"
+              },
+              {
+                "id": "2026-04-03:breadth:breadth_ratio:bottom_breadth:000680",
+                "rule_id": null,
+                "date": "2026-04-03",
+                "scope": "cross_section",
+                "asset_id": "000680",
+                "dimension": "breadth",
+                "category": "cross_section_topn",
+                "polarity": "negative",
+                "score": 0.24999999999958333,
+                "severity": "medium",
+                "confidence": 1.0,
+                "freshness": "current",
+                "reason": "breadth_ratio bottom_breadth rank 2",
+                "evidence": {
+                  "breadth_ratio": 0.24999999999958333
+                },
+                "tags": [],
+                "universe_id": null,
+                "rank": 2,
+                "metric": "breadth_ratio",
+                "direction": "negative"
+              }
+            ]
+          }
+        },
+        "position": {
+          "price_percentile_120d": {
+            "top_high_position": [
+              {
+                "id": "2026-04-03:position:price_percentile_120d:top_high_position:000680",
+                "rule_id": null,
+                "date": "2026-04-03",
+                "scope": "cross_section",
+                "asset_id": "000680",
+                "dimension": "position",
+                "category": "cross_section_topn",
+                "polarity": "positive",
+                "score": 0.44166666666666665,
+                "severity": "medium",
+                "confidence": 1.0,
+                "freshness": "current",
+                "reason": "price_percentile_120d top_high_position rank 1",
+                "evidence": {
+                  "price_percentile_120d": 0.44166666666666665
+                },
+                "tags": [],
+                "universe_id": null,
+                "rank": 1,
+                "metric": "price_percentile_120d",
+                "direction": "positive"
+              },
+              {
+                "id": "2026-04-03:position:price_percentile_120d:top_high_position:399006",
+                "rule_id": null,
+                "date": "2026-04-03",
+                "scope": "cross_section",
+                "asset_id": "399006",
+                "dimension": "position",
+                "category": "cross_section_topn",
+                "polarity": "positive",
+                "score": 0.26666666666666666,
+                "severity": "medium",
+                "confidence": 1.0,
+                "freshness": "current",
+                "reason": "price_percentile_120d top_high_position rank 2",
+                "evidence": {
+                  "price_percentile_120d": 0.26666666666666666
+                },
+                "tags": [],
+                "universe_id": null,
+                "rank": 2,
+                "metric": "price_percentile_120d",
+                "direction": "positive"
+              }
+            ],
+            "top_low_position": [
+              {
+                "id": "2026-04-03:position:price_percentile_120d:top_low_position:399006",
+                "rule_id": null,
+                "date": "2026-04-03",
+                "scope": "cross_section",
+                "asset_id": "399006",
+                "dimension": "position",
+                "category": "cross_section_topn",
+                "polarity": "negative",
+                "score": 0.26666666666666666,
+                "severity": "medium",
+                "confidence": 1.0,
+                "freshness": "current",
+                "reason": "price_percentile_120d top_low_position rank 1",
+                "evidence": {
+                  "price_percentile_120d": 0.26666666666666666
+                },
+                "tags": [],
+                "universe_id": null,
+                "rank": 1,
+                "metric": "price_percentile_120d",
+                "direction": "negative"
+              },
+              {
+                "id": "2026-04-03:position:price_percentile_120d:top_low_position:000680",
+                "rule_id": null,
+                "date": "2026-04-03",
+                "scope": "cross_section",
+                "asset_id": "000680",
+                "dimension": "position",
+                "category": "cross_section_topn",
+                "polarity": "negative",
+                "score": 0.44166666666666665,
+                "severity": "medium",
+                "confidence": 1.0,
+                "freshness": "current",
+                "reason": "price_percentile_120d top_low_position rank 2",
+                "evidence": {
+                  "price_percentile_120d": 0.44166666666666665
+                },
+                "tags": [],
+                "universe_id": null,
+                "rank": 2,
+                "metric": "price_percentile_120d",
+                "direction": "negative"
+              }
+            ]
+          }
+        }
+      },
+      "summary": [
+        "成长代理内部广度偏弱。",
+        "成长代理负向显著性多于正向显著性。",
+        "成长代理主导趋势状态为down。"
+      ]
+    }
+  },
   "pairs": {
     "000300_vs_399006": {
       "id": "000300_vs_399006",

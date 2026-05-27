@@ -20,6 +20,7 @@ def test_phase1_config_files_exist():
         "dsl/regimes.yaml",
         "dsl/contexts.yaml",
         "dsl/policies.yaml",
+        "dsl/universes.yaml",
     ]
     for rel in required:
         assert (PACKAGE_ROOT / rel).exists(), rel
@@ -68,6 +69,7 @@ def test_validate_all_dsl_accepts_code_based_regime_expression():
             },
             "policies": [],
         },
+        "universes": {"universes": []},
     }
     validate_all_dsl(dsl, registry)
 
@@ -446,4 +448,43 @@ def test_validate_all_dsl_rejects_invalid_salience_expression():
     with pytest.raises(
         ConfigValidationError, match="salience s_bad invalid expression"
     ):
+        validate_all_dsl(dsl, registry)
+
+
+def test_validate_all_dsl_rejects_universe_unknown_member():
+    registry = {"indices": {"000300": {"name": "沪深300"}}}
+    dsl = {
+        "features": {"features": []},
+        "states": {"states": []},
+        "patterns": {"patterns": []},
+        "transitions": {"transitions": []},
+        "salience": {"salience": {"scoring_rules": []}},
+        "pairs": {"pairs": []},
+        "pair_features": {"pair_features": []},
+        "pair_states": {"pair_states": []},
+        "relation_tags": {"relation_tags": []},
+        "regimes": {"regimes": []},
+        "contexts": {"contexts": []},
+        "policies": {
+            "defaults": {
+                "setup_permissions": {},
+                "execution_constraints": {},
+                "vetoes": [],
+            },
+            "policies": [],
+        },
+        "universes": {
+            "universes": [
+                {
+                    "id": "bad_universe",
+                    "name": "坏组合",
+                    "type": "index_panel",
+                    "role": "test",
+                    "members": ["000300", "999999"],
+                }
+            ]
+        },
+    }
+
+    with pytest.raises(ConfigValidationError, match="unknown universe member: 999999"):
         validate_all_dsl(dsl, registry)

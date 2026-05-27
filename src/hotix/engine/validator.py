@@ -159,3 +159,25 @@ def validate_all_dsl(dsl: dict, registry: dict) -> None:
         _ensure("when" in policy, f"policy missing when: {policy.get('id')}")
         _ensure("set" in policy, f"policy rule missing set: {policy.get('id')}")
         _validate_expression(policy["when"], f"policy {policy['id']}")
+
+    _ensure(
+        "universes" in dsl and "universes" in dsl["universes"],
+        "universes.yaml missing universes",
+    )
+    _ensure(
+        isinstance(dsl["universes"]["universes"], list),
+        "universes.yaml universes must be a list",
+    )
+    _collect_unique_ids(dsl["universes"]["universes"], "universes")
+    for universe in dsl["universes"]["universes"]:
+        for required in ["name", "type", "role", "members"]:
+            _ensure(
+                required in universe,
+                f"universe missing {required}: {universe.get('id')}",
+            )
+        _ensure(
+            isinstance(universe["members"], list) and universe["members"],
+            f"universe members must be non-empty: {universe.get('id')}",
+        )
+        for member in universe["members"]:
+            _ensure(member in index_ids, f"unknown universe member: {member}")

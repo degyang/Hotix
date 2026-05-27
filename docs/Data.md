@@ -10,6 +10,21 @@ Registered indices live in:
 src/hotix/config/index_registry.yaml
 ```
 
+## Universes
+
+Configured analysis groups live in:
+
+```text
+src/hotix/dsl/universes.yaml
+```
+
+Every universe member must be a registered index id. Universe profiles are derived from the already-computed index runtimes, so they do not introduce a second data-loading path.
+
+The built-in universes are:
+
+- `broad_indices`: all currently registered index proxies.
+- `growth_proxy`: the growth-oriented subset `399006` and `000680`.
+
 Each registry entry has an index id and a `symbol`. The loader searches for CSV files in this order:
 
 1. `<symbol>.csv`
@@ -97,3 +112,5 @@ hotix --latest --data-dir ~/data/index/daily --dump-json
 ```
 
 Tests that depend on a local real-data directory are marked `external` and are excluded by the default pytest command.
+
+The external test computes the latest common date dynamically and verifies that real data can produce both structured salience and the `broad_indices` universe profile.

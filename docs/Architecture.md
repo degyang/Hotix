@@ -20,7 +20,8 @@ src/hotix/
 │  ├─ relation_tags.yaml
 │  ├─ regimes.yaml
 │  ├─ contexts.yaml
-│  └─ policies.yaml
+│  ├─ policies.yaml
+│  └─ universes.yaml
 ├─ engine/
 │  ├─ loader.py
 │  ├─ validator.py
@@ -34,6 +35,7 @@ src/hotix/
 │  ├─ regime_engine.py
 │  ├─ context_engine.py
 │  ├─ policy_engine.py
+│  ├─ universe_engine.py
 │  ├─ output_writer.py
 │  ├─ debug_report.py
 │  ├─ models.py
@@ -53,6 +55,7 @@ CLI args
   -> load all CSV data
   -> select date or date range
   -> compute index runtimes
+  -> compute universe profiles
   -> compute pair runtimes
   -> compute market salience
   -> score market regime
@@ -93,6 +96,21 @@ matched_rules
 
 It also emits `items`, a list of structured `SalienceItem` dictionaries. These items preserve the original score bucket behavior while adding explicit dimension, category, polarity, confidence, freshness, evidence fields, and tags for downstream universe and report layers.
 
+## Universe Analysis
+
+Universe Analysis makes a configured asset group the unit of market analysis. A universe is defined in `universes.yaml` with an id, name, type, role, and member list. The first built-in universes are:
+
+- `broad_indices`: all 8 registered broad index proxies.
+- `growth_proxy`: `399006` and `000680` as a growth-risk appetite proxy.
+
+`universe_engine.py` consumes already-computed `IndexRuntime` objects. It does not recalculate features or depend on pair logic. Each universe profile contains:
+
+- member list and participation counts
+- trend, position, volume, breadth, and volatility state distributions
+- grouped structured salience items
+- cross-section TOPN rankings for price, volume, volatility, breadth, and position
+- short descriptive summaries
+
 ## DSL Execution
 
 DSL expressions are evaluated by:
@@ -113,6 +131,7 @@ Specialized modules own domain-specific calculations:
 - index states: `state_engine.py`
 - index tags: `tag_engine.py`
 - salience buckets: `salience_engine.py`
+- universe analysis: `universe_engine.py`
 - pair logic: `pair_engine.py`
 - market regime: `regime_engine.py`
 - market context: `context_engine.py`
@@ -129,6 +148,7 @@ Full JSON output includes:
 
 - `date`
 - `indices`
+- `universes`
 - `pairs`
 - `market`
 
