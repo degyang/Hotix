@@ -95,8 +95,8 @@ hotix --start 2026-04-02 --end 2026-04-03 --data-dir tests/fixtures --write-file
 Generated files are written under:
 
 ```text
-src/hotix/outputs/json/
-src/hotix/outputs/markdown/
+outputs/json/
+outputs/markdown/
 ```
 
 ## Debug Commands

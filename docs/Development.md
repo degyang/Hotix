@@ -141,7 +141,7 @@ These are local generated artifacts and should not be committed:
 .pytest_cache/
 .ruff_cache/
 .mypy_cache/
-src/hotix/outputs/
+outputs/
 **/__pycache__/
 src/hotix.egg-info/
 ```

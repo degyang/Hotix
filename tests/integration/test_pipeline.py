@@ -87,8 +87,8 @@ def test_run_date_range_write_files_creates_json_and_markdown():
         ctx, start="2026-04-03", end="2026-04-03", write_files=True
     )
     assert len(results) == 1
-    assert (PACKAGE_ROOT / "outputs/json/2026-04-03.json").exists()
-    assert (PACKAGE_ROOT / "outputs/markdown/2026-04-03.md").exists()
+    assert (REPO_ROOT / "outputs/json/2026-04-03.json").exists()
+    assert (REPO_ROOT / "outputs/markdown/2026-04-03.md").exists()
 
 
 def test_run_single_date_includes_trace_and_regime_confidence():

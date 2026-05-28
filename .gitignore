@@ -34,6 +34,5 @@ references/
 src/hotix.egg-info/
 dist/
 build/
-src/hotix/outputs/
+outputs/
 today.json
-

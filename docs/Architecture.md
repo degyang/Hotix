@@ -170,8 +170,8 @@ Full JSON output includes:
 Report files are written to:
 
 ```text
-src/hotix/outputs/json/
-src/hotix/outputs/markdown/
+outputs/json/
+outputs/markdown/
 ```
 
 The `outputs/` directory is generated runtime data and should not be treated as source.

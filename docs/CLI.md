@@ -67,8 +67,8 @@ hotix --start 2026-04-02 --end 2026-04-03 --data-dir tests/fixtures --write-file
 Report paths:
 
 ```text
-src/hotix/outputs/json/YYYY-MM-DD.json
-src/hotix/outputs/markdown/YYYY-MM-DD.md
+outputs/json/YYYY-MM-DD.json
+outputs/markdown/YYYY-MM-DD.md
 ```
 
 ## Debug Modes

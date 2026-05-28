@@ -58,6 +58,12 @@ def _normalize(value):
     return value
 
 
+def _output_root(ctx: PipelineContext) -> Path:
+    if ctx.root.name == "hotix" and ctx.root.parent.name == "src":
+        return ctx.root.parent.parent
+    return ctx.root
+
+
 def build_context(
     root: str | Path, data_dir: str | Path | None = None
 ) -> PipelineContext:
@@ -159,8 +165,9 @@ def run_date_range(
         payload = run_single_date(ctx, date)
         results.append(payload)
         if write_files:
-            write_json_output(ctx.root / "outputs" / "json", date, payload)
+            output_root = _output_root(ctx)
+            write_json_output(output_root / "outputs" / "json", date, payload)
             write_markdown_output(
-                ctx.root / "outputs" / "markdown", date, render_markdown(payload)
+                output_root / "outputs" / "markdown", date, render_markdown(payload)
             )
     return results

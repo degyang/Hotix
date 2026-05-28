@@ -62,8 +62,8 @@ hotix --start 2026-04-02 --end 2026-04-03 --data-dir tests/fixtures --write-file
 Files are written to:
 
 ```text
-src/hotix/outputs/json/YYYY-MM-DD.json
-src/hotix/outputs/markdown/YYYY-MM-DD.md
+outputs/json/YYYY-MM-DD.json
+outputs/markdown/YYYY-MM-DD.md
 ```
 
 The output directory is generated runtime data. It does not need to be committed.
