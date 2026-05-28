@@ -1,70 +1,77 @@
 # Hotix Documentation
 
-This directory contains both current operational documentation and historical design records.
+> Hotix 是一个市场结构识别引擎，描述当前市场结构，不做预测、回测或交易建议。
 
-## Current Docs
+## 🚀 快速开始
 
-Use these documents for current commands, paths, and development workflow:
+**新用户？** 从这里开始：[Quickstart.md](Quickstart.md)（5分钟上手）
 
-- [Quickstart](Quickstart.md): fastest way to install and run the engine
-- [CLI Reference](CLI.md): command options and output modes
-- [Architecture](Architecture.md): package layout, pipeline flow, and engine boundaries
-- [Data Contract](Data.md): CSV format, registry behavior, and fixture data
-- [Development Guide](Development.md): tests, linting, generated files, and change workflow
-- [Historical Notes](Historical-Notes.md): how to translate old `market_system` references
+## 📚 文档导航
 
-The root [README](../README.md) is the top-level project overview.
+### 当前文档（Current）
 
-## Current Canonical Facts
+使用这些文档了解和使用当前系统：
 
-Package:
+- [Architecture](current/architecture.md) - 系统架构和模块设计
+- [CLI Reference](current/cli.md) - 命令行使用指南
+- [Data Contract](current/data.md) - 数据格式和接口
+- [Development](current/development.md) - 开发、测试、部署指南
+- [Deployment](current/deployment/) - 部署文档
 
-```text
-hotix
-```
+### 设计文档（Design）
 
-Source:
+理解系统的设计理念和架构决策：
 
-```text
-src/hotix/
-```
+- [Requirements](design/requirements.md) - 需求设计和系统目标
+- [DSL Specification](design/dsl-spec.md) - DSL 语法和规范
+- [Schema Design](design/schema.md) - 数据结构设计
+- [Salience Design](design/salience.md) - 显著性评分设计
 
-Tests:
+### 实施记录（Implementation）
 
-```text
-tests/
-```
+#### Stage I（已完成 ✅）
 
-Install:
+第一阶段构建了核心市场结构识别能力：
 
-```bash
-python3 -m pip install -e ".[dev]"
-```
+- Phase I: 核心引擎（features, states, patterns, salience, pairs, regimes）
+- Phase II: 市场上下文（contexts）
+- Phase III: 策略许可（policies）
 
-Run:
+详见：[stage-1/](stage-1/)
 
-```bash
-hotix --date 2026-04-03 --data-dir tests/fixtures
-```
+#### Stage II（已完成 ✅）
 
-Verify:
+第二阶段已完成通用市场分析与组合报告能力：
 
-```bash
-python3 -m pytest
-python3 -m ruff check .
-python3 -m ruff format --check .
-```
+- ✅ Salience v2: 结构化显著性
+- ✅ Universe Analysis: 组合分析
+- ✅ Market Profile: 市场画像
+- ✅ Report Templates: 按组合类型输出 Markdown
 
-## Historical Docs
+详见：[stage-2/](stage-2/)
 
-The following directories contain historical planning, requirements, and setup records:
+### 历史归档（Archive）
 
-```text
-docs/SRS/
-docs/superpowers/
-docs/ecc/
-```
+历史设计文档和详细实施记录：[archive/](archive/)
 
-They are useful for understanding product intent and previous implementation phases, but they may contain old paths or commands. In particular, `market_system` is no longer a live package or command.
+## 📊 当前状态
 
-When historical docs conflict with current docs, follow the current docs.
+**包名**: `hotix`  
+**命令**: `hotix --date YYYY-MM-DD --data-dir path/`  
+**测试**: 76 passed, 3 deselected  
+**最后更新**: 2026-05-28
+
+## 🎯 文档约定
+
+- ✅ = 已完成并在生产使用
+- 🚧 = 正在开发中
+- 📋 = 规划中
+- 🗄️ = 已归档（历史参考）
+
+## 🤝 贡献指南
+
+更新文档时：
+1. 在文档顶部标注最后更新日期
+2. 使用状态标识（✅ 🚧 📋 🗄️）
+3. 保持与代码的一致性
+4. 更新相关的 README.md 索引
