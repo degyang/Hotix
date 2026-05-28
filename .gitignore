@@ -23,7 +23,17 @@ htmlcov/
 .claude/
 .codex/
 
+# Lint and type cache
+.ruff_cache/
+.mypy_cache/
+
+# External references (symlinks to other repos)
+references/
+
 # Build and runtime outputs
-market_system/outputs/
+src/hotix.egg-info/
+dist/
+build/
+src/hotix/outputs/
 today.json
 
