@@ -2411,7 +2411,7 @@
     "broad_indices": {
       "id": "broad_indices",
       "name": "宽基指数",
-      "type": "index_panel",
+      "type": "index",
       "role": "market_core",
       "members": [
         "000001",
@@ -3607,7 +3607,7 @@
     "growth_proxy": {
       "id": "growth_proxy",
       "name": "成长代理",
-      "type": "index_panel",
+      "type": "index",
       "role": "risk_appetite",
       "members": [
         "399006",

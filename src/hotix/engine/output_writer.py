@@ -1,16 +1,11 @@
 import json
 from pathlib import Path
 
-INDEX_NAMES = {
-    "000001": "上证指数",
-    "399001": "深证成指",
-    "000016": "上证50",
-    "000300": "沪深300",
-    "000905": "中证500",
-    "000852": "中证1000",
-    "399006": "创业板指",
-    "000680": "科创综指",
-}
+from hotix.engine.asset_registry import format_asset_label
+from hotix.engine.report_templates import (
+    ReportTemplate,
+    select_report_template,
+)
 
 STATE_LABELS = {
     "up": "上行",
@@ -55,15 +50,17 @@ def render_markdown(payload: dict) -> str:
     context = market.get("market_context", {})
     universes = payload.get("universes", {})
     indices = payload.get("indices", {})
+    asset_names = payload.get("asset_names", {})
+    template = select_report_template(universes)
 
     sections = [
-        f"# 市场结构日报 - {payload['date']}",
+        f"# {template.title} - {payload['date']}",
         "",
         "## Executive Summary",
         f"- 市场画像：{profile.get('one_liner', '当前市场画像：暂无清晰单边结构。')}",
         f"- 结构标签：{profile.get('primary_label', 'no_clear_structure')}",
         f"- 主导维度：{_join_or_none(profile.get('dominant_dimensions', []))}",
-        *(_lines(_professional_key_points(profile, universes, indices))),
+        *(_lines(_professional_key_points(profile, universes, indices, asset_names))),
         "",
         "## 一句话画像",
         f"- {profile.get('one_liner', '当前市场画像：暂无清晰单边结构。')}",
@@ -73,26 +70,38 @@ def render_markdown(payload: dict) -> str:
         *(_lines(profile.get("dominant_dimensions", []))),
         "",
         "## 关键结论",
-        *(_lines(_professional_key_points(profile, universes, indices))),
+        *(_lines(_professional_key_points(profile, universes, indices, asset_names))),
         "",
-        "## Market Internals",
-        *(_render_market_internals(indices)),
+        f"## {template.internals_title}",
+        *(_render_market_internals(indices, template, asset_names)),
         "",
         "## Cross-Section Salience",
-        *(_render_cross_section_salience(universes)),
+        *(_render_cross_section_salience(universes, asset_names)),
         "",
-        "## Universe 分析",
-        *(_render_universe_review(universes, indices)),
+        f"## {template.universe_review_title}",
+        *(_render_universe_review(universes, indices, asset_names)),
         "",
         "## Salience Details",
         "### Positive",
-        *(_render_salience_items(profile.get("top_salience", {}).get("positive", []))),
+        *(
+            _render_salience_items(
+                profile.get("top_salience", {}).get("positive", []), template
+            )
+        ),
         "",
         "### Negative",
-        *(_render_salience_items(profile.get("top_salience", {}).get("negative", []))),
+        *(
+            _render_salience_items(
+                profile.get("top_salience", {}).get("negative", []), template
+            )
+        ),
         "",
         "### Warning",
-        *(_render_salience_items(profile.get("top_salience", {}).get("warning", []))),
+        *(
+            _render_salience_items(
+                profile.get("top_salience", {}).get("warning", []), template
+            )
+        ),
         "",
         "## Key Evidence",
         f"- Regime：{regime.get('label', '')}，score={regime.get('score', 0):.2f}，confidence={regime.get('confidence', 0):.2f}",
@@ -113,31 +122,32 @@ def render_markdown(payload: dict) -> str:
         f"- Evidence: {'；'.join(context.get('evidence', [])) if context.get('evidence') else '无'}",
         "",
         "## 今日最亮信号",
-        *(_render_market_bucket(market.get("top_positive", []))),
+        *(_render_market_bucket(market.get("top_positive", []), template, asset_names)),
         "",
         "## 今日最暗信号",
-        *(_render_market_bucket(market.get("top_negative", []))),
+        *(_render_market_bucket(market.get("top_negative", []), template, asset_names)),
         "",
         "## 今日预警",
-        *(_render_market_bucket(market.get("top_warning", []))),
+        *(_render_market_bucket(market.get("top_warning", []), template, asset_names)),
         "",
         "## 今日切换",
-        *(_render_market_bucket(market.get("top_transition", []))),
+        *(
+            _render_market_bucket(
+                market.get("top_transition", []), template, asset_names
+            )
+        ),
         "",
         "## 结构关系",
         *(_lines(market.get("relation_tags", []))),
         "",
-        "## 指数状态概览",
-        *(_render_index_overview(indices)),
+        f"## {template.overview_title}",
+        *(_render_asset_overview(indices, template, asset_names)),
     ]
     return "\n".join(sections) + "\n"
 
 
-def _asset_label(asset_id: str | None) -> str:
-    if not asset_id:
-        return "unknown"
-    name = INDEX_NAMES.get(asset_id, asset_id)
-    return f"{name}({asset_id})"
+def _asset_label(asset_id: str | None, asset_names: dict | None = None) -> str:
+    return format_asset_label(asset_id, asset_names)
 
 
 def _state_label(value) -> str:
@@ -168,12 +178,14 @@ def _lines(items: list, prefix: str | None = None) -> list[str]:
     return [f"- {item}" for item in items]
 
 
-def _render_market_internals(indices: dict) -> list[str]:
+def _render_market_internals(
+    indices: dict, template: ReportTemplate, asset_names: dict | None = None
+) -> list[str]:
     if not indices:
         return ["- 无"]
 
     lines = [
-        "| 指数 | 涨跌幅 | 广度 | 上涨/下跌家数 | 量能 | 波动 | 位置 | 趋势 |",
+        f"| {template.member_label} | 涨跌幅 | 广度 | 上涨/下跌家数 | 量能 | 波动 | 位置 | 趋势 |",
         "|---|---:|---:|---:|---:|---:|---:|---|",
     ]
     for index_id, runtime in indices.items():
@@ -185,7 +197,7 @@ def _render_market_internals(indices: dict) -> list[str]:
             "| "
             + " | ".join(
                 [
-                    _asset_label(index_id),
+                    _asset_label(index_id, asset_names),
                     _format_percent(features.get("ret_1d")),
                     _format_percent(features.get("breadth_ratio")),
                     adv_decl,
@@ -200,7 +212,9 @@ def _render_market_internals(indices: dict) -> list[str]:
     return lines
 
 
-def _render_cross_section_salience(universes: dict) -> list[str]:
+def _render_cross_section_salience(
+    universes: dict, asset_names: dict | None = None
+) -> list[str]:
     lines = []
     for universe_id, universe in universes.items():
         cross_section = universe.get("cross_section", {})
@@ -210,20 +224,22 @@ def _render_cross_section_salience(universes: dict) -> list[str]:
         lines.extend(
             _render_metric_topn(
                 cross_section.get("price", {}).get("ret_1d", {}),
-                "涨幅 TOP",
-                "跌幅 TOP",
+                "涨幅 TOPN",
+                "跌幅 TOPN",
                 positive_key="top_gain",
                 negative_key="top_decline",
                 percent=True,
+                asset_names=asset_names,
             )
         )
         lines.extend(
             _render_metric_topn(
                 cross_section.get("volume", {}).get("amount_ratio_1_20", {}),
-                "量能放大 TOP",
-                "量能收缩 TOP",
+                "量能放大 TOPN",
+                "量能收缩 TOPN",
                 positive_key="top_expansion",
                 negative_key="top_contraction",
+                asset_names=asset_names,
             )
         )
         lines.extend(
@@ -231,31 +247,34 @@ def _render_cross_section_salience(universes: dict) -> list[str]:
                 cross_section.get("volatility", {}).get(
                     "volatility_percentile_250d", {}
                 ),
-                "高波动 TOP",
-                "低波动 TOP",
+                "高波动 TOPN",
+                "低波动 TOPN",
                 positive_key="top_high_volatility",
                 negative_key="top_low_volatility",
                 percent=True,
+                asset_names=asset_names,
             )
         )
         lines.extend(
             _render_metric_topn(
                 cross_section.get("breadth", {}).get("breadth_ratio", {}),
-                "广度强 TOP",
-                "广度弱 TOP",
+                "广度强 TOPN",
+                "广度弱 TOPN",
                 positive_key="top_breadth",
                 negative_key="bottom_breadth",
                 percent=True,
+                asset_names=asset_names,
             )
         )
         lines.extend(
             _render_metric_topn(
                 cross_section.get("position", {}).get("price_percentile_120d", {}),
-                "高位 TOP",
-                "低位 TOP",
+                "高位 TOPN",
+                "低位 TOPN",
                 positive_key="top_high_position",
                 negative_key="top_low_position",
                 percent=True,
+                asset_names=asset_names,
             )
         )
         lines.append("")
@@ -270,20 +289,35 @@ def _render_metric_topn(
     positive_key: str,
     negative_key: str,
     percent: bool = False,
+    asset_names: dict | None = None,
 ) -> list[str]:
     if not bucket:
         return []
     return [
         f"#### {positive_title}",
-        *(_render_topn_items(bucket.get(positive_key, []), percent=percent)),
+        *(
+            _render_topn_items(
+                bucket.get(positive_key, []),
+                percent=percent,
+                asset_names=asset_names,
+            )
+        ),
         "",
         f"#### {negative_title}",
-        *(_render_topn_items(bucket.get(negative_key, []), percent=percent)),
+        *(
+            _render_topn_items(
+                bucket.get(negative_key, []),
+                percent=percent,
+                asset_names=asset_names,
+            )
+        ),
         "",
     ]
 
 
-def _render_topn_items(items: list[dict], percent: bool = False) -> list[str]:
+def _render_topn_items(
+    items: list[dict], percent: bool = False, asset_names: dict | None = None
+) -> list[str]:
     if not items:
         return ["- 无"]
     lines = []
@@ -291,17 +325,21 @@ def _render_topn_items(items: list[dict], percent: bool = False) -> list[str]:
         value = item.get("score")
         formatted_value = _format_percent(value) if percent else _format_number(value)
         lines.append(
-            f"- #{item.get('rank', '?')} {_asset_label(item.get('asset_id'))}: {formatted_value}"
+            f"- #{item.get('rank', '?')} {_asset_label(item.get('asset_id'), asset_names)}: {formatted_value}"
         )
     return lines
 
 
-def _render_universe_review(universes: dict, indices: dict) -> list[str]:
+def _render_universe_review(
+    universes: dict, indices: dict, asset_names: dict | None = None
+) -> list[str]:
     if not universes:
         return ["- 无"]
     lines = []
     for universe_id, universe in universes.items():
-        member_names = [_asset_label(member) for member in universe.get("members", [])]
+        member_names = [
+            _asset_label(member, asset_names) for member in universe.get("members", [])
+        ]
         lines.extend(
             [
                 f"### {_universe_display_name(universe_id, universe)}",
@@ -309,48 +347,56 @@ def _render_universe_review(universes: dict, indices: dict) -> list[str]:
                 *(
                     _lines(
                         [
-                            _professionalize_summary(summary, universe, indices)
+                            _professionalize_summary(
+                                summary, universe, indices, asset_names
+                            )
                             for summary in universe.get("summary", [])
                         ]
                     )
                 ),
-                *(_render_universe_contributors(universe, indices)),
+                *(_render_universe_contributors(universe, indices, asset_names)),
                 "",
             ]
         )
     return lines
 
 
-def _render_universe_contributors(universe: dict, indices: dict) -> list[str]:
+def _render_universe_contributors(
+    universe: dict, indices: dict, asset_names: dict | None = None
+) -> list[str]:
     weak_members = []
     for member in universe.get("members", []):
         states = indices.get(member, {}).get("states", {})
         if states.get("breadth_state") == "weak":
-            weak_members.append(_asset_label(member))
+            weak_members.append(_asset_label(member, asset_names))
     if not weak_members:
         return []
     return [f"- 广度弱贡献：{_join_or_none(weak_members)}"]
 
 
 def _professional_key_points(
-    profile: dict, universes: dict, indices: dict
+    profile: dict, universes: dict, indices: dict, asset_names: dict | None = None
 ) -> list[str]:
     points = []
     for point in profile.get("key_points", []):
         if "宽基指数" in point and "broad_indices" in universes:
             points.append(
-                _professionalize_summary(point, universes["broad_indices"], indices)
+                _professionalize_summary(
+                    point, universes["broad_indices"], indices, asset_names
+                )
             )
         else:
             points.append(point)
     return points
 
 
-def _professionalize_summary(summary: str, universe: dict, indices: dict) -> str:
+def _professionalize_summary(
+    summary: str, universe: dict, indices: dict, asset_names: dict | None = None
+) -> str:
     if "宽基指数" not in summary:
         return summary
     member_labels = [
-        _asset_label(member)
+        _asset_label(member, asset_names)
         for member in universe.get("members", [])
         if member in indices
     ]
@@ -373,7 +419,13 @@ def _universe_display_name(universe_id: str, universe: dict) -> str:
     return universe.get("name", universe_id)
 
 
-def _render_salience_items(items: list[dict]) -> list[str]:
+def _contextualize_text(text: str, template: ReportTemplate) -> str:
+    if template.universe_type == "index":
+        return text
+    return text.replace("指数", template.member_label)
+
+
+def _render_salience_items(items: list[dict], template: ReportTemplate) -> list[str]:
     deduped = _dedupe_salience_items(items)
     if not deduped:
         return ["- 无"]
@@ -381,7 +433,7 @@ def _render_salience_items(items: list[dict]) -> list[str]:
     for item in deduped:
         dimension = item.get("dimension", "")
         score = item.get("score", 0.0)
-        reason = item.get("reason", "")
+        reason = _contextualize_text(item.get("reason", ""), template)
         lines.append(
             f"- {_asset_label(item.get('asset_id') or item.get('asset'))} [{dimension}] score={score:.2f}: {reason}"
         )
@@ -405,26 +457,36 @@ def _dedupe_salience_items(items: list[dict]) -> list[dict]:
     return deduped
 
 
-def _render_market_bucket(items: list[dict]) -> list[str]:
+def _render_market_bucket(
+    items: list[dict], template: ReportTemplate, asset_names: dict | None = None
+) -> list[str]:
     if not items:
         return ["- 无"]
     return [
-        f"- {_asset_label(item.get('asset'))}（score={item['score']:.2f}）：{'；'.join(item.get('reasons', [])) or '无'}"
+        f"- {_asset_label(item.get('asset'), asset_names)}（score={item['score']:.2f}）：{_contextualize_text('；'.join(item.get('reasons', [])) or '无', template)}"
         for item in items
     ]
 
 
-def _render_index_overview(indices: dict) -> list[str]:
+def _render_asset_overview(
+    indices: dict, template: ReportTemplate, asset_names: dict | None = None
+) -> list[str]:
     if not indices:
         return ["- 无"]
     lines = []
     for index_id, runtime in indices.items():
         states = runtime.get("states", {})
-        patterns = runtime.get("pattern_tags", [])
-        transitions = runtime.get("transition_tags", [])
+        patterns = [
+            _contextualize_text(pattern, template)
+            for pattern in runtime.get("pattern_tags", [])
+        ]
+        transitions = [
+            _contextualize_text(transition, template)
+            for transition in runtime.get("transition_tags", [])
+        ]
         lines.extend(
             [
-                f"### {_asset_label(index_id)}",
+                f"### {_asset_label(index_id, asset_names)}",
                 f"- 趋势={_state_label(states.get('trend_state'))}，位置={_state_label(states.get('position_state'))}，量能={_state_label(states.get('volume_state'))}，广度={_state_label(states.get('breadth_state'))}，波动={_state_label(states.get('volatility_state'))}",
                 f"- patterns: {_join_or_none(patterns)}",
                 f"- transitions: {_join_or_none(transitions)}",

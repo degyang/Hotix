@@ -1,4 +1,5 @@
 import math
+from copy import deepcopy
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -20,6 +21,7 @@ from hotix.engine.pair_engine import (
 )
 from hotix.engine.policy_engine import score_policy
 from hotix.engine.regime_engine import collect_market_relation_tags, score_market_regime
+from hotix.engine.report_templates import normalize_universe_type
 from hotix.engine.salience_engine import build_market_salience, score_index_salience
 from hotix.engine.state_engine import derive_index_states
 from hotix.engine.tag_engine import detect_index_patterns, detect_index_transitions
@@ -65,17 +67,65 @@ def _output_root(ctx: PipelineContext) -> Path:
 
 
 def build_context(
-    root: str | Path, data_dir: str | Path | None = None
+    root: str | Path,
+    data_dir: str | Path | None = None,
+    universe_type: str = "index",
 ) -> PipelineContext:
     root = Path(root).resolve()
-    registry = load_registry(root / "config" / "index_registry.yaml")
-    dsl = load_all_dsl(root / "dsl")
-    validate_all_dsl(dsl, registry)
     if data_dir is None:
         raise ValueError("Provide --data-dir or an explicit data_dir path.")
     resolved_data_dir = Path(data_dir).expanduser().resolve()
+    universe_type = normalize_universe_type(universe_type)
+    registry = _build_registry(root, resolved_data_dir, universe_type)
+    dsl = _build_dsl(root, registry, universe_type)
+    validate_all_dsl(dsl, registry)
     data = load_all_data(resolved_data_dir, registry)
     return PipelineContext(root=root, registry=registry, dsl=dsl, data=data)
+
+
+def _build_registry(root: Path, data_dir: Path, universe_type: str) -> dict:
+    if universe_type == "index":
+        return load_registry(root / "config" / "index_registry.yaml")
+    return {
+        "indices": {
+            path.stem: {"name": path.stem, "symbol": path.stem, "role": universe_type}
+            for path in sorted(data_dir.glob("*.csv"))
+        }
+    }
+
+
+def _build_dsl(root: Path, registry: dict, universe_type: str) -> dict:
+    dsl = deepcopy(load_all_dsl(root / "dsl"))
+    if universe_type == "index":
+        return dsl
+
+    members = sorted(registry["indices"])
+    dsl["universes"] = {
+        "version": "0.1",
+        "dsl_type": "universes",
+        "universes": [
+            {
+                "id": f"{universe_type}_universe",
+                "name": _default_universe_name(universe_type),
+                "type": universe_type,
+                "role": f"{universe_type}_structure",
+                "members": members,
+            }
+        ],
+    }
+    dsl["pairs"] = {"version": "0.1", "dsl_type": "pairs", "pairs": []}
+    dsl["regimes"] = {"version": "0.1", "dsl_type": "regimes", "regimes": []}
+    return dsl
+
+
+def _default_universe_name(universe_type: str) -> str:
+    names = {
+        "etf": "ETF观察池",
+        "stock": "个股观察池",
+        "sector": "行业指数观察池",
+        "mixed": "样本观察池",
+    }
+    return names.get(universe_type, "样本观察池")
 
 
 def run_single_date(ctx: PipelineContext, date: str) -> dict:
@@ -105,6 +155,8 @@ def run_single_date(ctx: PipelineContext, date: str) -> dict:
 
     pairs = {}
     for pair_def in ctx.dsl["pairs"]["pairs"]:
+        if pair_def["left"] not in indices or pair_def["right"] not in indices:
+            continue
         pair_runtime = create_pair_runtime(pair_def, date)
         pair_runtime = compute_pair_features(
             pair_runtime, ctx.dsl["pair_features"], indices

@@ -1,5 +1,6 @@
 from collections import Counter
 
+from hotix.engine.report_templates import normalize_universe_type
 from hotix.engine.salience_engine import build_cross_section_salience
 
 STATE_FIELDS = [
@@ -21,6 +22,7 @@ def build_all_universe_profiles(universes_dsl: dict, indices: dict) -> dict:
 def build_universe_profile(universe_def: dict, indices: dict) -> dict:
     members = [member for member in universe_def["members"] if member in indices]
     member_runtimes = {member: indices[member] for member in members}
+    universe_type = normalize_universe_type(universe_def["type"])
     state = _build_state_distributions(member_runtimes)
     salience = _build_universe_salience(member_runtimes)
     participation = _build_participation(member_runtimes)
@@ -28,7 +30,7 @@ def build_universe_profile(universe_def: dict, indices: dict) -> dict:
     return {
         "id": universe_def["id"],
         "name": universe_def["name"],
-        "type": universe_def["type"],
+        "type": universe_type,
         "role": universe_def["role"],
         "members": members,
         "participation": participation,

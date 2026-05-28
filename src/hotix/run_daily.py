@@ -27,6 +27,11 @@ def parse_args():
     parser.add_argument("--start", type=str, default=None)
     parser.add_argument("--end", type=str, default=None)
     parser.add_argument("--data-dir", type=str, default=None)
+    parser.add_argument(
+        "--universe-type",
+        choices=["index", "etf", "stock", "sector", "mixed"],
+        default="index",
+    )
     parser.add_argument("--dump-json", action="store_true")
     parser.add_argument("--write-files", action="store_true")
     parser.add_argument("--debug-index", type=str, default=None)
@@ -39,7 +44,9 @@ def main() -> None:
     args = parse_args()
     if not args.data_dir:
         raise SystemExit("Provide --data-dir.")
-    ctx = build_context(PACKAGE_ROOT, data_dir=args.data_dir)
+    ctx = build_context(
+        PACKAGE_ROOT, data_dir=args.data_dir, universe_type=args.universe_type
+    )
     target_date = latest_available_date(ctx) if args.latest else args.date
     if target_date:
         payload = run_single_date(ctx, target_date)

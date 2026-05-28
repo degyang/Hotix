@@ -257,3 +257,98 @@ def test_render_markdown_uses_professional_report_sections_and_index_names():
     assert "Risk Budget" not in text
     assert "Max New Positions" not in text
     assert "status=forbidden" not in text
+
+
+def test_render_markdown_uses_sector_template_without_index_specific_sections():
+    payload = {
+        "date": "2026-05-27",
+        "indices": {
+            "880301": {
+                "raw": {"adv": 0, "decl": 0},
+                "features": {
+                    "ret_1d": 0.012,
+                    "amount_ratio_1_20": 1.30,
+                    "volatility_percentile_250d": 0.70,
+                    "breadth_ratio": 0.0,
+                    "price_percentile_120d": 0.82,
+                },
+                "states": {
+                    "trend_state": "up",
+                    "position_state": "high",
+                    "volume_state": "expansion",
+                    "breadth_state": "weak",
+                    "volatility_state": "medium",
+                },
+                "pattern_tags": [],
+                "transition_tags": [],
+            }
+        },
+        "universes": {
+            "sector_universe": {
+                "name": "行业指数观察池",
+                "type": "sector",
+                "members": ["880301"],
+                "summary": ["行业指数观察池内部广度偏弱。"],
+                "salience": {"top_positive": [], "top_negative": [], "top_warning": []},
+                "cross_section": {
+                    "price": {
+                        "ret_1d": {
+                            "top_gain": [
+                                {
+                                    "asset_id": "880301",
+                                    "score": 0.012,
+                                    "rank": 1,
+                                    "metric": "ret_1d",
+                                }
+                            ],
+                            "top_decline": [],
+                        }
+                    }
+                },
+            }
+        },
+        "market": {
+            "market_profile": {
+                "one_liner": "当前市场画像：板块结构分化。",
+                "primary_label": "defensive_split",
+                "dominant_dimensions": ["price"],
+                "key_points": ["price 是当前主导维度。"],
+                "top_salience": {
+                    "positive": [],
+                    "negative": [],
+                    "warning": [
+                        {
+                            "asset_id": "880301",
+                            "dimension": "breadth",
+                            "score": 2.4,
+                            "reason": "指数上行但跟随不足",
+                        }
+                    ],
+                },
+            },
+            "market_regime": {"label": "", "score": 0, "confidence": 0, "evidence": []},
+            "market_context": {},
+            "relation_tags": [],
+            "top_positive": [],
+            "top_negative": [],
+            "top_warning": [
+                {
+                    "asset": "880301",
+                    "score": 2.4,
+                    "reasons": ["指数上行但跟随不足"],
+                }
+            ],
+            "top_transition": [],
+        },
+    }
+
+    text = render_markdown(payload)
+
+    assert "# 板块结构日报 - 2026-05-27" in text
+    assert "## 板块轮动分析" in text
+    assert "## 板块状态概览" in text
+    assert "行业指数观察池" in text
+    assert "涨幅 TOPN" in text
+    assert "指数状态概览" not in text
+    assert "主要指数观察池" not in text
+    assert "指数上行" not in text

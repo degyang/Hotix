@@ -351,6 +351,31 @@ def test_real_data_latest_markdown_report_contains_market_profile():
     assert payload["market"]["market_profile"]["primary_label"] in text
 
 
+@pytest.mark.external
+def test_real_sector_data_latest_markdown_uses_sector_report_template():
+    ctx = build_context(
+        PACKAGE_ROOT,
+        data_dir=Path("~/data/sector/daily").expanduser(),
+        universe_type="sector",
+    )
+    payload = run_single_date(ctx, latest_available_date(ctx))
+
+    text = render_markdown(payload)
+
+    assert "sector_universe" in payload["universes"]
+    sector = payload["universes"]["sector_universe"]
+    assert sector["type"] == "sector"
+    assert len(sector["members"]) >= 20
+    assert "cross_section" in sector
+    assert "# 板块结构日报" in text
+    assert "## 板块轮动分析" in text
+    assert "## 板块状态概览" in text
+    assert "涨幅 TOPN" in text
+    assert "跌幅 TOPN" in text
+    assert "主要指数观察池" not in text
+    assert "指数状态概览" not in text
+
+
 def test_run_daily_requires_data_dir():
     import subprocess
 
