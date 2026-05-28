@@ -372,6 +372,8 @@ def test_real_sector_data_latest_markdown_uses_sector_report_template():
     assert "## 板块状态概览" in text
     assert "涨幅 TOPN" in text
     assert "跌幅 TOPN" in text
+    assert "煤炭(880301)" in text
+    assert "电力(880305)" in text
     assert "主要指数观察池" not in text
     assert "指数状态概览" not in text
 
