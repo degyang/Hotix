@@ -72,6 +72,31 @@ def test_build_universe_profile_includes_cross_section_topn():
     assert ret_1d["top_decline"][0]["asset_id"] == "000852"
 
 
+def test_build_universe_profile_uses_top5_when_member_count_reaches_10():
+    indices = {
+        f"8803{index:02d}": IndexRuntime(
+            id=f"8803{index:02d}",
+            date="2026-05-27",
+            features={"ret_1d": index / 100},
+            salience={"items": []},
+        )
+        for index in range(10)
+    }
+    universe = {
+        "id": "sector_universe",
+        "name": "行业指数观察池",
+        "type": "sector",
+        "role": "sector_structure",
+        "members": list(indices),
+    }
+
+    profile = build_universe_profile(universe, indices)
+
+    ret_1d = profile["cross_section"]["price"]["ret_1d"]
+    assert len(ret_1d["top_gain"]) == 5
+    assert len(ret_1d["top_decline"]) == 5
+
+
 def test_build_universe_profile_sorts_salience_by_score():
     indices = {
         "000300": IndexRuntime(

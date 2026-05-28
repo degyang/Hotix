@@ -12,6 +12,10 @@ STATE_FIELDS = [
 ]
 
 
+def _cross_section_top_n(member_count: int) -> int:
+    return 5 if member_count >= 10 else 3
+
+
 def build_all_universe_profiles(universes_dsl: dict, indices: dict) -> dict:
     return {
         universe["id"]: build_universe_profile(universe, indices)
@@ -36,7 +40,9 @@ def build_universe_profile(universe_def: dict, indices: dict) -> dict:
         "participation": participation,
         "state": state,
         "salience": salience,
-        "cross_section": build_cross_section_salience(member_runtimes, top_n=3),
+        "cross_section": build_cross_section_salience(
+            member_runtimes, top_n=_cross_section_top_n(len(members))
+        ),
         "summary": _build_summary(universe_def, state, salience, participation),
     }
 
